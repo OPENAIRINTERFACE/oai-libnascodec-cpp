@@ -6,7 +6,7 @@ class Nas
 {
 
 public:
-    enum class protocol
+    enum class Protocol
     {
         group_call_control,
         broadcast_call_control,
@@ -27,6 +27,6 @@ public:
         _5GS_mobility_management_messages
     };
 
-    //void decode(std::istream &input);
-    //std::ostream encode(Pdu &pdu);
+    //void decode(std::istream & input);
+    //std::ostream encode(Pdu & pdu);
 };

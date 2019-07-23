@@ -19,10 +19,9 @@ PDU_session_type::Value PDU_session_type::get() const
 std::vector<uint8_t> PDU_session_type::code_TV() const
 {
     std::vector<uint8_t> data;
-    uint8_t c;
-    int v;
-    v = static_cast<int>(this->value);
-    c = this->iei | v;
+    uint8_t c,v;
+    v = static_cast<uint8_t>(this->value);
+    c = this->identifier | v;
     data.push_back(c);
     return data;
 }

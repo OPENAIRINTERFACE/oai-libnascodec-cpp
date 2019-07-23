@@ -7,14 +7,13 @@ namespace _5GS
 {
 class PDU_session_establishment_request : public PduSm
 {
-private:
-    int type = 0b11000001;
-
-
-    _5GS::IE::PDU_session_type &pdu_session_type;
 
 public:
-    std::istream &operator>>(std::istream &input);
-    std::ostream &operator<<(std::ostream &output);
+    std::istream & operator>>(std::istream & input);
+    std::ostream & operator<<(std::ostream & output);
+
+private:
+    static const Type type = Type::PDU_session_establishment_request;
+    IE::PDU_session_type pdu_session_type; // Optional
 };
 } // namespace _5GS

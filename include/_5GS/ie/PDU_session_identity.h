@@ -10,11 +10,11 @@ namespace _5GS
 namespace IE
 {
 
-class PDU_session_ID : public InformationElement
+class PDU_session_identity : public InformationElement
 {
 public:
     // TS 24.007 - 11.2.3.1c.1
-    enum class Value
+    enum class Value : uint8_t
     {
         No_PDU_session_identity_assigned,
         PDU_session_identity_value_1,
@@ -34,16 +34,15 @@ public:
         PDU_session_identity_value_15
     };
 
-private:
-    bool present = false;
-    Value value;
-
-public:
     void set(Value value);
     Value get() const;
 
     std::vector<uint8_t> code_V() const;
-    //std::vector<uint8_t> decode_V(std::vector<uint8_t> &data);
+    //std::vector<uint8_t> decode_V(std::vector<uint8_t> & data);
+
+private:
+    Value value;
+
 };
 
 } // namespace IE
