@@ -16,11 +16,15 @@ PDU_session_identity::Value PDU_session_identity::get() const
     return this->value;
 }
 
-std::vector<uint8_t> PDU_session_identity::code_V() const
+int PDU_session_identity::code_V(std::vector<uint8_t> &data) const
 {
-    std::vector<uint8_t> data;
+    if (!this->present)
+    {
+        return -1;
+    }
+    // FIXME  catch vector pushback exception
     data.push_back(static_cast<uint8_t>(this->value));
-    return data;
+    return 0;
 }
 
 } // namespace IE

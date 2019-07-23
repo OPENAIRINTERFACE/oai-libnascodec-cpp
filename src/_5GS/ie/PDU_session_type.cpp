@@ -16,14 +16,18 @@ PDU_session_type::Value PDU_session_type::get() const
     return this->value;
 }
 
-std::vector<uint8_t> PDU_session_type::code_TV() const
+int PDU_session_type::code_TV(std::vector<uint8_t> &data) const
 {
-    std::vector<uint8_t> data;
-    uint8_t c,v;
+    if (!this->present)
+    {
+        return -1;
+    }
+
+    uint8_t c, v;
     v = static_cast<uint8_t>(this->value);
     c = this->identifier | v;
-    data.push_back(c);
-    return data;
+    data.push_back(c); // FIXME catch error ?
+    return 0;
 }
 
 } // namespace IE

@@ -9,8 +9,8 @@ class PDU_session_establishment_request : public PduSm
 {
 
 public:
-    std::istream & operator>>(std::istream & input);
-    std::ostream & operator<<(std::ostream & output);
+    int code(std::vector<uint8_t> & data) const;
+    int decode(std::vector<uint8_t> & data);
 
 private:
     static const Type type = Type::PDU_session_establishment_request;

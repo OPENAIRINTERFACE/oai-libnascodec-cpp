@@ -1,6 +1,7 @@
 #pragma once
 
-#include <iostream>
+#include <vector>
+#include <cstdint>
 
 namespace _5GS
 {
@@ -31,7 +32,8 @@ public:
         PDU_session_establishment_reject
     };
 
-    std::ostream & operator<<(std::ostream & output);
-    std::istream & operator>>(std::istream & input);
+    virtual int code(std::vector<uint8_t> & data) const;
+    virtual int decode(std::vector<uint8_t> & data);
+
 };
 } // namespace _5GS

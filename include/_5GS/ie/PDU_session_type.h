@@ -32,7 +32,7 @@ private:
     static const uint8_t identifier = 0x90; // half octet for iei
     Value value;
 
-    std::vector<uint8_t> code_TV() const;
+    int code_TV(std::vector<uint8_t> & data) const;
     //std::vector<uint8_t> decode_TV(std::vector<uint8_t> & data);
 };
 
