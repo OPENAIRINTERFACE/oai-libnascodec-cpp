@@ -1,19 +1,19 @@
 #pragma once
 
-#include <_5GS/pdu_sm.h>
+#include <_5GS/pdu_5gs_sm.h>
 #include <_5GS/ie/PDU_session_type.h>
 
 namespace _5GS
 {
-class PDU_session_establishment_request : public PduSm
+class PDU_session_establishment_request : public Pdu5gsSm
 {
 
 public:
-    int code(std::vector<uint8_t> & data) const;
-    int decode(std::vector<uint8_t> & data);
+    IE::PDU_session_type pdu_session_type;
+
+    int code_ex(std::vector<uint8_t> & data) const;
 
 private:
-    static const Type type = Type::PDU_session_establishment_request;
-    IE::PDU_session_type pdu_session_type; // Optional
+    // Optional ies
 };
 } // namespace _5GS

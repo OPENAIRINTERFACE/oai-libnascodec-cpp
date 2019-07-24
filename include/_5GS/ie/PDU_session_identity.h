@@ -37,8 +37,8 @@ public:
     void set(Value value);
     Value get() const;
 
-    int code_V(std::vector<uint8_t> & data) const;
-    //std::vector<uint8_t> decode_V(std::vector<uint8_t> & data);
+    int code_V_ex(std::vector<uint8_t> & data) const;
+    int decode_V_ex(const std::vector<uint8_t> & data);
 
 private:
     Value value;

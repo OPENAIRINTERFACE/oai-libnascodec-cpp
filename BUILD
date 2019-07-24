@@ -6,7 +6,7 @@ cc_library(
 )
 
 cc_binary(
-    name = "PDU_session_establishment_request",
-    srcs = ["example/PDU_session_establishment_request.cpp"],
+    name = "example",
+    srcs = ["example/example.cpp"],
     deps = [":nascodec-cpp"],
 )
