@@ -16,6 +16,8 @@ public:
     virtual int decode(const std::vector<uint8_t> &data);
     virtual int code_ex(std::vector<uint8_t> &data) const;
     virtual int decode_ex(const std::vector<uint8_t> &data);
-
+    
+private:
+    int codeMMHeader(std::vector<uint8_t> &data) const;
 };
 } // namespace _5GS

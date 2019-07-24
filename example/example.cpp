@@ -3,27 +3,37 @@
 
 #include <helpers.h>
 #include <_5GS/PDU_session_establishment_request.h>
-//#include <_5GS/ie/PDU_session_identity.h>
-//#include <_5GS/ie/PDU_session_type.h>
-//#include <nas.h>
-//#include <information_element.h>
 
 using namespace _5GS;
 
-int example_with_PDU()
+PDU_session_establishment_request makePduExample()
 {
     PDU_session_establishment_request pdu;
+    // for header
+    pdu.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_3);
+    pdu.procedure_transaction_identity.set(31);
+    // mandatory 
+    pdu.integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
+    pdu.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
+    // optionals
+    pdu.pdu_session_type.set(IE::PDU_session_type::Value::IPv6);
+    return pdu;
+}
+
+int example_with_PDU()
+{
+    //Pdu5gs pdu = makePduExample(); // TODO learn c++ :)
+    PDU_session_establishment_request pdu = makePduExample();
     std::vector<uint8_t> data;
 
-    pdu.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_3);
-    pdu.pdu_session_type.set(IE::PDU_session_type::Value::IPv6);
-
-    if (pdu.code(data) < 0)
+    int size = pdu.code(data);
+    if (size < 0)
     {
         std::cerr << "Error coding PDU session establishment request\n";
         return -1;
     }
     std::cout << data;
+    std::cerr << "size = " << size << "\n";
     return 0;
 }
 

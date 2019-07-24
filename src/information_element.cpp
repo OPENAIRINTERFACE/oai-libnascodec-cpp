@@ -335,6 +335,8 @@ void InformationElement::raise_exception_if_not_present() const
 {
     if (!this->present)
     {
-        throw std::invalid_argument("No value for IE");
+        // FIXME how to derive this for childs ?
+        throw std::invalid_argument("No value for IE InformationElement" );
     }
 }
+

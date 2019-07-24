@@ -39,4 +39,9 @@ int Pdu5gs::decode_ex(const std::vector<uint8_t> &data)
     throw std::runtime_error("Not implemented");
 }
 
+int Pdu5gs::codeMMHeader(std::vector<uint8_t> &data) const
+{
+    return this->message_type.code_ex(data, InformationElement::Format::V);
+}
+
 }; // namespace _5GS
