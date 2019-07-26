@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <cstdint>
+#include <string>
 
 // TS 24.007 - chapter 11
 
@@ -32,7 +33,7 @@ public:
 
 protected:
     bool present = false; // set if ie is optional and found in a pdu
-    void raise_exception_if_not_present() const;
+    void raise_exception_if_not_present(std::string name) const;
 
 private:
     virtual int code_T(std::vector<uint8_t> &data) const;

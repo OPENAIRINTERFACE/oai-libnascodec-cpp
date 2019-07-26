@@ -9,7 +9,7 @@ using namespace _5GS;
 PDU_session_establishment_request makePduExample()
 {
     PDU_session_establishment_request pdu;
-    // for header
+    // for header (mandatory)
     pdu.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_3);
     pdu.procedure_transaction_identity.set(31);
     // mandatory 
@@ -26,7 +26,7 @@ int example_with_PDU()
     PDU_session_establishment_request pdu = makePduExample();
     std::vector<uint8_t> data;
 
-    int size = pdu.code(data);
+    int size = pdu.code_ex(data);
     if (size < 0)
     {
         std::cerr << "Error coding PDU session establishment request\n";

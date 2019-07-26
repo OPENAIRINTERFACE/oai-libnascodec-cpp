@@ -18,7 +18,7 @@ int Pdu5gs::code(std::vector<uint8_t> &data) const
 
 int Pdu5gs::code_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int Pdu5gs::decode(const std::vector<uint8_t> &data)
@@ -36,7 +36,7 @@ int Pdu5gs::decode(const std::vector<uint8_t> &data)
 
 int Pdu5gs::decode_ex(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int Pdu5gs::codeMMHeader(std::vector<uint8_t> &data) const

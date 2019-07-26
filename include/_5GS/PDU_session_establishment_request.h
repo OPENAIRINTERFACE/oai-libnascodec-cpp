@@ -16,6 +16,6 @@ public:
 
     PDU_session_establishment_request();
 
-    int code_ex(std::vector<uint8_t> &data) const;
+    virtual int code_ex(std::vector<uint8_t> &data) const;
 };
 } // namespace _5GS

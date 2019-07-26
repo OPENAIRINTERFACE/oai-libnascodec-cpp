@@ -1,4 +1,5 @@
 #include <_5GS/ie/Integrity_protection_maximum_data_rate.h>
+#include <helpers.h>
 
 namespace _5GS
 {
@@ -49,7 +50,7 @@ void Integrity_protection_maximum_data_rate::raise_exception_if_downlink_not_pre
 
 int Integrity_protection_maximum_data_rate::code_V_ex(std::vector<uint8_t> &data) const
 {
-    this->raise_exception_if_not_present();
+    this->raise_exception_if_not_present(className(this));
     data.push_back(static_cast<uint8_t>(this->uplink));
     data.push_back(static_cast<uint8_t>(this->downlink));
     return 2;

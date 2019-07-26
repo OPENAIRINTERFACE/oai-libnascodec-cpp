@@ -75,43 +75,43 @@ int InformationElement::decode_ex(const std::vector<uint8_t> &data, const Inform
     case InformationElement::Format::TLV_E:
         return this->decode_TLV_E_ex(data);
     }
-    throw std::runtime_error("Not implemented format");
+    throw std::runtime_error(std::string("Format not implemented: ") + std::string(__PRETTY_FUNCTION__));
     return -1;
 };
 
 int InformationElement::code_T_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_V_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_TV_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_LV_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_TLV_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_LV_E_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_TLV_E_ex(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_T(std::vector<uint8_t> &data) const
@@ -217,27 +217,27 @@ int InformationElement::decode_V_ex(const std::vector<uint8_t> &data)
 
 int InformationElement::decode_TV_ex(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_LV_ex(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_TLV_ex(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_LV_E_ex(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_TLV_E_ex(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_T(const std::vector<uint8_t> &data)
@@ -331,12 +331,12 @@ int InformationElement::decode_TLV_E(const std::vector<uint8_t> &data)
     return 0;
 }
 
-void InformationElement::raise_exception_if_not_present() const
+void InformationElement::raise_exception_if_not_present(std::string name) const
 {
     if (!this->present)
     {
         // FIXME how to derive this for childs ?
-        throw std::invalid_argument("No value for IE InformationElement" );
+        throw std::invalid_argument(std::string("No value for IE InformationElement ") + typeid(this).name());
     }
 }
 
