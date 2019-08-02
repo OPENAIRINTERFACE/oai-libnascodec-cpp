@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include <cxxabi.h>
 
 std::istream &operator>>(std::istream &input, std::vector<uint8_t> &data);
@@ -15,3 +16,5 @@ std::string className(const Type &object) {
     char * name = abi::__cxa_demangle(typeid(object).name(),0, 0, &status);
     return std::string(name);
 }
+
+std::string dump_wireshark(const std::vector<uint8_t> &data);

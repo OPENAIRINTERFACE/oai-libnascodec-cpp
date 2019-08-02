@@ -44,4 +44,13 @@ int Pdu5gs::codeMMHeader(std::vector<uint8_t> &data) const
     return this->message_type.code_ex(data, InformationElement::Format::V);
 }
 
+std::string Pdu5gs::header_to_string() const
+{
+    std::string str;
+    // TODO add security header
+    // Message type
+    str += this->message_type.name + "=" + this->message_type.to_string();
+    return str;
+}
+
 }; // namespace _5GS

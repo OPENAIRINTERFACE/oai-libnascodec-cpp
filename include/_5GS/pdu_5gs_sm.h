@@ -15,6 +15,10 @@ public:
     IE::PDU_session_identity pdu_session_identity;
     IE::Procedure_transaction_identity procedure_transaction_identity;
 
+    virtual int decode_ex(const std::vector<uint8_t> &data);
+
     int codeSMHeader(std::vector<uint8_t> &data) const;
+
+    virtual std::string header_to_string() const;
 };
 } // namespace _5GS

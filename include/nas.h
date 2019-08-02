@@ -10,7 +10,6 @@ class Nas
 public:
     static int decode(std::vector<uint8_t> & data);
 
-protected:
     enum class ProtocolDiscriminator : uint8_t
     {
         group_call_control,
@@ -29,7 +28,8 @@ protected:
         used_by_tests_procdures_described_in_3GPP_TS_44_014__5a__3GPP_TS_34_109__17a___3GPP_TS_36_509__26__and_3GPP_TS_38_509__29__ = 0X0f,
         // Here are extended protocols 0bxxxx1110
         _5GS_session_management_messages = 0b00101110,
-        _5GS_mobility_management_messages = 0b01111110
+        _5GS_mobility_management_messages = 0b01111110,
+        reserved = 254
     };
 
     enum class SecurityHeaderType : uint8_t {
@@ -42,4 +42,6 @@ protected:
 
     static int codeProtocolDiscriminator(std::vector<uint8_t> & data,const ProtocolDiscriminator protocol);
     static int codeSecurityHeaderType(std::vector<uint8_t> & data,const SecurityHeaderType security);
+    static ProtocolDiscriminator decodeProtocolDiscriminator(std::vector<uint8_t> &data);
+    static Nas::ProtocolDiscriminator uint8_t_to_ProtocolDiscriminator(uint8_t byte);
 };

@@ -14,6 +14,8 @@ class Message_type : public InformationElement
 {
 
 public:
+    std::string name = "Message type";
+
     // TS 24.501- 9.7
     enum class Value : uint8_t
     {
@@ -23,6 +25,7 @@ public:
         Registration_accept,
         Registration_complete,
         Registration_reject,
+        // Deregistration
         Deregistration_request__UE_originating_,
         Deregistration_accept__UE_originating_,
         Deregistration_request__UE_terminated,
@@ -71,11 +74,16 @@ public:
     void set(Value id);
     Value get() const;
 
+    std::string to_string() const;
+
+    int decode_V_ex(const std::vector<uint8_t> &data);
+    int decode_V_ex(const uint8_t &data);
+
 private:
     Value value;
 
     int code_V_ex(std::vector<uint8_t> &data) const;
-    int decode_V_ex(const std::vector<uint8_t> &data);
+    Value uint8_t_to_Value(const uint8_t byte);
 };
 
 } // namespace IE

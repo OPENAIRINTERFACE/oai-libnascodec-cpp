@@ -15,6 +15,9 @@ class PDU_session_type : public InformationElement
 
 public:
     // TS 24.501- 9.11.4.11
+
+    static const std::string name;
+
     enum class Value : uint8_t
     {
         IPv4 = 1,
@@ -28,12 +31,16 @@ public:
     void set(Value id);
     Value get() const;
 
+    std::string to_string() const;
+
+    static std::string value_to_string(const Value value);
+
 private:
     static const uint8_t identifier = 0x90; // half octet for iei
     Value value;
 
-    int code_TV_ex(std::vector<uint8_t> & data) const;
-    int decode_TV_ex(const std::vector<uint8_t> & data);
+    int code_TV_ex(std::vector<uint8_t> &data) const;
+    int decode_TV_ex(const std::vector<uint8_t> &data);
 };
 
 } // namespace IE

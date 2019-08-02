@@ -6,6 +6,8 @@ namespace _5GS
 namespace IE
 {
 
+const std::string Integrity_protection_maximum_data_rate::name = "Integrity protection maximum data rate";
+
 void Integrity_protection_maximum_data_rate::setUplink(Integrity_protection_maximum_data_rate::Value value)
 {
     this->presentUplink = true;
@@ -70,7 +72,7 @@ int Integrity_protection_maximum_data_rate::decode_V_ex(const std::vector<uint8_
 {
     if (data.size() < 2)
     {
-        throw std::runtime_error("No data to decode");
+        throw std::runtime_error(std::string("No data to decode: ") + std::string(__PRETTY_FUNCTION__));
     }
     this->uplink = fromUint8_t(data[0]);
     this->downlink = fromUint8_t(data[1]);
@@ -79,6 +81,31 @@ int Integrity_protection_maximum_data_rate::decode_V_ex(const std::vector<uint8_
     this->presentUplink = true;
     this->presentDownlink = true;
     return 2;
+}
+
+std::string Integrity_protection_maximum_data_rate::to_string() const
+{
+    if (not this->isSet())
+    {
+        return "-";
+    }
+    return "uplink(" +
+           Integrity_protection_maximum_data_rate::value_to_string(this->uplink) +
+           ")&downlink(" +
+           Integrity_protection_maximum_data_rate::value_to_string(this->downlink) +
+           ")";
+}
+
+std::string Integrity_protection_maximum_data_rate::value_to_string(const Integrity_protection_maximum_data_rate::Value value)
+{
+    switch (value)
+    {
+    case Integrity_protection_maximum_data_rate::Value::Full_data_rate:
+        return "Full data rate";
+    case Integrity_protection_maximum_data_rate::Value::_64_kbps:
+        return "64 kbps";
+    }
+    throw std::invalid_argument("Not a value");
 }
 
 } // namespace IE

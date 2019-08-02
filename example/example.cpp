@@ -2,38 +2,40 @@
 #include <vector>
 
 #include <helpers.h>
+#include <_5GS/decode.h>
 #include <_5GS/PDU_session_establishment_request.h>
 
 using namespace _5GS;
 
-PDU_session_establishment_request makePduExample()
+void makePduExample(PDU_session_establishment_request &pdu)
 {
-    PDU_session_establishment_request pdu;
+    PDU_session_establishment_request pdu_tmp;
+    
     // for header (mandatory)
-    pdu.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_3);
-    pdu.procedure_transaction_identity.set(31);
-    // mandatory 
-    pdu.integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
-    pdu.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
+    pdu_tmp.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_3);
+    pdu_tmp.procedure_transaction_identity.set(31);
+    // mandatory
+    pdu_tmp.integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
+    pdu_tmp.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
     // optionals
-    pdu.pdu_session_type.set(IE::PDU_session_type::Value::IPv6);
-    return pdu;
+    pdu_tmp.pdu_session_type.set(IE::PDU_session_type::Value::IPv6);
+    pdu = pdu_tmp;
 }
 
 int example_with_PDU()
 {
-    //Pdu5gs pdu = makePduExample(); // TODO learn c++ :)
-    PDU_session_establishment_request pdu = makePduExample();
+    PDU_session_establishment_request pdu_sm;
+    std::cout << pdu_sm.to_string() << "\n";
+    makePduExample(pdu_sm);
+
     std::vector<uint8_t> data;
 
-    int size = pdu.code_ex(data);
-    if (size < 0)
-    {
-        std::cerr << "Error coding PDU session establishment request\n";
-        return -1;
-    }
+    int size = pdu_sm.code_ex(data);
+
     std::cout << data;
-    std::cerr << "size = " << size << "\n";
+    std::cerr << "size = " << size << " | size of buffer = " << data.size() << "\n";
+    std::cout << pdu_sm.to_string() << "\n";
+
     return 0;
 }
 
@@ -64,11 +66,35 @@ int example_with_ie()
     }
 
     std::cout << data1 << data2;
+    
+    return 0;
+}
+
+class DecodeExample : public _5GS::Decode
+{
+    void onPduSessionEstablishmentRequest(PDU_session_establishment_request &pdu)
+    {
+        std::cout << pdu.to_string();
+    }
+};
+
+int example_decoding_PDU()
+{
+    PDU_session_establishment_request pdu;
+    makePduExample(pdu);
+    std::vector<uint8_t> data;
+
+    pdu.code_ex(data);
+
+    DecodeExample decoder;
+    decoder.decode(data);
+
     return 0;
 }
 
 int main()
 {
     //return example_with_ie();
-    return example_with_PDU();
+    //return example_with_PDU();
+    return example_decoding_PDU();
 }

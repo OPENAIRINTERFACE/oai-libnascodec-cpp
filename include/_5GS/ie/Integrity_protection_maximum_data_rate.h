@@ -14,6 +14,9 @@ class Integrity_protection_maximum_data_rate : public InformationElement
 {
 public:
     // TS 24.501 - 9.11.4.7
+
+    static const std::string name;
+
     enum class Value : uint8_t
     {
         _64_kbps,
@@ -28,8 +31,12 @@ public:
 
     int code_V_ex(std::vector<uint8_t> &data) const;
     int decode_V_ex(const std::vector<uint8_t> &data);
-
+    
     static Value fromUint8_t(uint8_t v);
+
+    std::string to_string() const;
+    static std::string value_to_string(const Value value);
+
 
 private:
     // FIXME dry - make class helper for uplink downlink ?
