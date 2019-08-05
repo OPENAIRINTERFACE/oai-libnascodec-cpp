@@ -19,3 +19,4 @@ std::string className(const Type &object)
 }
 
 std::string dump_wireshark(const std::vector<uint8_t> &data);
+std::string dump_wireshark_with_ngap_encapsulation(const std::vector<uint8_t> &data);

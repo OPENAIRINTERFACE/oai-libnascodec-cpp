@@ -15,7 +15,7 @@ void makePduExample(PDU_session_establishment_request &pdu)
         IE::Integrity_protection_maximum_data_rate(
             IE::Integrity_protection_maximum_data_rate::Value::_64_kbps,
             IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate),
-        // optional
+        // optional - can be omitted
         IE::PDU_session_type(IE::PDU_session_type::Value::IPv4v6));
 
     pdu = pdu_tmp;
@@ -24,6 +24,7 @@ void makePduExample(PDU_session_establishment_request &pdu)
 void makePduExample_using_setters(PDU_session_establishment_request &pdu)
 {
     PDU_session_establishment_request pdu_tmp;
+
     // for header (mandatory)
     pdu_tmp.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_5);
     pdu_tmp.procedure_transaction_identity.set(250);
@@ -32,10 +33,11 @@ void makePduExample_using_setters(PDU_session_establishment_request &pdu)
     pdu_tmp.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
     // optionals
     pdu_tmp.pdu_session_type.set(IE::PDU_session_type::Value::IPv4);
+
     pdu = pdu_tmp;
 }
 
-int example_with_PDU()
+int example_coding_PDU()
 {
     PDU_session_establishment_request pdu_sm;
     std::cout << pdu_sm.to_string() << "\n";
@@ -45,14 +47,17 @@ int example_with_PDU()
 
     int size = pdu_sm.code_ex(data);
 
-    std::cout << data;
+    // print to stdout to redirect to file and inspect with wireshark
+    std::cout << dump_wireshark_with_ngap_encapsulation(data);
+    // print info to terminal
+    std::cerr << dump_wireshark(data);
     std::cerr << "size = " << size << " | size of buffer = " << data.size() << "\n";
-    std::cout << pdu_sm.to_string() << "\n";
+    std::cerr << pdu_sm.to_string() << "\n";
 
     return 0;
 }
 
-int example_with_ie()
+int example_coding_ie()
 {
     // IE examples
 
@@ -107,7 +112,7 @@ int example_decoding_PDU()
 
 int main()
 {
-    //return example_with_ie();
-    //return example_with_PDU();
-    return example_decoding_PDU();
+    //return example_coding_ie();
+    return example_coding_PDU();
+    //return example_decoding_PDU();
 }
