@@ -43,10 +43,11 @@ std::string Pdu5gsSm::header_to_string() const
 int Pdu5gsSm::decode_ex(const std::vector<uint8_t> &data)
 {
        // TODO security header
-       this->pdu_session_identity.decode_V_ex(data[2]);
-       this->procedure_transaction_identity.decode_V_ex(data[3]);
-       this->message_type.decode_V_ex(data[4]);
-       return 5;
+       const int offset = 1;
+       this->pdu_session_identity.decode_V_ex(data[offset]);
+       this->procedure_transaction_identity.decode_V_ex(data[offset + 1]);
+       this->message_type.decode_V_ex(data[offset + 2 ]);
+       return 3 + offset;
 }
 
 }; // namespace _5GS
