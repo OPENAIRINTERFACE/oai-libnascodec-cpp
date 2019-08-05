@@ -8,6 +8,15 @@ namespace IE
 
 const std::string PDU_session_identity::name = "PDU session Identity";
 
+PDU_session_identity::PDU_session_identity()
+{
+}
+
+PDU_session_identity::PDU_session_identity(PDU_session_identity::Value value)
+{
+    this->set(value);
+}
+
 void PDU_session_identity::set(PDU_session_identity::Value id)
 {
     this->present = true;
@@ -35,12 +44,14 @@ int PDU_session_identity::decode_V_ex(const std::vector<uint8_t> &data)
 int PDU_session_identity::decode_V_ex(const uint8_t &data)
 {
     this->value = PDU_session_identity::uint8_t_to_Value(data);
-    this->present = true;    
+    this->present = true;
     return 1;
 }
 
-PDU_session_identity::Value PDU_session_identity::uint8_t_to_Value(const uint8_t &byte) {
-    if ( byte > static_cast<uint8_t>(PDU_session_identity::Value::reserved)) {
+PDU_session_identity::Value PDU_session_identity::uint8_t_to_Value(const uint8_t &byte)
+{
+    if (byte > static_cast<uint8_t>(PDU_session_identity::Value::reserved))
+    {
         return PDU_session_identity::Value::reserved;
     }
     return static_cast<PDU_session_identity::Value>(byte);

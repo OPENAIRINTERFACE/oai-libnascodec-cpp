@@ -6,7 +6,7 @@
 
 namespace _5GS
 {
-// FIXME rename to identify NAS protocol
+
 class Decode
 {
 
@@ -17,4 +17,5 @@ public:
     virtual void onPduSessionEstablishmentRequest(PDU_session_establishment_request &pdu);
     //virtual void onPduRegisrationRequest(PDU_registration_request & pdu);
 };
+
 } // namespace _5GS

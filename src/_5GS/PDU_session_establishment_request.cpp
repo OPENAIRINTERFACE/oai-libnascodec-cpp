@@ -5,9 +5,24 @@
 namespace _5GS
 {
 
-PDU_session_establishment_request::PDU_session_establishment_request(void)
+PDU_session_establishment_request::PDU_session_establishment_request()
 {
     this->message_type.set(IE::Message_type::Value::PDU_session_establishment_request);
+}
+
+PDU_session_establishment_request::PDU_session_establishment_request(
+    IE::PDU_session_identity psi,
+    IE::Procedure_transaction_identity pti,
+    // Mandatory
+    IE::Integrity_protection_maximum_data_rate ipmdr,
+    // Optionals
+    IE::PDU_session_type pst)
+    : Pdu5gsSm::Pdu5gsSm(psi, pti)
+   
+{
+    this->message_type.set(IE::Message_type::Value::PDU_session_establishment_request);
+    this->integrity_protection_maximum_data_rate = ipmdr;
+    this->pdu_session_type = pst;
 }
 
 int PDU_session_establishment_request::code_ex(std::vector<uint8_t> &data) const
@@ -40,18 +55,20 @@ int PDU_session_establishment_request::decode_ex(const std::vector<uint8_t> &dat
     offset = Pdu5gsSm::decode_ex(data);
     const std::vector<uint8_t> ipmdr_data(&data[offset], &data[offset + 2]);
     offset += this->integrity_protection_maximum_data_rate.decode_V_ex(ipmdr_data);
-    while ( offset < data.size() )
+    while (offset < data.size())
     {
         const std::vector<uint8_t> iei_data(data.cbegin() + offset, data.cend());
         uint8_t iei = iei_data[0];
-        if ( iei > 0x90 ) {
+        if (iei > 0x90)
+        {
             iei = iei & 0xf0;
         }
-        switch (iei) {
-            case PDU_session_establishment_request::Iei::PDU_session_type:
-                offset += this->pdu_session_type.decode_ex(iei_data, InformationElement::Format::TV);
-            default:
-                break;
+        switch (iei)
+        {
+        case PDU_session_establishment_request::Iei::PDU_session_type:
+            offset += this->pdu_session_type.decode_ex(iei_data, InformationElement::Format::TV);
+        default:
+            break;
         }
     }
     return offset;

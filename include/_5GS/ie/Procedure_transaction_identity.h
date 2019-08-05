@@ -24,6 +24,10 @@ public:
         Reserved = 255
     };
 
+    Procedure_transaction_identity();
+    Procedure_transaction_identity(Value value);
+    Procedure_transaction_identity(uint8_t value);
+
     void set(uint8_t value);
     uint8_t get() const;
 

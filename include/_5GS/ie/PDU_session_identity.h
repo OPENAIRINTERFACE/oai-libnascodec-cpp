@@ -39,6 +39,9 @@ public:
         reserved
     };
 
+    PDU_session_identity();
+    PDU_session_identity(Value val);
+
     void set(Value value);
     Value get() const;
 

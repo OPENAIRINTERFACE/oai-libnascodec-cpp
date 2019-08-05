@@ -8,6 +8,17 @@ namespace IE
 
 const std::string Integrity_protection_maximum_data_rate::name = "Integrity protection maximum data rate";
 
+Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate()
+{
+
+}
+
+Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate(Value uplink, Value downlink)
+{
+    this->setUplink(uplink);
+    this->setDownlink(downlink);
+}
+
 void Integrity_protection_maximum_data_rate::setUplink(Integrity_protection_maximum_data_rate::Value value)
 {
     this->presentUplink = true;

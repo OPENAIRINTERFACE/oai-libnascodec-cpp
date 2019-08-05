@@ -23,6 +23,9 @@ public:
         Full_data_rate = 255
     };
 
+    Integrity_protection_maximum_data_rate();
+    Integrity_protection_maximum_data_rate(Value uplink, Value downlink);
+
     void setUplink(Value value);
     Value getUplink() const;
 
@@ -31,12 +34,11 @@ public:
 
     int code_V_ex(std::vector<uint8_t> &data) const;
     int decode_V_ex(const std::vector<uint8_t> &data);
-    
+
     static Value fromUint8_t(uint8_t v);
 
     std::string to_string() const;
     static std::string value_to_string(const Value value);
-
 
 private:
     // FIXME dry - make class helper for uplink downlink ?

@@ -335,8 +335,7 @@ void InformationElement::raise_exception_if_not_present(std::string name) const
 {
     if (!this->present)
     {
-        // FIXME how to derive this for childs ?
-        throw std::invalid_argument(std::string("No value for IE InformationElement ") + typeid(this).name());
+        throw std::invalid_argument(std::string("No value for IE InformationElement ") + name);
     }
 }
 

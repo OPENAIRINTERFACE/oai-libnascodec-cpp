@@ -11,7 +11,8 @@ std::ostream &operator<<(std::ostream &output, std::vector<uint8_t> &data);
 std::string stack_and_format_exception(const std::string &raised,const std::string &thrown);
 
 template <class Type>
-std::string className(const Type &object) {
+std::string className(const Type &object)
+{
     int status;
     char * name = abi::__cxa_demangle(typeid(object).name(),0, 0, &status);
     return std::string(name);

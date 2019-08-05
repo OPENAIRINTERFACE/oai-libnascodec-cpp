@@ -9,16 +9,29 @@ using namespace _5GS;
 
 void makePduExample(PDU_session_establishment_request &pdu)
 {
+    PDU_session_establishment_request pdu_tmp(
+        IE::PDU_session_identity(IE::PDU_session_identity::Value::PDU_session_identity_value_3),
+        IE::Procedure_transaction_identity(31),
+        IE::Integrity_protection_maximum_data_rate(
+            IE::Integrity_protection_maximum_data_rate::Value::_64_kbps,
+            IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate),
+        // optional
+        IE::PDU_session_type(IE::PDU_session_type::Value::IPv4v6));
+
+    pdu = pdu_tmp;
+}
+
+void makePduExample_using_setters(PDU_session_establishment_request &pdu)
+{
     PDU_session_establishment_request pdu_tmp;
-    
     // for header (mandatory)
-    pdu_tmp.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_3);
-    pdu_tmp.procedure_transaction_identity.set(31);
+    pdu_tmp.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_5);
+    pdu_tmp.procedure_transaction_identity.set(250);
     // mandatory
-    pdu_tmp.integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
-    pdu_tmp.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
+    pdu_tmp.integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
+    pdu_tmp.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
     // optionals
-    pdu_tmp.pdu_session_type.set(IE::PDU_session_type::Value::IPv6);
+    pdu_tmp.pdu_session_type.set(IE::PDU_session_type::Value::IPv4);
     pdu = pdu_tmp;
 }
 
@@ -66,7 +79,7 @@ int example_with_ie()
     }
 
     std::cout << data1 << data2;
-    
+
     return 0;
 }
 

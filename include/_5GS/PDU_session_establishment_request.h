@@ -15,6 +15,13 @@ public:
     IE::PDU_session_type pdu_session_type;
 
     PDU_session_establishment_request();
+    // TODO doc
+    PDU_session_establishment_request(
+        IE::PDU_session_identity psi,
+        IE::Procedure_transaction_identity pti,
+        IE::Integrity_protection_maximum_data_rate ipmdr,
+        IE::PDU_session_type pst = IE::PDU_session_type()
+    );
 
     virtual int code_ex(std::vector<uint8_t> &data) const;
     virtual int decode_ex(const std::vector<uint8_t> &data);
@@ -22,12 +29,13 @@ public:
     std::string to_string() const;
 
 private:
-    // XXX Iei are local to message type !
+    // Warning: Iei are local to message type !
     // ie. iei 0x9- is used for :
     // - Network slice indication for Registration Request PDU
     // - PDU session type for PDU Session Establishment Request
+    // Thus we can't have a global list of Iei
     enum Iei {
-        // TODO Must verify .... iei > 0x90 are half octet
+        // iei > 0x90 are half octet values
         PDU_session_type = 0x90,
         SSC_Mode = 0xA0,
         Always_on_PDU_session_requested = 0xB0,

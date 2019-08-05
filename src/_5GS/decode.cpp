@@ -1,12 +1,13 @@
 #include <nas.h>
 #include <_5GS/decode.h>
 #include <_5GS/ie/Message_type.h>
+#include <helpers.h>
 
 void _5GS::Decode::decode(std::vector<uint8_t> &data)
 {
-    // FIXME
     IE::Message_type message_type;
     std::vector<uint8_t> tmp;
+
     switch (Nas::decodeProtocolDiscriminator(data))
     {
     case Nas::ProtocolDiscriminator::_5GS_session_management_messages:
@@ -17,8 +18,7 @@ void _5GS::Decode::decode(std::vector<uint8_t> &data)
         message_type.decode_V_ex(tmp);
         break;
     default:
-        // FIXME add packet dump ?
-        throw std::runtime_error("This is not a 5GS nas message");
+        throw std::runtime_error("This is not a 5GS nas message, dump follows:\n" + std::string(dump_wireshark(data)));
     }
     switch (message_type.get())
     {
@@ -28,12 +28,11 @@ void _5GS::Decode::decode(std::vector<uint8_t> &data)
         pdu.decode_ex(data);
         this->onPduSessionEstablishmentRequest(pdu);
         break;
-    }   
+    }
     default:
         throw std::runtime_error(std::string("Not implemented: ") + message_type.to_string());
     }
 }
-
 
 void _5GS::Decode::onPduSessionEstablishmentRequest(_5GS::PDU_session_establishment_request &pdu)
 {

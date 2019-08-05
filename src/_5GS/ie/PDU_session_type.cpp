@@ -8,6 +8,15 @@ namespace IE
 
 const std::string PDU_session_type::name = "PDU session type";
 
+PDU_session_type::PDU_session_type()
+{
+}
+
+PDU_session_type::PDU_session_type(Value value)
+{
+    this->set(value);
+}
+
 void PDU_session_type::set(PDU_session_type::Value value)
 {
     this->present = true;
@@ -62,9 +71,9 @@ int PDU_session_type::decode_TV_ex(const std::vector<uint8_t> &data)
         this->value = PDU_session_type::Value::reserved;
         break;
     default:
-        throw std::runtime_error(         
+        throw std::runtime_error(
             std::string(__PRETTY_FUNCTION__) +
-            std::string(" Invalid data:\n") + 
+            std::string(" Invalid data:\n") +
             dump_wireshark(data));
     }
     this->present = true;

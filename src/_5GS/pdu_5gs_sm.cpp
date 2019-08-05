@@ -3,6 +3,13 @@
 namespace _5GS
 {
 
+Pdu5gsSm::Pdu5gsSm(IE::PDU_session_identity psi,
+                   IE::Procedure_transaction_identity pti)
+{
+       this->pdu_session_identity = psi;
+       this->procedure_transaction_identity = pti;
+}
+
 int Pdu5gsSm::codeSMHeader(std::vector<uint8_t> &data) const
 {
        int size = 0;
