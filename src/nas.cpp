@@ -14,7 +14,7 @@ int Nas::codeSecurityHeaderType(std::vector<uint8_t> &data, const Nas::SecurityH
 }
 
 // No exception, sends reserved when unknown
-Nas::ProtocolDiscriminator Nas::decodeProtocolDiscriminator(std::vector<uint8_t> &data)
+Nas::ProtocolDiscriminator Nas::decodeProtocolDiscriminator(const std::vector<uint8_t> &data)
 {
     try
     {

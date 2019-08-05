@@ -18,9 +18,9 @@ public:
     virtual int decode_ex(const std::vector<uint8_t> &data);
 
     virtual std::string header_to_string() const;
-   
+
 private:
     int codeMMHeader(std::vector<uint8_t> &data) const;
-    
+
 };
 } // namespace _5GS

@@ -12,11 +12,12 @@ class Pdu5gsSm : public Pdu5gs
 
 public:
     // for SM messages
+    // TODO private or protected IEs ?
     IE::PDU_session_identity pdu_session_identity;
     IE::Procedure_transaction_identity procedure_transaction_identity;
 
-    Pdu5gsSm(IE::PDU_session_identity psi = IE::PDU_session_identity(IE::PDU_session_identity::Value::No_PDU_session_identity_assigned),
-             IE::Procedure_transaction_identity pti = IE::Procedure_transaction_identity(IE::Procedure_transaction_identity::Value::No_procedure_transaction_identity_assigned));
+    Pdu5gsSm(const IE::PDU_session_identity psi = IE::PDU_session_identity(IE::PDU_session_identity::Value::No_PDU_session_identity_assigned),
+             const IE::Procedure_transaction_identity pti = IE::Procedure_transaction_identity(IE::Procedure_transaction_identity::Value::No_procedure_transaction_identity_assigned));
 
     virtual int decode_ex(const std::vector<uint8_t> &data);
 

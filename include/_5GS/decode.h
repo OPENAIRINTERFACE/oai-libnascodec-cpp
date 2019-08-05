@@ -11,11 +11,9 @@ class Decode
 {
 
 public:
-    virtual void decode(std::vector<uint8_t> &data);
-    int encode(std::vector<uint8_t> &data, Pdu5gs &pdu);
+    virtual void decode(const std::vector<uint8_t> &data);
 
-    virtual void onPduSessionEstablishmentRequest(PDU_session_establishment_request &pdu);
-    //virtual void onPduRegisrationRequest(PDU_registration_request & pdu);
+    virtual void onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu);
 };
 
 } // namespace _5GS

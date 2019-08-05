@@ -3,7 +3,7 @@
 #include <_5GS/ie/Message_type.h>
 #include <helpers.h>
 
-void _5GS::Decode::decode(std::vector<uint8_t> &data)
+void _5GS::Decode::decode(const std::vector<uint8_t> &data)
 {
     IE::Message_type message_type;
     std::vector<uint8_t> tmp;
@@ -34,7 +34,7 @@ void _5GS::Decode::decode(std::vector<uint8_t> &data)
     }
 }
 
-void _5GS::Decode::onPduSessionEstablishmentRequest(_5GS::PDU_session_establishment_request &pdu)
+void _5GS::Decode::onPduSessionEstablishmentRequest(const _5GS::PDU_session_establishment_request &pdu)
 {
     throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }

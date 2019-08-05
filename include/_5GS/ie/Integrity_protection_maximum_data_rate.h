@@ -24,24 +24,24 @@ public:
     };
 
     Integrity_protection_maximum_data_rate();
-    Integrity_protection_maximum_data_rate(Value uplink, Value downlink);
+    Integrity_protection_maximum_data_rate(const Value uplink,const Value downlink);
 
-    void setUplink(Value value);
+    void setUplink(const Value value);
     Value getUplink() const;
 
-    void setDownlink(Value value);
+    void setDownlink(const Value value);
     Value getDownlink() const;
 
     int code_V_ex(std::vector<uint8_t> &data) const;
     int decode_V_ex(const std::vector<uint8_t> &data);
 
-    static Value fromUint8_t(uint8_t v);
+    static Value fromUint8_t(const uint8_t v);
 
     std::string to_string() const;
     static std::string value_to_string(const Value value);
 
 private:
-    // FIXME dry - make class helper for uplink downlink ?
+    // FIXME D.R.Y. - make class helper for uplink downlink ?
     Value uplink, downlink;
     bool presentUplink = false;
     bool presentDownlink = false;

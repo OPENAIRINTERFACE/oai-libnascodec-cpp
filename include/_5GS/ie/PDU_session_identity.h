@@ -40,9 +40,9 @@ public:
     };
 
     PDU_session_identity();
-    PDU_session_identity(Value val);
+    PDU_session_identity(const Value val);
 
-    void set(Value value);
+    void set(const Value value);
     Value get() const;
 
     int code_V_ex(std::vector<uint8_t> &data) const;

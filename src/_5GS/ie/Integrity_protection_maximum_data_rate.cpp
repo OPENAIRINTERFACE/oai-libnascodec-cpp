@@ -19,7 +19,7 @@ Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate(V
     this->setDownlink(downlink);
 }
 
-void Integrity_protection_maximum_data_rate::setUplink(Integrity_protection_maximum_data_rate::Value value)
+void Integrity_protection_maximum_data_rate::setUplink(const Integrity_protection_maximum_data_rate::Value value)
 {
     this->presentUplink = true;
     this->present = this->presentUplink && this->presentDownlink;
@@ -40,7 +40,7 @@ void Integrity_protection_maximum_data_rate::raise_exception_if_uplink_not_prese
     }
 }
 
-void Integrity_protection_maximum_data_rate::setDownlink(Integrity_protection_maximum_data_rate::Value value)
+void Integrity_protection_maximum_data_rate::setDownlink(const Integrity_protection_maximum_data_rate::Value value)
 {
     this->presentDownlink = true;
     this->present = this->presentUplink && this->presentDownlink;
@@ -69,7 +69,7 @@ int Integrity_protection_maximum_data_rate::code_V_ex(std::vector<uint8_t> &data
     return 2;
 }
 
-Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::fromUint8_t(uint8_t v)
+Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::fromUint8_t(const uint8_t v)
 {
     switch (v)
     {

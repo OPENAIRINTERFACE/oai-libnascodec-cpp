@@ -71,8 +71,8 @@ public:
         _5GSM_status = 0b11010110
     };
 
-    void set(Value id);
-    Value get() const;
+    virtual void set(const Value id);
+    virtual Value get() const;
 
     std::string to_string() const;
 

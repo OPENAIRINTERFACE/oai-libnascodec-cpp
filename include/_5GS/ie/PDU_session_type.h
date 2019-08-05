@@ -29,7 +29,7 @@ public:
     };
 
     PDU_session_type();
-    PDU_session_type(Value value);
+    PDU_session_type(const Value value);
 
     void set(Value id);
     Value get() const;
@@ -39,6 +39,7 @@ public:
     static std::string value_to_string(const Value value);
 
 private:
+    // TODO improve me, iei is not constant accross pdu messages
     static const uint8_t identifier = 0x90; // half octet for iei
     Value value;
 

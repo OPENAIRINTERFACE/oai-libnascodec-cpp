@@ -8,7 +8,7 @@ class Nas
 {
 
 public:
-    static int decode(std::vector<uint8_t> & data);
+    static int decode(const std::vector<uint8_t> & data);
 
     enum class ProtocolDiscriminator : uint8_t
     {
@@ -42,6 +42,6 @@ public:
 
     static int codeProtocolDiscriminator(std::vector<uint8_t> & data,const ProtocolDiscriminator protocol);
     static int codeSecurityHeaderType(std::vector<uint8_t> & data,const SecurityHeaderType security);
-    static ProtocolDiscriminator decodeProtocolDiscriminator(std::vector<uint8_t> &data);
-    static Nas::ProtocolDiscriminator uint8_t_to_ProtocolDiscriminator(uint8_t byte);
+    static ProtocolDiscriminator decodeProtocolDiscriminator(const std::vector<uint8_t> &data);
+    static Nas::ProtocolDiscriminator uint8_t_to_ProtocolDiscriminator(const uint8_t byte);
 };

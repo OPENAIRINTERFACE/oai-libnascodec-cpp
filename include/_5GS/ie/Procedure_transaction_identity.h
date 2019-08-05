@@ -25,10 +25,10 @@ public:
     };
 
     Procedure_transaction_identity();
-    Procedure_transaction_identity(Value value);
-    Procedure_transaction_identity(uint8_t value);
+    Procedure_transaction_identity(const Value value);
+    Procedure_transaction_identity(const uint8_t value);
 
-    void set(uint8_t value);
+    void set(const uint8_t value);
     uint8_t get() const;
 
     int code_V_ex(std::vector<uint8_t> &data) const;
