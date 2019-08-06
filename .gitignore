@@ -1,0 +1,7 @@
+bazel-*
+**/.vscode
+**/.eclipse
+TODO*
+*.log
+doc/html
+doc/latex
