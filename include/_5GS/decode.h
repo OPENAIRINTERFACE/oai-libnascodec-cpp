@@ -7,7 +7,7 @@
 namespace _5GS
 {
 
-/** @class Decode decode 5GS nas messages
+/** @brief decode 5GS nas messages
  *
  */
 class Decode

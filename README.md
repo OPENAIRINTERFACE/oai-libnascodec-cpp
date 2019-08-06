@@ -118,7 +118,7 @@ Then you can import it in wireshark,
 - fill file name in the dialog, don't touch to other options
 - click on import
 
-The *bazel-bin/_5GS_code_PDU_session_establishment_request* output anything to stderr, but the dumps, so you can redirect it's output:
+The *bazel-bin/_5GS_code_PDU_session_establishment_request* output anything to stderr, but the dump, so you can redirect its output:
 
 ```
 ~ bazel-bin/_5GS_code_PDU_session_establishment_request > test.hex
@@ -127,8 +127,7 @@ size = 7 | size of buffer = 7
 PDU_session_establishment_request(PDU session Identity=PDU session identity value 3, Procedure transaction identity=31, Message type=PDU_session_establishment_request, Integrity protection maximum data rate=uplink(64 kbps)&downlink(Full data rate), PDU session type=IPv4v6)
 ```
 
-
-dump_wireshark
+Note that to decode NAS messages they must be encapsulated into S1AP or NGAP messages.
 
 In order to decode a 5GS nas packet, you need wireshark >= 3.1
 
