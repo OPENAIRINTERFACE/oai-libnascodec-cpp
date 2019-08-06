@@ -3,3 +3,5 @@ bazel-*
 **/.eclipse
 TODO*
 *.log
+doc/html
+doc/latex
