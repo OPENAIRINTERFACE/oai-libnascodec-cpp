@@ -61,7 +61,7 @@ void Integrity_protection_maximum_data_rate::raise_exception_if_downlink_not_pre
     }
 }
 
-int Integrity_protection_maximum_data_rate::code_V_ex(std::vector<uint8_t> &data) const
+int Integrity_protection_maximum_data_rate::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
     data.push_back(static_cast<uint8_t>(this->uplink));
@@ -79,7 +79,7 @@ Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_
     return Value::_64_kbps;
 }
 
-int Integrity_protection_maximum_data_rate::decode_V_ex(const std::vector<uint8_t> &data)
+int Integrity_protection_maximum_data_rate::decode_V(const std::vector<uint8_t> &data)
 {
     if (data.size() < 2)
     {

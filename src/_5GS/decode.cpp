@@ -12,10 +12,10 @@ int _5GS::Decode::decode(const std::vector<uint8_t> &data)
     {
     case Nas::ProtocolDiscriminator::_5GS_session_management_messages:
         tmp.push_back(data[3]);
-        message_type.decode_V_ex(tmp);
+        message_type.decode(tmp, InformationElement::Format::V);
     case Nas::ProtocolDiscriminator::_5GS_mobility_management_messages:
         tmp.push_back(data[2]);
-        message_type.decode_V_ex(tmp);
+        message_type.decode(tmp, InformationElement::Format::V);
         break;
     default:
         throw std::runtime_error("This is not a 5GS nas message, dump follows:\n" + std::string(dump_wireshark(data)));
@@ -25,7 +25,7 @@ int _5GS::Decode::decode(const std::vector<uint8_t> &data)
     case IE::Message_type::Value::PDU_session_establishment_request:
     {
         PDU_session_establishment_request pdu;
-        size = pdu.decode_ex(data);
+        size = pdu.decode(data);
         this->onPduSessionEstablishmentRequest(pdu);
         break;
     }

@@ -14,8 +14,6 @@ public:
     // codec
     virtual int code(std::vector<uint8_t> &data) const;
     virtual int decode(const std::vector<uint8_t> &data);
-    virtual int code_ex(std::vector<uint8_t> &data) const;
-    virtual int decode_ex(const std::vector<uint8_t> &data);
 
     virtual std::string header_to_string() const;
 

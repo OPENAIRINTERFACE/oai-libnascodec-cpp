@@ -9,8 +9,7 @@
  * @attention Information Element Identifier(IEI), the T in the Format enumeration
  * is locacl to a PDU messages. I.E. a same information element identifier
  * may have different value, according to PDU message. @n
- * This class don't implement it and assumes a single IEI for (de)coding.
- * In the future this feature will break the API.
+ *
 */
 class InformationElement
 {
@@ -71,24 +70,19 @@ public:
      */
     bool isSet() const;
 
-    // FIXME add IEI to signature
-    
     /** @brief add information element to @p data buffer, according to the 
      * @p format given
      * 
-     * @param[out]  data byte buffer to add information element
-     * @param[in]   format how to encode the information element
-     * 
+     * @param[out]  data    byte buffer to add information element
+     * @param[in]   format  how to encode the information element
+     * @param[in]   iei     optional, default to 0 - information element identifier if needed by the @p format 
+     *
      * @throw   std::invalid_argument   if the element is not set
      * @throw   std::runtime_error      if the element can't be coded according to the format
      *
      */
-    virtual int code_ex(std::vector<uint8_t> &data, const InformationElement::Format format) const;
-    virtual int decode_ex(const std::vector<uint8_t> &data, const InformationElement::Format format);
-    // return number of byte read or written else -1 for error
-
-    virtual int code(std::vector<uint8_t> &data, const InformationElement::Format format) const;
-    virtual int decode(const std::vector<uint8_t> &data, const InformationElement::Format format);
+    virtual int code(std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0) const;
+    virtual int decode(const std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0);
 
 protected:
     bool present = false; /**< set if ie is optional and found in a PDU */
@@ -98,38 +92,22 @@ protected:
      * 
      * @throw std::invalid_argument
     */
-    void raise_exception_if_not_present(const std::string name) const;
+    void raise_exception_if_not_present(const std::string &name) const;
+    void raise_exception_for_format_with_T(const Format format) const;
 
-private:
-    virtual int code_T(std::vector<uint8_t> &data) const;
+    virtual int code_T(std::vector<uint8_t> &data, const uint8_t iei) const;
     virtual int code_V(std::vector<uint8_t> &data) const;
-    virtual int code_TV(std::vector<uint8_t> &data) const;
+    virtual int code_TV(std::vector<uint8_t> &data, const uint8_t iei) const;
     virtual int code_LV(std::vector<uint8_t> &data) const;
-    virtual int code_TLV(std::vector<uint8_t> &data) const;
+    virtual int code_TLV(std::vector<uint8_t> &data, const uint8_t iei) const;
     virtual int code_LV_E(std::vector<uint8_t> &data) const;
-    virtual int code_TLV_E(std::vector<uint8_t> &data) const;
+    virtual int code_TLV_E(std::vector<uint8_t> &data, const uint8_t iei) const;
 
-    virtual int code_T_ex(std::vector<uint8_t> &data) const;
-    virtual int code_V_ex(std::vector<uint8_t> &data) const;
-    virtual int code_TV_ex(std::vector<uint8_t> &data) const;
-    virtual int code_LV_ex(std::vector<uint8_t> &data) const;
-    virtual int code_TLV_ex(std::vector<uint8_t> &data) const;
-    virtual int code_LV_E_ex(std::vector<uint8_t> &data) const;
-    virtual int code_TLV_E_ex(std::vector<uint8_t> &data) const;
-
-    virtual int decode_T(const std::vector<uint8_t> &data);
+    virtual int decode_T(const std::vector<uint8_t> &data, const uint8_t iei);
     virtual int decode_V(const std::vector<uint8_t> &data);
-    virtual int decode_TV(const std::vector<uint8_t> &data);
+    virtual int decode_TV(const std::vector<uint8_t> &data, const uint8_t iei);
     virtual int decode_LV(const std::vector<uint8_t> &data);
-    virtual int decode_TLV(const std::vector<uint8_t> &data);
+    virtual int decode_TLV(const std::vector<uint8_t> &data, const uint8_t iei);
     virtual int decode_LV_E(const std::vector<uint8_t> &data);
-    virtual int decode_TLV_E(const std::vector<uint8_t> &data);
-
-    virtual int decode_T_ex(const std::vector<uint8_t> &data);
-    virtual int decode_V_ex(const std::vector<uint8_t> &data);
-    virtual int decode_TV_ex(const std::vector<uint8_t> &data);
-    virtual int decode_LV_ex(const std::vector<uint8_t> &data);
-    virtual int decode_TLV_ex(const std::vector<uint8_t> &data);
-    virtual int decode_LV_E_ex(const std::vector<uint8_t> &data);
-    virtual int decode_TLV_E_ex(const std::vector<uint8_t> &data);
+    virtual int decode_TLV_E(const std::vector<uint8_t> &data, const uint8_t iei);
 };

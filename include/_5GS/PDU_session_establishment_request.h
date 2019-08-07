@@ -23,8 +23,8 @@ public:
         IE::PDU_session_type pst = IE::PDU_session_type()
     );
 
-    virtual int code_ex(std::vector<uint8_t> &data) const;
-    virtual int decode_ex(const std::vector<uint8_t> &data);
+    virtual int code(std::vector<uint8_t> &data) const;
+    virtual int decode(const std::vector<uint8_t> &data);
 
     std::string to_string() const;
 

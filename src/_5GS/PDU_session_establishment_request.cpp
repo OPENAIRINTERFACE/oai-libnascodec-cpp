@@ -25,7 +25,7 @@ PDU_session_establishment_request::PDU_session_establishment_request(
     this->pdu_session_type = pst;
 }
 
-int PDU_session_establishment_request::code_ex(std::vector<uint8_t> &data) const
+int PDU_session_establishment_request::code(std::vector<uint8_t> &data) const
 {
     int size = 0;
     try
@@ -34,9 +34,12 @@ int PDU_session_establishment_request::code_ex(std::vector<uint8_t> &data) const
 
         // mandatory parameters
         size += this->codeSMHeader(data);
-        size += this->integrity_protection_maximum_data_rate.code_ex(data, InformationElement::Format::V);
+        size += this->integrity_protection_maximum_data_rate.code(data, InformationElement::Format::V);
         // add optional parameters
-        size += this->pdu_session_type.code(data, InformationElement::Format::TV);
+        if (this->pdu_session_type.isSet())
+        {
+            size += this->pdu_session_type.code(data, InformationElement::Format::TV, static_cast<uint8_t>(Iei::PDU_session_type));
+        }
     }
     catch (const std::exception &exception)
     {
@@ -49,12 +52,12 @@ int PDU_session_establishment_request::code_ex(std::vector<uint8_t> &data) const
     return size;
 }
 
-int PDU_session_establishment_request::decode_ex(const std::vector<uint8_t> &data)
+int PDU_session_establishment_request::decode(const std::vector<uint8_t> &data)
 {
     unsigned int offset = 0;
-    offset = Pdu5gsSm::decode_ex(data);
+    offset = Pdu5gsSm::decode(data);
     const std::vector<uint8_t> ipmdr_data(&data[offset], &data[offset + 2]);
-    offset += this->integrity_protection_maximum_data_rate.decode_V_ex(ipmdr_data);
+    offset += this->integrity_protection_maximum_data_rate.decode_V(ipmdr_data);
     while (offset < data.size())
     {
         const std::vector<uint8_t> iei_data(data.cbegin() + offset, data.cend());
@@ -66,7 +69,7 @@ int PDU_session_establishment_request::decode_ex(const std::vector<uint8_t> &dat
         switch (iei)
         {
         case PDU_session_establishment_request::Iei::PDU_session_type:
-            offset += this->pdu_session_type.decode_ex(iei_data, InformationElement::Format::TV);
+            offset += this->pdu_session_type.decode(iei_data, InformationElement::Format::TV, iei);
         default:
             break;
         }
