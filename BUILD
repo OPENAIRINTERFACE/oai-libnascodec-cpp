@@ -7,6 +7,7 @@ cc_library(
     srcs = glob(["src/**/*.cpp"]),
     hdrs = glob(["include/**/*.h"]),
     includes = ["include"],
+    copts = ["-Werror"]
 )
 
 
@@ -15,7 +16,8 @@ cc_library(
 [ cc_binary(
     name = files[1],
     srcs = [files[0]],
-    deps = [":nascodec-cpp"]
+    deps = [":nascodec-cpp"],
+    copts = ["-Werror"]
         )
 for files in extract_binary_names(glob(["example/**/*.cpp"])) ]
 
