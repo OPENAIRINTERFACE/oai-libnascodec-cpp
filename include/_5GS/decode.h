@@ -7,9 +7,7 @@
 namespace _5GS
 {
 
-/** @brief decode 5GS nas messages
- *
- */
+/** @brief implements decoding of 5GS nas messages */
 class Decode
 {
 
@@ -25,6 +23,7 @@ public:
      */
     int decode(const std::vector<uint8_t> &data);
 
+protected:
     /**
      * This method is called when an PDU session establishment request has been decoded from the decode method.
      *
