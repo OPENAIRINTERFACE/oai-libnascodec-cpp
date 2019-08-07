@@ -24,20 +24,20 @@ Procedure_transaction_identity::Procedure_transaction_identity(uint8_t value)
 
 void Procedure_transaction_identity::set(uint8_t value)
 {
-    this->present = true;
-    this->value = value;
+    this->m_present = true;
+    this->m_value = value;
 }
 
 uint8_t Procedure_transaction_identity::get() const
 {
     this->raise_exception_if_not_present(className(this));
-    return this->value;
+    return this->m_value;
 }
 
 int Procedure_transaction_identity::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
-    data.push_back(this->value);
+    data.push_back(this->m_value);
     return 1;
 }
 
@@ -48,8 +48,8 @@ int Procedure_transaction_identity::decode_V(const std::vector<uint8_t> &data)
 
 int Procedure_transaction_identity::decode_V(const uint8_t &byte)
 {
-    this->value = byte;
-    this->present = true;
+    this->m_value = byte;
+    this->m_present = true;
     return 1;
 }
 
@@ -71,7 +71,7 @@ std::string Procedure_transaction_identity::to_string() const
     {
         return std::string("-");
     }
-    return Procedure_transaction_identity::value_to_string(this->value);
+    return Procedure_transaction_identity::value_to_string(this->m_value);
 }
 
 }; // namespace IE

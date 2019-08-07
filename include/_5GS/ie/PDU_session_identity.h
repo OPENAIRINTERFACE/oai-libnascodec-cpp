@@ -55,7 +55,7 @@ public:
     static Value uint8_t_to_Value(const uint8_t &byte);
 
 private:
-    Value value;
+    Value m_value;
 };
 
 } // namespace IE

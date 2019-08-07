@@ -19,20 +19,20 @@ PDU_session_identity::PDU_session_identity(PDU_session_identity::Value value)
 
 void PDU_session_identity::set(PDU_session_identity::Value id)
 {
-    this->present = true;
-    this->value = id;
+    this->m_present = true;
+    this->m_value = id;
 }
 
 PDU_session_identity::Value PDU_session_identity::get() const
 {
     this->raise_exception_if_not_present(className(this));
-    return this->value;
+    return this->m_value;
 }
 
 int PDU_session_identity::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
-    data.push_back(static_cast<uint8_t>(this->value));
+    data.push_back(static_cast<uint8_t>(this->m_value));
     return 1;
 }
 
@@ -43,8 +43,8 @@ int PDU_session_identity::decode_V(const std::vector<uint8_t> &data)
 
 int PDU_session_identity::decode_V(const uint8_t &data)
 {
-    this->value = PDU_session_identity::uint8_t_to_Value(data);
-    this->present = true;
+    this->m_value = PDU_session_identity::uint8_t_to_Value(data);
+    this->m_present = true;
     return 1;
 }
 
@@ -63,7 +63,7 @@ std::string PDU_session_identity::to_string() const
     {
         return "-";
     }
-    return PDU_session_identity::value_to_string(this->value);
+    return PDU_session_identity::value_to_string(this->m_value);
 }
 
 std::string PDU_session_identity::value_to_string(PDU_session_identity::Value value)

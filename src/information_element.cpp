@@ -4,7 +4,7 @@
 
 bool InformationElement::isSet() const
 {
-    return this->present;
+    return this->m_present;
 }
 
 int InformationElement::code(std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei) const
@@ -136,7 +136,7 @@ int InformationElement::decode_TLV_E(const std::vector<uint8_t> &data, const uin
 
 void InformationElement::raise_exception_if_not_present(const std::string &name) const
 {
-    if (!this->present)
+    if (!this->m_present)
     {
         throw std::invalid_argument(std::string("No value for IE InformationElement ") + name);
     }

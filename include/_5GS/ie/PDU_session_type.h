@@ -43,7 +43,7 @@ protected:
     int decode_TV(const std::vector<uint8_t> &data, const uint8_t iei);
 
 private:
-    Value value;
+    Value m_value;
 };
 
 } // namespace IE

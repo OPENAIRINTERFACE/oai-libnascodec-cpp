@@ -11,12 +11,12 @@ class Nas
 public:
     /** @enum ProtocolDiscriminator
      * @brief defines all known nas protocols
-     * 
+     *
      * NAS messages is defined into numerous protocols and subprotocols.
      * This enums defines all known nas protocols.
-     * 
+     *
      * The 3gpp TS 24.007 defines general aspect of all nas messages.
-     * 
+     *
      * This enum gather Protocol Discriminator and Extended Protocol Discriminator because
      * these are code in the same byte.
      */
@@ -53,42 +53,42 @@ public:
     };
 
     /** @brief code Protocol Dicriminator or Extended Protocol Discriminator
-     * 
+     *
      * This method code the PD or EPD on one byte and add it to the data buffer
-     * 
+     *
      * @param[in] protocol  NAS protocol for the message
-     * 
+     *
      * @param[out] data     buffer to add PD/EPD
-     * 
+     *
      * @return number of bytes added to the data buffer
      */
     static int codeProtocolDiscriminator(std::vector<uint8_t> & data,const ProtocolDiscriminator protocol);
     /** @brief code the security header type
-     * 
+     *
      * This method code the SHT and add it to the data buffer
-     * 
+     *
      * @param[in] security  Security header type
-     * 
+     *
      * @param[out] data     buffer to add SHT
-     * 
+     *
      * @return number of bytes added to the data buffer
      */
     static int codeSecurityHeaderType(std::vector<uint8_t> & data,const SecurityHeaderType security);
     /** @brief decode Protocol Discriminator from byte buffer
-     * 
+     *
      * @param[in] data     buffer containing PD/EDP byte
-     * 
+     *
      * @return Protocol Discriminator value
-     * 
+     *
      * @throw std::invalid_argument     if the PD/EPD can't be decoded
      */
     static ProtocolDiscriminator decodeProtocolDiscriminator(const std::vector<uint8_t> &data);
     /** @brief byte to (Extended) Protocol Discriminator
-     * 
+     *
      * @param[in] byte     byte to convert
-     * 
+     *
      * @return Protocol Discriminator value
-     * 
+     *
      * @throw std::invalid_argument     if the PD/EPD can't be converted
      */
     static Nas::ProtocolDiscriminator uint8_t_to_ProtocolDiscriminator(const uint8_t byte);

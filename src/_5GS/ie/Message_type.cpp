@@ -8,27 +8,27 @@ namespace IE
 
 void Message_type::set(Message_type::Value value)
 {
-    this->present = true;
-    this->value = value;
+    this->m_present = true;
+    this->m_value = value;
 }
 
 Message_type::Value Message_type::get() const
 {
     this->raise_exception_if_not_present(className(this));
-    return this->value;
+    return this->m_value;
 }
 
 int Message_type::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
-    data.push_back(static_cast<uint8_t>(this->value));
+    data.push_back(static_cast<uint8_t>(this->m_value));
     return 1;
 }
 
 int Message_type::decode_V(const std::vector<uint8_t> &data)
 {
-    this->value = Message_type::uint8_t_to_Value(data[0]);
-    this->present = true;
+    this->m_value = Message_type::uint8_t_to_Value(data[0]);
+    this->m_present = true;
     return 1;
 }
 
@@ -135,7 +135,7 @@ std::string Message_type::to_string() const
     {
         return "-";
     }
-    return Message_type::value_to_string(this->value);
+    return Message_type::value_to_string(this->m_value);
 }
 
 std::string Message_type::value_to_string(const Value value)

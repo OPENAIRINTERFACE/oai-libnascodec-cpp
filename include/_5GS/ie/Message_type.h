@@ -75,7 +75,7 @@ public:
     virtual Value get() const;
 
     std::string to_string() const;
-    
+
     static std::string value_to_string(const Value value);
 
 protected:
@@ -84,7 +84,7 @@ protected:
     int decode_V(const std::vector<uint8_t> &data);
 
 private:
-    Value value;
+    Value m_value;
     Value uint8_t_to_Value(const uint8_t byte);
 
 };
