@@ -35,7 +35,7 @@ int PDU_session_type::code_TV(std::vector<uint8_t> &data, const uint8_t iei) con
 
     uint8_t c, v;
     v = static_cast<uint8_t>(this->value);
-    c = iei & 0xf0 | v;
+    c = (iei & 0xf0) | v;
     data.push_back(c);
     return 1;
 }
@@ -50,7 +50,8 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
             std::string(__PRETTY_FUNCTION__));
     }
 
-    if ( ( iei & 0x0f) != 0 ) {
+    if ((iei & 0x0f) != 0)
+    {
         throw std::runtime_error(
             std::string("Invalid IEI") +
             std::string(__PRETTY_FUNCTION__));

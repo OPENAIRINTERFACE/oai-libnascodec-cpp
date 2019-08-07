@@ -75,6 +75,8 @@ public:
     virtual Value get() const;
 
     std::string to_string() const;
+    
+    static std::string value_to_string(const Value value);
 
 protected:
 

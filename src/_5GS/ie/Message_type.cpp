@@ -135,7 +135,12 @@ std::string Message_type::to_string() const
     {
         return "-";
     }
-    switch (this->value)
+    return Message_type::value_to_string(this->value);
+}
+
+std::string Message_type::value_to_string(const Value value)
+{
+    switch (value)
     {
     // MOBILITY MESSAGES
     // Registration
