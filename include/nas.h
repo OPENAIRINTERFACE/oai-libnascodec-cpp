@@ -80,7 +80,7 @@ public:
      * 
      * @return Protocol Discriminator value
      * 
-     * @throw invalid_argument     if the PD/EPD can't be decoded
+     * @throw std::invalid_argument     if the PD/EPD can't be decoded
      */
     static ProtocolDiscriminator decodeProtocolDiscriminator(const std::vector<uint8_t> &data);
     /** @brief byte to (Extended) Protocol Discriminator
@@ -89,7 +89,7 @@ public:
      * 
      * @return Protocol Discriminator value
      * 
-     * @throw invalid_argument     if the PD/EPD can't be converted
+     * @throw std::invalid_argument     if the PD/EPD can't be converted
      */
     static Nas::ProtocolDiscriminator uint8_t_to_ProtocolDiscriminator(const uint8_t byte);
 };

@@ -331,7 +331,7 @@ int InformationElement::decode_TLV_E(const std::vector<uint8_t> &data)
     return 0;
 }
 
-void InformationElement::raise_exception_if_not_present(std::string name) const
+void InformationElement::raise_exception_if_not_present(const std::string name) const
 {
     if (!this->present)
     {
