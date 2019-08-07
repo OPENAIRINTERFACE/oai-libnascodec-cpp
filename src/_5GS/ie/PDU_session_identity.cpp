@@ -29,19 +29,19 @@ PDU_session_identity::Value PDU_session_identity::get() const
     return this->value;
 }
 
-int PDU_session_identity::code_V_ex(std::vector<uint8_t> &data) const
+int PDU_session_identity::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
     data.push_back(static_cast<uint8_t>(this->value));
     return 1;
 }
 
-int PDU_session_identity::decode_V_ex(const std::vector<uint8_t> &data)
+int PDU_session_identity::decode_V(const std::vector<uint8_t> &data)
 {
-    return decode_V_ex(data[0]);
+    return decode_V(data[0]);
 }
 
-int PDU_session_identity::decode_V_ex(const uint8_t &data)
+int PDU_session_identity::decode_V(const uint8_t &data)
 {
     this->value = PDU_session_identity::uint8_t_to_Value(data);
     this->present = true;

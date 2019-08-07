@@ -34,19 +34,19 @@ uint8_t Procedure_transaction_identity::get() const
     return this->value;
 }
 
-int Procedure_transaction_identity::code_V_ex(std::vector<uint8_t> &data) const
+int Procedure_transaction_identity::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
     data.push_back(this->value);
     return 1;
 }
 
-int Procedure_transaction_identity::decode_V_ex(const std::vector<uint8_t> &data)
+int Procedure_transaction_identity::decode_V(const std::vector<uint8_t> &data)
 {
-    return Procedure_transaction_identity::decode_V_ex(data[0]);
+    return Procedure_transaction_identity::decode_V(data[0]);
 }
 
-int Procedure_transaction_identity::decode_V_ex(const uint8_t &byte)
+int Procedure_transaction_identity::decode_V(const uint8_t &byte)
 {
     this->value = byte;
     this->present = true;

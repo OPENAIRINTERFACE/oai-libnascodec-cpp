@@ -32,8 +32,8 @@ public:
     void setDownlink(const Value value);
     Value getDownlink() const;
 
-    int code_V_ex(std::vector<uint8_t> &data) const;
-    int decode_V_ex(const std::vector<uint8_t> &data);
+    int code_V(std::vector<uint8_t> &data) const;
+    int decode_V(const std::vector<uint8_t> &data);
 
     static Value fromUint8_t(const uint8_t v);
 

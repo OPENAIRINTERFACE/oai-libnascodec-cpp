@@ -38,13 +38,12 @@ public:
 
     static std::string value_to_string(const Value value);
 
-private:
-    // TODO improve me, iei is not constant accross pdu messages
-    static const uint8_t identifier = 0x90; // half octet for iei
-    Value value;
+protected:
+    int code_TV(std::vector<uint8_t> &data, const uint8_t iei) const;
+    int decode_TV(const std::vector<uint8_t> &data, const uint8_t iei);
 
-    int code_TV_ex(std::vector<uint8_t> &data) const;
-    int decode_TV_ex(const std::vector<uint8_t> &data);
+private:
+    Value value;
 };
 
 } // namespace IE

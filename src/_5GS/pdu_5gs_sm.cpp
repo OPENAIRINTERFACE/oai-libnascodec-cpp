@@ -13,9 +13,9 @@ Pdu5gsSm::Pdu5gsSm(IE::PDU_session_identity psi,
 int Pdu5gsSm::codeSMHeader(std::vector<uint8_t> &data) const
 {
        int size = 0;
-       size += this->pdu_session_identity.code_ex(data, InformationElement::Format::V);
-       size += this->procedure_transaction_identity.code_ex(data, InformationElement::Format::V);
-       size += this->message_type.code_ex(data, InformationElement::Format::V);
+       size += this->pdu_session_identity.code(data, InformationElement::Format::V);
+       size += this->procedure_transaction_identity.code(data, InformationElement::Format::V);
+       size += this->message_type.code(data, InformationElement::Format::V);
        return size;
 }
 
@@ -23,6 +23,8 @@ std::string Pdu5gsSm::header_to_string() const
 {
        std::string str;
        // TODO add security header
+
+       // FIXME factorize
        str += this->pdu_session_identity.name +
               "=" +
               this->pdu_session_identity.to_string() +
@@ -40,14 +42,28 @@ std::string Pdu5gsSm::header_to_string() const
        return str;
 }
 
-int Pdu5gsSm::decode_ex(const std::vector<uint8_t> &data)
+int Pdu5gsSm::decode(const std::vector<uint8_t> &data)
 {
        // TODO security header
-       const int offset = 1;
-       this->pdu_session_identity.decode_V_ex(data[offset]);
-       this->procedure_transaction_identity.decode_V_ex(data[offset + 1]);
-       this->message_type.decode_V_ex(data[offset + 2 ]);
-       return 3 + offset;
+       int offset = 1;
+       int size = offset;
+       // XXX tmp: copy for easier writing or slice for performance ?
+       std::vector<uint8_t> tmp = data;
+
+       // FIXME factorize
+       tmp.erase(tmp.begin(), tmp.begin() + size);
+       size = this->pdu_session_identity.decode_V(data[offset]);
+       offset += size;
+
+       tmp.erase(tmp.begin(), tmp.begin() + size);
+       size = this->procedure_transaction_identity.decode_V(data[offset + 1]);
+       offset += size;
+
+       tmp.erase(tmp.begin(), tmp.begin() + size);
+       this->message_type.decode(tmp, InformationElement::Format::V);
+       offset += size;
+
+       return offset;
 }
 
 }; // namespace _5GS

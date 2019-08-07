@@ -31,9 +31,9 @@ public:
     void set(const uint8_t value);
     uint8_t get() const;
 
-    int code_V_ex(std::vector<uint8_t> &data) const;
-    int decode_V_ex(const std::vector<uint8_t> &data);
-    int decode_V_ex(const uint8_t &byte);
+    int code_V(std::vector<uint8_t> &data) const;
+    int decode_V(const std::vector<uint8_t> &data);
+    int decode_V(const uint8_t &byte);
 
     std::string to_string() const;
     static std::string value_to_string(const uint8_t value);

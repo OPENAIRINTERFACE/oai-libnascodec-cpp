@@ -29,18 +29,18 @@ PDU_session_type::Value PDU_session_type::get() const
     return this->value;
 }
 
-int PDU_session_type::code_TV_ex(std::vector<uint8_t> &data) const
+int PDU_session_type::code_TV(std::vector<uint8_t> &data, const uint8_t iei) const
 {
     this->raise_exception_if_not_present(className(this));
 
     uint8_t c, v;
     v = static_cast<uint8_t>(this->value);
-    c = this->identifier | v;
+    c = (iei & 0xf0) | v;
     data.push_back(c);
     return 1;
 }
 
-int PDU_session_type::decode_TV_ex(const std::vector<uint8_t> &data)
+int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
 {
     uint8_t v;
     if (data.size() == 0)
@@ -49,6 +49,14 @@ int PDU_session_type::decode_TV_ex(const std::vector<uint8_t> &data)
             std::string("No data to decode") +
             std::string(__PRETTY_FUNCTION__));
     }
+
+    if ((iei & 0x0f) != 0)
+    {
+        throw std::runtime_error(
+            std::string("Invalid IEI") +
+            std::string(__PRETTY_FUNCTION__));
+    }
+
     v = data[0] & 0x0f;
     switch (v)
     {

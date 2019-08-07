@@ -18,21 +18,16 @@ Message_type::Value Message_type::get() const
     return this->value;
 }
 
-int Message_type::code_V_ex(std::vector<uint8_t> &data) const
+int Message_type::code_V(std::vector<uint8_t> &data) const
 {
     this->raise_exception_if_not_present(className(this));
     data.push_back(static_cast<uint8_t>(this->value));
     return 1;
 }
 
-int Message_type::decode_V_ex(const std::vector<uint8_t> &data)
+int Message_type::decode_V(const std::vector<uint8_t> &data)
 {
-    return decode_V_ex(data[0]);
-}
-
-int Message_type::decode_V_ex(const uint8_t &data)
-{
-    this->value = Message_type::uint8_t_to_Value(data);
+    this->value = Message_type::uint8_t_to_Value(data[0]);
     this->present = true;
     return 1;
 }
@@ -140,7 +135,12 @@ std::string Message_type::to_string() const
     {
         return "-";
     }
-    switch (this->value)
+    return Message_type::value_to_string(this->value);
+}
+
+std::string Message_type::value_to_string(const Value value)
+{
+    switch (value)
     {
     // MOBILITY MESSAGES
     // Registration
