@@ -15,26 +15,26 @@ Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate()
 
 Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate(Value uplink, Value downlink)
 {
-    this->setUplink(uplink);
-    this->setDownlink(downlink);
+    setUplink(uplink);
+    setDownlink(downlink);
 }
 
 void Integrity_protection_maximum_data_rate::setUplink(const Integrity_protection_maximum_data_rate::Value value)
 {
-    this->m_presentUplink = true;
-    this->m_present = this->m_presentUplink && this->m_presentDownlink;
-    this->m_uplink = value;
+    m_presentUplink = true;
+    m_present = m_presentUplink && m_presentDownlink;
+    m_uplink = value;
 }
 
 Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::getUplink() const
 {
-    this->raise_exception_if_uplink_not_present();
-    return this->m_uplink;
+    raise_exception_if_uplink_not_present();
+    return m_uplink;
 }
 
 void Integrity_protection_maximum_data_rate::raise_exception_if_uplink_not_present() const
 {
-    if (!this->m_presentUplink)
+    if (!m_presentUplink)
     {
         throw std::invalid_argument("No value for uplink");
     }
@@ -42,20 +42,20 @@ void Integrity_protection_maximum_data_rate::raise_exception_if_uplink_not_prese
 
 void Integrity_protection_maximum_data_rate::setDownlink(const Integrity_protection_maximum_data_rate::Value value)
 {
-    this->m_presentDownlink = true;
-    this->m_present = this->m_presentUplink && this->m_presentDownlink;
-    this->m_downlink = value;
+    m_presentDownlink = true;
+    m_present = m_presentUplink && m_presentDownlink;
+    m_downlink = value;
 }
 
 Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::getDownlink() const
 {
-    this->raise_exception_if_downlink_not_present();
-    return this->m_downlink;
+    raise_exception_if_downlink_not_present();
+    return m_downlink;
 }
 
 void Integrity_protection_maximum_data_rate::raise_exception_if_downlink_not_present() const
 {
-    if (!this->m_presentDownlink)
+    if (!m_presentDownlink)
     {
         throw std::invalid_argument("No value for downlink");
     }
@@ -63,9 +63,9 @@ void Integrity_protection_maximum_data_rate::raise_exception_if_downlink_not_pre
 
 int Integrity_protection_maximum_data_rate::code_V(std::vector<uint8_t> &data) const
 {
-    this->raise_exception_if_not_present(className(this));
-    data.push_back(static_cast<uint8_t>(this->m_uplink));
-    data.push_back(static_cast<uint8_t>(this->m_downlink));
+    raise_exception_if_not_present(className(this));
+    data.push_back(static_cast<uint8_t>(m_uplink));
+    data.push_back(static_cast<uint8_t>(m_downlink));
     return 2;
 }
 
@@ -85,25 +85,25 @@ int Integrity_protection_maximum_data_rate::decode_V(const std::vector<uint8_t> 
     {
         throw std::runtime_error(std::string("No data to decode: ") + std::string(__PRETTY_FUNCTION__));
     }
-    this->m_uplink = fromUint8_t(data[0]);
-    this->m_downlink = fromUint8_t(data[1]);
+    m_uplink = fromUint8_t(data[0]);
+    m_downlink = fromUint8_t(data[1]);
 
-    this->m_present = true;
-    this->m_presentUplink = true;
-    this->m_presentDownlink = true;
+    m_present = true;
+    m_presentUplink = true;
+    m_presentDownlink = true;
     return 2;
 }
 
 std::string Integrity_protection_maximum_data_rate::to_string() const
 {
-    if (not this->isSet())
+    if (not isSet())
     {
         return "-";
     }
     return "uplink(" +
-           Integrity_protection_maximum_data_rate::value_to_string(this->m_uplink) +
+           Integrity_protection_maximum_data_rate::value_to_string(m_uplink) +
            ")&downlink(" +
-           Integrity_protection_maximum_data_rate::value_to_string(this->m_downlink) +
+           Integrity_protection_maximum_data_rate::value_to_string(m_downlink) +
            ")";
 }
 

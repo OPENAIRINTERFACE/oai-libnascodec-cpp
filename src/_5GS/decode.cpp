@@ -17,7 +17,7 @@ int Decode::decode(const std::vector<uint8_t> &data) const
     {
         PDU_session_establishment_request pdu;
         size = pdu.decode(data);
-        this->onPduSessionEstablishmentRequest(pdu);
+        onPduSessionEstablishmentRequest(pdu);
         break;
     }
     default:
@@ -34,7 +34,7 @@ IE::Message_type::Value Decode::identify(const std::vector<uint8_t> &data) const
     {
     case IE::Message_type::Value::PDU_session_establishment_request:
     {
-        this->onPduSessionEstablishmentRequest(data);
+        onPduSessionEstablishmentRequest(data);
         break;
     }
     default:
