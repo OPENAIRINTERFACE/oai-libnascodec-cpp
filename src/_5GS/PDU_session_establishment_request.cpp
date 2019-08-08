@@ -85,16 +85,11 @@ std::string PDU_session_establishment_request::to_string() const
     // Header
     str += header_to_string();
     // Mandatory parameters
-    str += ", " +
-           integrity_protection_maximum_data_rate.name +
-           "=" + integrity_protection_maximum_data_rate.to_string();
+    str += ", " + integrity_protection_maximum_data_rate.to_string();
     // Optional parameters
     if (pdu_session_type.isSet())
     {
-        str += ", " +
-               pdu_session_type.name +
-               "=" +
-               pdu_session_type.to_string();
+        str += ", " + pdu_session_type.to_string();
     }
     str += ")";
     return str;

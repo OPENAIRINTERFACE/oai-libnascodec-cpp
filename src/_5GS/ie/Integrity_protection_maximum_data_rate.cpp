@@ -6,8 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-const std::string Integrity_protection_maximum_data_rate::name = "Integrity protection maximum data rate";
-
 Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate()
 {
 
@@ -94,7 +92,11 @@ int Integrity_protection_maximum_data_rate::decode_V(const std::vector<uint8_t> 
     return 2;
 }
 
-std::string Integrity_protection_maximum_data_rate::to_string() const
+std::string Integrity_protection_maximum_data_rate::getName() const {
+    return "Integrity protection maximum data rate";
+}
+
+std::string Integrity_protection_maximum_data_rate::valueToString() const
 {
     if (not isSet())
     {
@@ -106,6 +108,7 @@ std::string Integrity_protection_maximum_data_rate::to_string() const
            Integrity_protection_maximum_data_rate::value_to_string(m_downlink) +
            ")";
 }
+
 
 std::string Integrity_protection_maximum_data_rate::value_to_string(const Integrity_protection_maximum_data_rate::Value value)
 {

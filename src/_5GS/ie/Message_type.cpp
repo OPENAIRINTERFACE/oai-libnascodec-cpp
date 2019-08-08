@@ -129,7 +129,12 @@ Message_type::Value Message_type::uint8_t_to_Value(const uint8_t byte)
     throw std::invalid_argument("Can't decode Message Type IE");
 }
 
-std::string Message_type::to_string() const
+std::string Message_type::getName() const
+{
+    return "Message type";
+}
+
+std::string Message_type::valueToString() const
 {
     if (not isSet())
     {

@@ -98,7 +98,6 @@ int InformationElement::code_TLV_E(std::vector<uint8_t> &data, const uint8_t iei
     throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
-
 int InformationElement::decode_T(const std::vector<uint8_t> &data, const uint8_t iei)
 {
     throw NasCodecException("Not implemented");
@@ -154,4 +153,19 @@ void InformationElement::raise_exception_for_format_with_T(const InformationElem
     default:
         return;
     }
+}
+
+std::string InformationElement::getName() const
+{
+    throw NasCodecException("getName not implemented");
+}
+
+std::string InformationElement::valueToString() const
+{
+    throw NasCodecException("valueToString Not implemented");
+}
+
+std::string InformationElement::to_string() const
+{
+    return getName() + "=" + valueToString();
 }

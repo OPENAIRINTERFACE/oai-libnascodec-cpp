@@ -17,7 +17,10 @@ class InformationElement
 {
 
 public:
-    /** @enum Format
+    /** FIXME */
+    static const std::string name;
+
+        /** @enum Format
      *
      * defines format as defined in TS 24.007 11.2.1.1
      *
@@ -55,16 +58,15 @@ public:
      * IEI present, LI present (2 bytes), value present
      *
      */
-    enum class Format
-    {
-        T,
-        V,
-        TV,
-        LV,
-        TLV,
-        LV_E,
-        TLV_E
-    };
+        enum class Format {
+            T,
+            V,
+            TV,
+            LV,
+            TLV,
+            LV_E,
+            TLV_E
+        };
 
     /** @brief returns if the information element is set and have a value
      *
@@ -85,6 +87,11 @@ public:
      */
     virtual int code(std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0) const;
     virtual int decode(const std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0);
+
+    virtual std::string to_string() const;
+    virtual std::string getName() const;
+    virtual std::string valueToString() const;
+
 
 protected:
     bool m_present = false; /**< set if ie is optional and found in a PDU */
@@ -112,4 +119,5 @@ protected:
     virtual int decode_TLV(const std::vector<uint8_t> &data, const uint8_t iei);
     virtual int decode_LV_E(const std::vector<uint8_t> &data);
     virtual int decode_TLV_E(const std::vector<uint8_t> &data, const uint8_t iei);
+
 };

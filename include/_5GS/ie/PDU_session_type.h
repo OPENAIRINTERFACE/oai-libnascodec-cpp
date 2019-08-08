@@ -16,8 +16,6 @@ class PDU_session_type : public InformationElement
 public:
     // TS 24.501- 9.11.4.11
 
-    static const std::string name;
-
     enum class Value : uint8_t
     {
         IPv4 = 1,
@@ -34,8 +32,8 @@ public:
     void set(Value id);
     Value get() const;
 
-    std::string to_string() const;
-
+    virtual std::string getName() const;
+    virtual std::string valueToString() const;
     static std::string value_to_string(const Value value);
 
 protected:

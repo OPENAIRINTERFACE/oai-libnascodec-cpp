@@ -6,7 +6,10 @@ namespace _5GS
 namespace IE
 {
 
-const std::string PDU_session_type::name = "PDU session type";
+std::string PDU_session_type::getName() const
+{
+    return "PDU session type";
+}
 
 PDU_session_type::PDU_session_type()
 {
@@ -88,7 +91,7 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
     return 1;
 }
 
-std::string PDU_session_type::to_string() const
+std::string PDU_session_type::valueToString() const
 {
     if (not isSet())
     {
