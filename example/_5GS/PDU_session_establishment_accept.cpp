@@ -12,7 +12,7 @@ int main()
     PDU_session_establishment_accept pdu(
         IE::PDU_session_identity(IE::PDU_session_identity::Value::PDU_session_identity_value_3),
         IE::Procedure_transaction_identity(31),
-        IE::PDU_session_type(IE::PDU_session_type::Value::IPv4)
+        IE::Selected_PDU_session_type(IE::PDU_session_type::Value::IPv4)
         // optional - can be omitted
     );
 

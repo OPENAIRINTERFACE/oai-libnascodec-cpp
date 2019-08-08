@@ -35,8 +35,8 @@ int PDU_session_establishment_accept::code(std::vector<uint8_t> &data) const
         // mandatory parameters
         size += codeSMHeader(data);
         size += pdu_session_type.code(data, InformationElement::Format::V);
-        // FIXME 
-        // add optional parameters
+
+        // FIXME add optional parameters
     }
     catch (const std::exception &exception)
     {
@@ -54,9 +54,11 @@ int PDU_session_establishment_accept::decode(const std::vector<uint8_t> &data)
     unsigned int offset = 0;
     offset = Pdu5gsSm::decode(data);
     const std::vector<uint8_t> ipmdr_data(&data[offset], &data[offset + 2]);
-    // FIXME 
-    //offset += integrity_protection_maximum_data_rate.decode_V(ipmdr_data);
+
+    // Decode mandatory parameters
     offset += pdu_session_type.decode(data, InformationElement::Format::V);
+
+    // Decode optional parameters
     while (offset < data.size())
     {
         const std::vector<uint8_t> iei_data(data.cbegin() + offset, data.cend());
@@ -67,8 +69,8 @@ int PDU_session_establishment_accept::decode(const std::vector<uint8_t> &data)
         }
         switch (iei)
         {
-        //case PDU_session_establishment_accept::Iei::PDU_session_type:
-        //    offset += pdu_session_type.decode(iei_data, InformationElement::Format::TV, iei);
+        case PDU_session_establishment_accept::Iei::Always_on_PDU_session_requested:
+        //    offset += always_on_PDU_session_requested.decode(iei_data, InformationElement::Format::TV, iei);
         default:
             break;
         }

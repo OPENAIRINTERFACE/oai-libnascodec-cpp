@@ -37,6 +37,7 @@ public:
     static std::string value_to_string(const Value value);
 
 protected:
+    int code_V(std::vector<uint8_t> &data) const;
     int code_TV(std::vector<uint8_t> &data, const uint8_t iei) const;
     int decode_TV(const std::vector<uint8_t> &data, const uint8_t iei);
 
