@@ -21,7 +21,7 @@ public:
      *
      * @return number of bytes decoded
      */
-    int decode(const std::vector<uint8_t> &data) const;
+    int decode(const std::vector<uint8_t> &data);
     /**
      * identify a 5GS nas message from a byte buffer.
      *
@@ -33,7 +33,7 @@ public:
      *
      * @return 5GS message type
      */
-    IE::Message_type::Value identify(const std::vector<uint8_t> &data) const;
+    IE::Message_type::Value identify(const std::vector<uint8_t> &data);
 
 protected:
     /**
@@ -44,7 +44,7 @@ protected:
      * Example:
      * @include _5GS/PDU_session_establishment_request_decode.cpp
      */
-    virtual void onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu) const;
+    virtual void onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu);
 
     /**
      * This method is called when an PDU session establishment request has been identified by the @f identify method.
@@ -55,7 +55,15 @@ protected:
      * Example:
      * @include _5GS/PDU_session_establishment_request_identify.cpp
      */
-    virtual void onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data) const;
+    virtual void onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data);
+
+    /**
+     * Deleting a derived class object using a pointer to a base class that has 
+     * a non-virtual destructor results in undefined behavior.
+     * To correct this situation, the base class should be defined with
+     * a virtual destructor.
+     */
+    virtual ~Decode() {};
 
 private:
     static IE::Message_type::Value identify_5GS_message_type(const std::vector<uint8_t> &data);
