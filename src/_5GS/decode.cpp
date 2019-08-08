@@ -17,11 +17,11 @@ int Decode::decode(const std::vector<uint8_t> &data) const
     {
         PDU_session_establishment_request pdu;
         size = pdu.decode(data);
-        this->onPduSessionEstablishmentRequest(pdu);
+        onPduSessionEstablishmentRequest(pdu);
         break;
     }
     default:
-        throw std::runtime_error(std::string("Not implemented: ") + IE::Message_type::value_to_string(message_type));
+        throw NasCodecException(std::string("Not implemented: ") + IE::Message_type::value_to_string(message_type));
     }
     return size;
 }
@@ -34,11 +34,11 @@ IE::Message_type::Value Decode::identify(const std::vector<uint8_t> &data) const
     {
     case IE::Message_type::Value::PDU_session_establishment_request:
     {
-        this->onPduSessionEstablishmentRequest(data);
+        onPduSessionEstablishmentRequest(data);
         break;
     }
     default:
-        throw std::runtime_error(std::string("Not implemented: ") + IE::Message_type::value_to_string(message_type));
+        throw NasCodecException(std::string("Not implemented: ") + IE::Message_type::value_to_string(message_type));
     }
     return message_type;
 }
@@ -58,7 +58,7 @@ IE::Message_type::Value Decode::identify_5GS_message_type(const std::vector<uint
         message_type.decode(tmp, InformationElement::Format::V);
         break;
     default:
-        throw std::runtime_error("This is not a 5GS nas message, dump follows:\n" + std::string(dump_wireshark(data)));
+        throw NasCodecException("This is not a 5GS nas message, dump follows:\n" + std::string(dump_wireshark(data)));
     }
     return message_type.get();
 }
@@ -66,10 +66,10 @@ IE::Message_type::Value Decode::identify_5GS_message_type(const std::vector<uint
 
 void Decode::onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 void Decode::onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }

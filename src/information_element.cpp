@@ -4,7 +4,7 @@
 
 bool InformationElement::isSet() const
 {
-    return this->present;
+    return m_present;
 }
 
 int InformationElement::code(std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei) const
@@ -17,21 +17,21 @@ int InformationElement::code(std::vector<uint8_t> &data, const InformationElemen
     switch (format)
     {
     case InformationElement::Format::T:
-        return this->code_T(data, iei);
+        return code_T(data, iei);
     case InformationElement::Format::V:
-        return this->code_V(data);
+        return code_V(data);
     case InformationElement::Format::TV:
-        return this->code_TV(data, iei);
+        return code_TV(data, iei);
     case InformationElement::Format::LV:
-        return this->code_LV(data);
+        return code_LV(data);
     case InformationElement::Format::TLV:
-        return this->code_TLV(data, iei);
+        return code_TLV(data, iei);
     case InformationElement::Format::LV_E:
-        return this->code_LV_E(data);
+        return code_LV_E(data);
     case InformationElement::Format::TLV_E:
-        return this->code_TLV_E(data, iei);
+        return code_TLV_E(data, iei);
     }
-    throw std::runtime_error("Not implemented format");
+    throw NasCodecException("Not implemented format");
     return -1;
 };
 
@@ -45,98 +45,98 @@ int InformationElement::decode(const std::vector<uint8_t> &data, const Informati
     switch (format)
     {
     case InformationElement::Format::T:
-        return this->decode_T(data, iei);
+        return decode_T(data, iei);
     case InformationElement::Format::V:
-        return this->decode_V(data);
+        return decode_V(data);
     case InformationElement::Format::TV:
-        return this->decode_TV(data, iei);
+        return decode_TV(data, iei);
     case InformationElement::Format::LV:
-        return this->decode_LV(data);
+        return decode_LV(data);
     case InformationElement::Format::TLV:
-        return this->decode_TLV(data, iei);
+        return decode_TLV(data, iei);
     case InformationElement::Format::LV_E:
-        return this->decode_LV_E(data);
+        return decode_LV_E(data);
     case InformationElement::Format::TLV_E:
-        return this->decode_TLV_E(data, iei);
+        return decode_TLV_E(data, iei);
     }
-    throw std::runtime_error(std::string("Format not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Format not implemented: ") + std::string(__PRETTY_FUNCTION__));
     return -1;
 };
 
 int InformationElement::code_T(std::vector<uint8_t> &data, const uint8_t iei) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_V(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_TV(std::vector<uint8_t> &data, const uint8_t iei) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_LV(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_TLV(std::vector<uint8_t> &data, const uint8_t iei) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_LV_E(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::code_TLV_E(std::vector<uint8_t> &data, const uint8_t iei) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 
 int InformationElement::decode_T(const std::vector<uint8_t> &data, const uint8_t iei)
 {
-    throw std::runtime_error("Not implemented");
+    throw NasCodecException("Not implemented");
 }
 
 int InformationElement::decode_V(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error("Not implemented");
+    throw NasCodecException("Not implemented");
 }
 
 int InformationElement::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_LV(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_TLV(const std::vector<uint8_t> &data, const uint8_t iei)
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_LV_E(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_TLV_E(const std::vector<uint8_t> &data, const uint8_t iei)
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 void InformationElement::raise_exception_if_not_present(const std::string &name) const
 {
-    if (!this->present)
+    if (!m_present)
     {
         throw std::invalid_argument(std::string("No value for IE InformationElement ") + name);
     }
@@ -150,7 +150,7 @@ void InformationElement::raise_exception_for_format_with_T(const InformationElem
     case InformationElement::Format::TV:
     case InformationElement::Format::TLV:
     case InformationElement::Format::TLV_E:
-        throw std::runtime_error("IEI can't be 0 for T* types\n");
+        throw NasCodecException("IEI can't be 0 for T* types\n");
     default:
         return;
     }

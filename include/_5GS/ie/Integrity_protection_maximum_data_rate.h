@@ -42,9 +42,9 @@ public:
 
 private:
     // FIXME D.R.Y. - make class helper for uplink downlink ?
-    Value uplink, downlink;
-    bool presentUplink = false;
-    bool presentDownlink = false;
+    Value m_uplink, m_downlink;
+    bool m_presentUplink = false;
+    bool m_presentDownlink = false;
     void raise_exception_if_uplink_not_present() const;
     void raise_exception_if_downlink_not_present() const;
 };

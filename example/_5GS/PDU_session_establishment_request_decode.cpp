@@ -5,7 +5,7 @@
 
 using namespace _5GS;
 
-class DecodeExample : public _5GS::Decode
+class DecodeExample : public Decode
 {
     void onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu) const
     {

@@ -8,27 +8,27 @@ namespace IE
 
 void Message_type::set(Message_type::Value value)
 {
-    this->present = true;
-    this->value = value;
+    m_present = true;
+    m_value = value;
 }
 
 Message_type::Value Message_type::get() const
 {
-    this->raise_exception_if_not_present(className(this));
-    return this->value;
+    raise_exception_if_not_present(className(this));
+    return m_value;
 }
 
 int Message_type::code_V(std::vector<uint8_t> &data) const
 {
-    this->raise_exception_if_not_present(className(this));
-    data.push_back(static_cast<uint8_t>(this->value));
+    raise_exception_if_not_present(className(this));
+    data.push_back(static_cast<uint8_t>(m_value));
     return 1;
 }
 
 int Message_type::decode_V(const std::vector<uint8_t> &data)
 {
-    this->value = Message_type::uint8_t_to_Value(data[0]);
-    this->present = true;
+    m_value = Message_type::uint8_t_to_Value(data[0]);
+    m_present = true;
     return 1;
 }
 
@@ -131,11 +131,11 @@ Message_type::Value Message_type::uint8_t_to_Value(const uint8_t byte)
 
 std::string Message_type::to_string() const
 {
-    if (not this->isSet())
+    if (not isSet())
     {
         return "-";
     }
-    return Message_type::value_to_string(this->value);
+    return Message_type::value_to_string(m_value);
 }
 
 std::string Message_type::value_to_string(const Value value)
