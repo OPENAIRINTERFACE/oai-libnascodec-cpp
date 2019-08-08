@@ -57,6 +57,14 @@ protected:
      */
     virtual void onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data);
 
+    /**
+     * Deleting a derived class object using a pointer to a base class that has 
+     * a non-virtual destructor results in undefined behavior.
+     * To correct this situation, the base class should be defined with
+     * a virtual destructor.
+     */
+    virtual ~Decode() {};
+
 private:
     static IE::Message_type::Value identify_5GS_message_type(const std::vector<uint8_t> &data);
 };
