@@ -44,7 +44,7 @@ int PDU_session_establishment_request::code(std::vector<uint8_t> &data) const
     catch (const std::exception &exception)
     {
         std::string test = std::string("Error coding ") + className(this);
-        throw std::runtime_error(
+        throw NasCodecException(
             stack_and_format_exception(
                 exception.what(),
                 std::string("Error coding ") + className(this)));

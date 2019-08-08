@@ -83,7 +83,7 @@ int Integrity_protection_maximum_data_rate::decode_V(const std::vector<uint8_t> 
 {
     if (data.size() < 2)
     {
-        throw std::runtime_error(std::string("No data to decode: ") + std::string(__PRETTY_FUNCTION__));
+        throw NasCodecException(std::string("No data to decode: ") + std::string(__PRETTY_FUNCTION__));
     }
     m_uplink = fromUint8_t(data[0]);
     m_downlink = fromUint8_t(data[1]);

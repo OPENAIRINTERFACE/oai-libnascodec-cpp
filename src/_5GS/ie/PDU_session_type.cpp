@@ -45,14 +45,14 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
     uint8_t v;
     if (data.size() == 0)
     {
-        throw std::runtime_error(
+        throw NasCodecException(
             std::string("No data to decode") +
             std::string(__PRETTY_FUNCTION__));
     }
 
     if ((iei & 0x0f) != 0)
     {
-        throw std::runtime_error(
+        throw NasCodecException(
             std::string("Invalid IEI") +
             std::string(__PRETTY_FUNCTION__));
     }
@@ -79,7 +79,7 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
         m_value = PDU_session_type::Value::reserved;
         break;
     default:
-        throw std::runtime_error(
+        throw NasCodecException(
             std::string(__PRETTY_FUNCTION__) +
             std::string(" Invalid data:\n") +
             dump_wireshark(data));

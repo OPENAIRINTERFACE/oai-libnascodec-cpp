@@ -4,6 +4,8 @@
 #include <vector>
 #include <cstdint>
 
+#include <errors.h>
+
 /** @brief manage nas headers */
 class Nas
 {

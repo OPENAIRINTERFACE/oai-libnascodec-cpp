@@ -5,12 +5,12 @@ namespace _5GS
 
 int Pdu5gs::code(std::vector<uint8_t> &data) const
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int Pdu5gs::decode(const std::vector<uint8_t> &data)
 {
-    throw std::runtime_error(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int Pdu5gs::codeMMHeader(std::vector<uint8_t> &data) const

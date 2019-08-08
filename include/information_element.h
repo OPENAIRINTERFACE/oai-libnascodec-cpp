@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <string>
 
+#include <errors.h>
+
 /** @brief WIP information element as defined in TS 24.007 chapter 11
  *
  * @attention Information Element Identifier(IEI), the T in the Format enumeration
@@ -78,7 +80,7 @@ public:
      * @param[in]   iei     optional, default to 0 - information element identifier if needed by the @p format
      *
      * @throw   std::invalid_argument   if the element is not set
-     * @throw   std::runtime_error      if the element can't be coded according to the format
+     * @throw   NasCodecException      if the element can't be coded according to the format
      *
      */
     virtual int code(std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0) const;
