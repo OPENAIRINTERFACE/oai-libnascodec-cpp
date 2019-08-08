@@ -5,7 +5,7 @@
 
 using namespace _5GS;
 
-int Decode::decode(const std::vector<uint8_t> &data) const
+int Decode::decode(const std::vector<uint8_t> &data)
 {
     IE::Message_type::Value message_type = Decode::identify_5GS_message_type(data);
     std::vector<uint8_t> tmp;
@@ -26,7 +26,7 @@ int Decode::decode(const std::vector<uint8_t> &data) const
     return size;
 }
 
-IE::Message_type::Value Decode::identify(const std::vector<uint8_t> &data) const
+IE::Message_type::Value Decode::identify(const std::vector<uint8_t> &data)
 {
     IE::Message_type::Value message_type = Decode::identify_5GS_message_type(data);
 
@@ -64,12 +64,12 @@ IE::Message_type::Value Decode::identify_5GS_message_type(const std::vector<uint
 }
 // PDU stubs
 
-void Decode::onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu) const
+void Decode::onPduSessionEstablishmentRequest(const PDU_session_establishment_request &pdu)
 {
     throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
-void Decode::onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data) const
+void Decode::onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data)
 {
     throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }

@@ -5,7 +5,7 @@ using namespace _5GS;
 
 class DecodeExample : public _5GS::Decode
 {
-    void onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data) const
+    void onPduSessionEstablishmentRequest(const std::vector<uint8_t> &data)
     {
         std::cout << dump_wireshark_with_ngap_encapsulation(data) ;
         std::cout << std::endl;
