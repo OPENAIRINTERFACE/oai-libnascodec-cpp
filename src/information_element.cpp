@@ -100,12 +100,12 @@ int InformationElement::code_TLV_E(std::vector<uint8_t> &data, const uint8_t iei
 
 int InformationElement::decode_T(const std::vector<uint8_t> &data, const uint8_t iei)
 {
-    throw NasCodecException("Not implemented");
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_V(const std::vector<uint8_t> &data)
 {
-    throw NasCodecException("Not implemented");
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
 }
 
 int InformationElement::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
