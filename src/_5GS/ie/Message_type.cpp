@@ -51,10 +51,10 @@ Message_type::Value Message_type::uint8_t_to_Value(const uint8_t byte)
         return Message_type::Value::Deregistration_request__UE_originating_;
     case static_cast<uint8_t>(Message_type::Value::Deregistration_accept__UE_originating_):
         return Message_type::Value::Deregistration_accept__UE_originating_;
-    case static_cast<uint8_t>(Message_type::Value::Deregistration_request__UE_terminated):
-        return Message_type::Value::Deregistration_request__UE_terminated;
-    case static_cast<uint8_t>(Message_type::Value::Deregistration_accept_UE_terminated):
-        return Message_type::Value::Deregistration_accept_UE_terminated;
+    case static_cast<uint8_t>(Message_type::Value::Deregistration_request__UE_terminated_):
+        return Message_type::Value::Deregistration_request__UE_terminated_;
+    case static_cast<uint8_t>(Message_type::Value::Deregistration_accept__UE_terminated_):
+        return Message_type::Value::Deregistration_accept__UE_terminated_;
     // Service
     case static_cast<uint8_t>(Message_type::Value::Service_request):
         return Message_type::Value::Service_request;
@@ -157,9 +157,9 @@ std::string Message_type::value_to_string(const Value value)
         return "Deregistration_request__UE_originating_";
     case Message_type::Value::Deregistration_accept__UE_originating_:
         return "Deregistration_accept__UE_originating_";
-    case Message_type::Value::Deregistration_request__UE_terminated:
+    case Message_type::Value::Deregistration_request__UE_terminated_:
         return "Deregistration_request__UE_terminated";
-    case Message_type::Value::Deregistration_accept_UE_terminated:
+    case Message_type::Value::Deregistration_accept__UE_terminated_:
         return "Deregistration_accept_UE_terminated";
     // Service
     case Message_type::Value::Service_request:

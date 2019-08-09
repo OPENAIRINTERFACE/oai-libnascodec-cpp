@@ -28,8 +28,8 @@ public:
         // Deregistration
         Deregistration_request__UE_originating_,
         Deregistration_accept__UE_originating_,
-        Deregistration_request__UE_terminated,
-        Deregistration_accept_UE_terminated,
+        Deregistration_request__UE_terminated_,
+        Deregistration_accept__UE_terminated_,
         // Service
         Service_request = 0b01001100,
         Service_reject,
@@ -79,14 +79,12 @@ public:
     static std::string value_to_string(const Value value);
 
 protected:
-
     int code_V(std::vector<uint8_t> &data) const;
     int decode_V(const std::vector<uint8_t> &data);
 
 private:
     Value m_value;
     Value uint8_t_to_Value(const uint8_t byte);
-
 };
 
 } // namespace IE
