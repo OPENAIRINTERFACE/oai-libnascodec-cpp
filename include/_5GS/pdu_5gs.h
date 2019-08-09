@@ -9,7 +9,7 @@ class Pdu5gs : public Nas
 {
 public:
     // common IE to all 5GS messages
-    IE::Message_type message_type;
+    IE::Message_type m_message_type;
 
     // codec
     virtual int code(std::vector<uint8_t> &data) const;

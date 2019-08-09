@@ -22,13 +22,13 @@ int main()
     PDU_session_establishment_request pdu_setters;
 
     // for header (mandatory)
-    pdu_setters.pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_5);
-    pdu_setters.procedure_transaction_identity.set(250);
+    pdu_setters.m_pdu_session_identity.set(IE::PDU_session_identity::Value::PDU_session_identity_value_5);
+    pdu_setters.m_procedure_transaction_identity.set(250);
     // mandatory
-    pdu_setters.integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
-    pdu_setters.integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
+    pdu_setters.m_integrity_protection_maximum_data_rate.setDownlink(IE::Integrity_protection_maximum_data_rate::Value::Full_data_rate);
+    pdu_setters.m_integrity_protection_maximum_data_rate.setUplink(IE::Integrity_protection_maximum_data_rate::Value::_64_kbps);
     // optionals
-    pdu_setters.pdu_session_type.set(IE::PDU_session_type::Value::IPv4);
+    pdu_setters.m_pdu_session_type.set(IE::PDU_session_type::Value::IPv4);
 
     std::cout << pdu_setters.to_string() << std::endl;
 

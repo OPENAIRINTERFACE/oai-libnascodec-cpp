@@ -15,8 +15,6 @@ class PDU_session_identity : public InformationElement
 public:
     // TS 24.007 - 11.2.3.1b.1
 
-    static const std::string name;
-
     enum class Value : uint8_t
     {
         No_PDU_session_identity_assigned,
@@ -49,7 +47,8 @@ public:
     int decode_V(const std::vector<uint8_t> &data);
     int decode_V(const uint8_t &data);
 
-    std::string to_string() const;
+    virtual std::string getName() const;
+    virtual std::string valueToString() const;
 
     static std::string value_to_string(const PDU_session_identity::Value value);
     static Value uint8_t_to_Value(const uint8_t &byte);

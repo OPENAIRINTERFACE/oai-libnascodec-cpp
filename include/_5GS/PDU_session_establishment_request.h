@@ -11,8 +11,8 @@ class PDU_session_establishment_request : public Pdu5gsSm
 
 public:
     // Mandatory
-    IE::Integrity_protection_maximum_data_rate integrity_protection_maximum_data_rate;
-    IE::PDU_session_type pdu_session_type;
+    IE::Integrity_protection_maximum_data_rate m_integrity_protection_maximum_data_rate;
+    IE::PDU_session_type m_pdu_session_type;
 
     PDU_session_establishment_request();
     // TODO doc

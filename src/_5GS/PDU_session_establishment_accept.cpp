@@ -7,7 +7,7 @@ namespace _5GS
 
 PDU_session_establishment_accept::PDU_session_establishment_accept()
 {
-    message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
+    m_message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
 }
 
 PDU_session_establishment_accept::PDU_session_establishment_accept(
@@ -35,7 +35,7 @@ PDU_session_establishment_accept::PDU_session_establishment_accept(
 
 {
     // FIXME
-    message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
+    m_message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
     m_selected_pdu_session_type = spst;
     m_selected_ssc_mode = sm;
 }
