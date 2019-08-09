@@ -5,3 +5,4 @@ TODO*
 *.log
 doc/html
 doc/latex
+**/*.swp
