@@ -10,24 +10,25 @@ namespace _5GS
 namespace IE
 {
 
-class PDU_session_type : public InformationElement
+class SSC_mode : public InformationElement
 {
 
 public:
-    // TS 24.501- 9.11.4.11
+    // TS 24.501- 9.11.4.16
 
+    /** @enum Value SSC modes */
     enum class Value : uint8_t
     {
-        IPv4 = 1,
-        IPv6,
-        IPv4v6,
-        Unstructured,
-        Ethernet,
-        reserved = 7
+        SSC_mode_1 = 1, /**< SSC mode 1 */
+        SSC_mode_2,     /**< SSC mode 2 */
+        SSC_mode_3,     /**< SSC mode 3 */
+        unused_1,       /**< unused, shall be interpreted as SSC mode 1 if received by the network */
+        unused_2,       /**< unused, shall be interpreted as SSC mode 2 if received by the network */
+        unused_3        /**< unused, shall be interpreted as SSC mode 3 if received by the network */
     };
 
-    PDU_session_type();
-    PDU_session_type(const Value value);
+    SSC_mode();
+    SSC_mode(const Value value);
 
     void set(Value id);
     Value get() const;
@@ -42,7 +43,7 @@ public:
 
 protected:
     int code_V(std::vector<uint8_t> &data) const;
-    int decode_V(const std::vector<uint8_t> &data); // FIXME;
+    int decode_V(const std::vector<uint8_t> &data);
     int code_TV(std::vector<uint8_t> &data, const uint8_t iei) const;
     int decode_TV(const std::vector<uint8_t> &data, const uint8_t iei);
 

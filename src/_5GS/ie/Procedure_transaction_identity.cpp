@@ -6,8 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-const std::string Procedure_transaction_identity::name = "Procedure transaction identity";
-
 Procedure_transaction_identity::Procedure_transaction_identity()
 {
 }
@@ -65,7 +63,12 @@ std::string Procedure_transaction_identity::value_to_string(const uint8_t value)
     return std::to_string(value);
 }
 
-std::string Procedure_transaction_identity::to_string() const
+std::string Procedure_transaction_identity::getName() const
+{
+    return "Procedure transaction identity";
+}
+
+std::string Procedure_transaction_identity::valueToString() const
 {
     if (not isSet())
     {

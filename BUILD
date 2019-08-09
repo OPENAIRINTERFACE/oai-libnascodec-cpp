@@ -15,9 +15,9 @@ cc_library(
 
 [ cc_binary(
     name = files[1],
-    srcs = [files[0]],
+    srcs = [files[0]] + glob(["example/include/**/*.h"]),
     deps = [":nascodec-cpp"],
-    copts = ["-Werror"]
+    copts = ["-Werror", "-Iexample/include"]
         )
 for files in extract_binary_names(glob(["example/**/*.cpp"])) ]
 

@@ -6,6 +6,20 @@ namespace _5GS
 namespace IE
 {
 
+Message_type::Message_type()
+{
+}
+
+Message_type::Message_type(Value value)
+{
+    set(value);
+}
+
+std::string Message_type::getName() const
+{
+    return "Message type";
+}
+
 void Message_type::set(Message_type::Value value)
 {
     m_present = true;
@@ -126,10 +140,10 @@ Message_type::Value Message_type::uint8_t_to_Value(const uint8_t byte)
     case static_cast<uint8_t>(Message_type::Value::_5GSM_status):
         return Message_type::Value::_5GSM_status;
     }
-    throw std::invalid_argument("Can't decode Message Type IE");
+    throw NasCodecException("Can't decode Message Type IE");
 }
 
-std::string Message_type::to_string() const
+std::string Message_type::valueToString() const
 {
     if (not isSet())
     {
@@ -232,7 +246,7 @@ std::string Message_type::value_to_string(const Value value)
     case Message_type::Value::_5GSM_status:
         return "_5GSM_status";
     }
-    throw std::invalid_argument("Not a Message Type Value !");
+    throw NasCodecException("Not a Message Type Value !");
 }
 
 }; // namespace IE

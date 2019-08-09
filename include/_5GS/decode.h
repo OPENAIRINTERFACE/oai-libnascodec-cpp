@@ -332,7 +332,7 @@ protected:
      * To correct this situation, the base class should be defined with
      * a virtual destructor.
      */
-    virtual ~Decode(){};
+    virtual ~Decode() = default;
 
 private:
     static IE::Message_type::Value identify_5GS_message_type(const std::vector<uint8_t> &data);

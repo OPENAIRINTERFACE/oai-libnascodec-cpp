@@ -6,7 +6,10 @@ namespace _5GS
 namespace IE
 {
 
-const std::string PDU_session_type::name = "PDU session type";
+std::string PDU_session_type::getName() const
+{
+    return "PDU session type";
+}
 
 PDU_session_type::PDU_session_type()
 {
@@ -40,6 +43,17 @@ int PDU_session_type::code_TV(std::vector<uint8_t> &data, const uint8_t iei) con
     return 1;
 }
 
+uint8_t PDU_session_type::code_half_V() const {
+    return static_cast<uint8_t>(m_value);
+}
+
+int PDU_session_type::code_V(std::vector<uint8_t> &data) const
+{
+    raise_exception_if_not_present(className(this));
+    data.push_back(static_cast<uint8_t>(m_value));
+    return 1;
+}
+
 int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
 {
     uint8_t v;
@@ -58,27 +72,9 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
     }
 
     v = data[0] & 0x0f;
-    switch (v)
-    {
-    case static_cast<uint8_t>(PDU_session_type::Value::Ethernet):
-        m_value = PDU_session_type::Value::Ethernet;
-        break;
-    case static_cast<uint8_t>(PDU_session_type::Value::IPv4):
-        m_value = PDU_session_type::Value::IPv4;
-        break;
-    case static_cast<uint8_t>(PDU_session_type::Value::IPv6):
-        m_value = PDU_session_type::Value::IPv6;
-        break;
-    case static_cast<uint8_t>(PDU_session_type::Value::IPv4v6):
-        m_value = PDU_session_type::Value::IPv4v6;
-        break;
-    case static_cast<uint8_t>(PDU_session_type::Value::Unstructured):
-        m_value = PDU_session_type::Value::Unstructured;
-        break;
-    case static_cast<uint8_t>(PDU_session_type::Value::reserved):
-        m_value = PDU_session_type::Value::reserved;
-        break;
-    default:
+    try {
+        m_value = uint8_t_to_Value(v);
+    } catch (...) {
         throw NasCodecException(
             std::string(__PRETTY_FUNCTION__) +
             std::string(" Invalid data:\n") +
@@ -88,7 +84,33 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
     return 1;
 }
 
-std::string PDU_session_type::to_string() const
+int PDU_session_type::decode_V(const std::vector<uint8_t> &data)
+{
+    m_value = uint8_t_to_Value(data[0]);
+    m_present = true;
+    return 1;
+}
+
+PDU_session_type::Value PDU_session_type::uint8_t_to_Value(const uint8_t &byte) {
+    switch (byte)
+    {
+    case static_cast<uint8_t>(PDU_session_type::Value::IPv4):
+        return PDU_session_type::Value::IPv4;
+    case static_cast<uint8_t>(PDU_session_type::Value::IPv6):
+        return PDU_session_type::Value::IPv6;
+    case static_cast<uint8_t>(PDU_session_type::Value::IPv4v6):
+        return PDU_session_type::Value::IPv4v6;
+    case static_cast<uint8_t>(PDU_session_type::Value::Unstructured):
+        return PDU_session_type::Value::Unstructured;
+    case static_cast<uint8_t>(PDU_session_type::Value::Ethernet):
+        return PDU_session_type::Value::Ethernet;
+    case static_cast<uint8_t>(PDU_session_type::Value::reserved):
+        return PDU_session_type::Value::reserved;
+    }
+    throw NasCodecException("Invalid value for PDU session type");
+}
+
+std::string PDU_session_type::valueToString() const
 {
     if (not isSet())
     {

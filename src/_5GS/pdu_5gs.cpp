@@ -23,7 +23,7 @@ std::string Pdu5gs::header_to_string() const
     std::string str;
     // TODO add security header
     // Message type
-    str += message_type.name + "=" + message_type.to_string();
+    str += message_type.to_string();
     return str;
 }
 

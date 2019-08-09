@@ -25,19 +25,12 @@ std::string Pdu5gsSm::header_to_string() const
        // TODO add security header
 
        // FIXME factorize
-       str += pdu_session_identity.name +
-              "=" +
-              pdu_session_identity.to_string() +
+       str += pdu_session_identity.to_string() +
               ", ";
 
-       str += procedure_transaction_identity.name +
-              "=" +
-              procedure_transaction_identity.to_string() +
+       str += procedure_transaction_identity.to_string() +
               ", ";
-
-       str += message_type.name +
-              "=" +
-              message_type.to_string();
+       str += message_type.to_string();
 
        return str;
 }

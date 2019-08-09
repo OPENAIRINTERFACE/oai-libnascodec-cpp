@@ -6,10 +6,29 @@
 
 #include <errors.h>
 
-/** @brief WIP information element as defined in TS 24.007 chapter 11
+/** @brief information element as defined in TS 24.007 chapter 11
  *
+ * <b>Description from 3gpp:</b>
+ * 
+ * Every standard IE has an information element type which determines the values
+ * possible for the value part of the IE, and the basic meaning of the information.
+ * The information element type describes only the value part. Standard IEs of
+ * the same information element type may appear with different formats.
+ * The format used for a given standard IE in a given message is specified within
+ * the description of the message.
+ * 
+ * The value part of a standard IE either consists of a half octet or one or more octets;
+ * the value part of a standard IE with format LV or TLV consists of an integral 
+ * number of octets, between 0 and 255 inclusive; it then may be empty, i.e., consist 
+ * of zero octets; if it consists of a half octet and has format TV, its IEI consists
+ * of a half octet, too.
+ * 
+ * For LV-E and TLV-E, the value part of a standard IE consists of an integral number
+ * of octets, between 0 and 65535 inclusive. The value part of a standard IE may be
+ * further structured into parts, called fields.
+ * 
  * @attention Information Element Identifier(IEI), the T in the Format enumeration
- * is locacl to a PDU messages. I.E. a same information element identifier
+ * is local to a PDU messages. I.E. a same information element identifier
  * may have different value, according to PDU message. @n
  *
 */
@@ -68,7 +87,9 @@ public:
 
     /** @brief returns if the information element is set and have a value
      *
-     * @return true: the information element is present, false, the information element is empty.
+     * @return 
+     *  @b true    the information element is present @n
+     *  @b false   the information element is empty or not set
      */
     bool isSet() const;
 
@@ -79,12 +100,33 @@ public:
      * @param[in]   format  how to encode the information element
      * @param[in]   iei     optional, default to 0 - information element identifier if needed by the @p format
      *
-     * @throw   std::invalid_argument   if the element is not set
-     * @throw   NasCodecException      if the element can't be coded according to the format
-     *
+     * @throw   NasCodecException      if the element can't be coded according to the format or not set
      */
     virtual int code(std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0) const;
+
+    /** @brief code information element on half byte
+     *
+     * @return value of the IE coded on the 4 least significant bits of an octet.
+     * The other half is guaranted to be 0000
+     *
+     * @throw   NasCodecException      if the element can't be coded according to the format or not set
+     */
+    virtual uint8_t code_half_V() const;
+
+    /** @brief decode information according to @p format
+     *
+     * @param[in]   data    buffer to decode
+     * @param[in]   format  format of the IE in the buffer
+     * 
+     * @return number of byte read and decoded
+     *
+     * @throw   NasCodecException      if the element can't be decoded according to the format
+     */
     virtual int decode(const std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0);
+
+    virtual std::string to_string() const;
+    virtual std::string getName() const;
+    virtual std::string valueToString() const;
 
 protected:
     bool m_present = false; /**< set if ie is optional and found in a PDU */

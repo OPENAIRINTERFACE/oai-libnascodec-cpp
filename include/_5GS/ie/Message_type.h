@@ -14,7 +14,6 @@ class Message_type : public InformationElement
 {
 
 public:
-    std::string name = "Message type";
 
     // TS 24.501- 9.7
     enum class Value : uint8_t
@@ -71,10 +70,15 @@ public:
         _5GSM_status = 0b11010110
     };
 
+    Message_type();
+
+    Message_type(Value value);
+
     virtual void set(const Value id);
     virtual Value get() const;
 
-    std::string to_string() const;
+    virtual std::string getName() const;
+    virtual std::string valueToString() const;
 
     static std::string value_to_string(const Value value);
 
