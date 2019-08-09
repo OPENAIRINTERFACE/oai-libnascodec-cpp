@@ -63,6 +63,11 @@ int InformationElement::decode(const std::vector<uint8_t> &data, const Informati
     return -1;
 };
 
+uint8_t InformationElement::code_half_V() const
+{
+    throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+}
+
 int InformationElement::code_T(std::vector<uint8_t> &data, const uint8_t iei) const
 {
     throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));

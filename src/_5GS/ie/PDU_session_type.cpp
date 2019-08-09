@@ -43,6 +43,10 @@ int PDU_session_type::code_TV(std::vector<uint8_t> &data, const uint8_t iei) con
     return 1;
 }
 
+uint8_t PDU_session_type::code_half_V() const {
+    return static_cast<uint8_t>(m_value);
+}
+
 int PDU_session_type::code_V(std::vector<uint8_t> &data) const
 {
     raise_exception_if_not_present(className(this));

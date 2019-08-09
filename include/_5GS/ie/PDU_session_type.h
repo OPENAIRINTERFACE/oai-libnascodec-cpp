@@ -38,6 +38,8 @@ public:
     static std::string value_to_string(const Value value);
     static Value uint8_t_to_Value(const uint8_t &byte);
 
+    virtual uint8_t code_half_V() const;
+
 protected:
     int code_V(std::vector<uint8_t> &data) const;
     int decode_V(const std::vector<uint8_t> &data); // FIXME;
