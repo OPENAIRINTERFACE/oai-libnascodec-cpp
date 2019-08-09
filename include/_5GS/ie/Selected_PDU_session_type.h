@@ -17,7 +17,7 @@ class Selected_PDU_session_type : public PDU_session_type
 
 public:
     Selected_PDU_session_type();
-    Selected_PDU_session_type(const PDU_session_type::Value value);
+    explicit Selected_PDU_session_type(const PDU_session_type::Value value);
 
     virtual std::string getName() const;
 };

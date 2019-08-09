@@ -27,7 +27,7 @@ public:
     };
 
     PDU_session_type();
-    PDU_session_type(const Value value);
+    explicit PDU_session_type(const Value value);
 
     void set(Value id);
     Value get() const;

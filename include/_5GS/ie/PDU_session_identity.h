@@ -40,7 +40,7 @@ public:
     };
 
     PDU_session_identity();
-    PDU_session_identity(const Value val);
+    explicit PDU_session_identity(const Value val);
 
     void set(const Value value);
     Value get() const;

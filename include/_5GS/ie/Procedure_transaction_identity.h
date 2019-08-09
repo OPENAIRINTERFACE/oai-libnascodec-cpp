@@ -23,8 +23,8 @@ public:
     };
 
     Procedure_transaction_identity();
-    Procedure_transaction_identity(const Value value);
-    Procedure_transaction_identity(const uint8_t value);
+    explicit Procedure_transaction_identity(const Value value);
+    explicit Procedure_transaction_identity(const uint8_t value);
 
     void set(const uint8_t value);
     uint8_t get() const;

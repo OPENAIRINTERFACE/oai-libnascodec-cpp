@@ -10,7 +10,7 @@ Message_type::Message_type()
 {
 }
 
-Message_type::Message_type(Value value)
+Message_type::Message_type(const Value value)
 {
     set(value);
 }

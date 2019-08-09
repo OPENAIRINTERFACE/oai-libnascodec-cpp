@@ -9,24 +9,24 @@
 /** @brief information element as defined in TS 24.007 chapter 11
  *
  * <b>Description from 3gpp:</b>
- * 
+ *
  * Every standard IE has an information element type which determines the values
  * possible for the value part of the IE, and the basic meaning of the information.
  * The information element type describes only the value part. Standard IEs of
  * the same information element type may appear with different formats.
  * The format used for a given standard IE in a given message is specified within
  * the description of the message.
- * 
+ *
  * The value part of a standard IE either consists of a half octet or one or more octets;
- * the value part of a standard IE with format LV or TLV consists of an integral 
- * number of octets, between 0 and 255 inclusive; it then may be empty, i.e., consist 
+ * the value part of a standard IE with format LV or TLV consists of an integral
+ * number of octets, between 0 and 255 inclusive; it then may be empty, i.e., consist
  * of zero octets; if it consists of a half octet and has format TV, its IEI consists
  * of a half octet, too.
- * 
+ *
  * For LV-E and TLV-E, the value part of a standard IE consists of an integral number
  * of octets, between 0 and 65535 inclusive. The value part of a standard IE may be
  * further structured into parts, called fields.
- * 
+ *
  * @attention Information Element Identifier(IEI), the T in the Format enumeration
  * is local to a PDU messages. I.E. a same information element identifier
  * may have different value, according to PDU message. @n
@@ -87,7 +87,7 @@ public:
 
     /** @brief returns if the information element is set and have a value
      *
-     * @return 
+     * @return
      *  @b true    the information element is present @n
      *  @b false   the information element is empty or not set
      */
@@ -117,7 +117,7 @@ public:
      *
      * @param[in]   data    buffer to decode
      * @param[in]   format  format of the IE in the buffer
-     * 
+     *
      * @return number of byte read and decoded
      *
      * @throw   NasCodecException      if the element can't be decoded according to the format
