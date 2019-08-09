@@ -1,30 +1,36 @@
-#include <cassert>
-
 #include <_5GS/ie/PDU_session_type.h>
 
 using namespace _5GS::IE;
 
+#include <test_template.h>
+
 int main()
 {
-    PDU_session_type ie;
-    std::vector<uint8_t> buffer = {0x93};
-    const uint8_t iei = 0x90;
+    code_V<PDU_session_type, PDU_session_type::Value>(
+        PDU_session_type::Value::IPv4,
+        std::vector<uint8_t>({0x01})
+    );
 
-    int size = ie.decode(buffer, InformationElement::Format::TV, iei);
-    std::cerr << "read " << size << " byte(s)." << std::endl;
-    std::cerr << ie.to_string() << std::endl;
+    decode_V<PDU_session_type, PDU_session_type::Value>(
+        std::vector<uint8_t>({0x03}),
+        PDU_session_type::Value::IPv4v6
+    );
 
-    assert(size == 1);
-    assert(PDU_session_type::Value::IPv4v6 == ie.get());
+    decode_invalid_value_V<PDU_session_type, PDU_session_type::Value>(
+        std::vector<uint8_t>({0x08})
+    );
 
-    buffer.clear();
-    ie = PDU_session_type(PDU_session_type::Value::Ethernet);
-    size = ie.code(buffer, InformationElement::Format::TV, iei);
-    std::cerr << "wrote " << size << " byte(s)." << std::endl;
-    std::cerr << "0x" << std::hex << static_cast<int>(buffer[0]) << std::endl;
+    code_TV<PDU_session_type, PDU_session_type::Value>(
+        0x90,
+        PDU_session_type::Value::IPv6,
+        std::vector<uint8_t>({0x92})
+    );
 
-    assert(size == 1);
-    assert(0x95 == buffer[0]);
-
+    decode_TV<PDU_session_type, PDU_session_type::Value>(
+        0x80,
+        std::vector<uint8_t>({0x85}),
+        PDU_session_type::Value::Ethernet
+    );    
+    
     return 0;
 }

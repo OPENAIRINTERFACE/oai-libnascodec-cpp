@@ -4,6 +4,8 @@
 
 using namespace _5GS::IE;
 
+// FIXME rework IE to have only one value in interface
+
 int main()
 {
     Integrity_protection_maximum_data_rate ie;

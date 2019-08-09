@@ -70,6 +70,10 @@ public:
         _5GSM_status = 0b11010110
     };
 
+    Message_type();
+
+    Message_type(Value value);
+
     virtual void set(const Value id);
     virtual Value get() const;
 

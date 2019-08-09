@@ -1,29 +1,25 @@
-#include <cassert>
-
 #include <_5GS/ie/Procedure_transaction_identity.h>
 
 using namespace _5GS::IE;
 
+#include <test_template.h>
+
 int main()
 {
-    Procedure_transaction_identity ie;
-    std::vector<uint8_t> buffer = {5};
+    code_V<Procedure_transaction_identity, Procedure_transaction_identity::Value>(
+        Procedure_transaction_identity::Value::No_procedure_transaction_identity_assigned,
+        std::vector<uint8_t>({0})
+    );
 
-    int size = ie.decode(buffer, InformationElement::Format::V);
-    std::cerr << "read " << size << " byte(s)." << std::endl;
-    std::cerr << ie.to_string() << std::endl;
+    code_V<Procedure_transaction_identity, Procedure_transaction_identity::Value>(
+        Procedure_transaction_identity::Value::Reserved,
+        std::vector<uint8_t>({255})
+    );
 
-    assert(size == 1);
-    assert(5 == ie.get());
-
-    buffer.clear();
-    ie = Procedure_transaction_identity(10);
-    size = ie.code(buffer, InformationElement::Format::V);
-    std::cerr << "wrote " << size << " byte(s)." << std::endl;
-    std::cerr << "0x" << std::hex << static_cast<int>(buffer[0]) << std::endl;
-
-    assert(size == 1);
-    assert(10 == buffer[0]);
+    decode_V<Procedure_transaction_identity, uint8_t>(
+        std::vector<uint8_t>({17}),
+        17
+    );
 
     return 0;
 }
