@@ -81,14 +81,6 @@ std::string Integrity_protection_maximum_data_rate::valueToString() const
            ")";
 }
 
-void Integrity_protection_maximum_data_rate::raise_exception_if_not_present(const std::string &name) const
-{
-    if (!isSet())
-    {
-        throw std::invalid_argument(std::string("No value for IE InformationElement ") + name);
-    }
-}
-
 } // namespace IE
 } // namespace _5GS
 

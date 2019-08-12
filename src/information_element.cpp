@@ -140,7 +140,7 @@ int InformationElement::decode_TLV_E(const std::vector<uint8_t> &data, const uin
 
 void InformationElement::raise_exception_if_not_present(const std::string &name) const
 {
-    if (!m_present)
+    if (!isSet())
     {
         throw std::invalid_argument(std::string("No value for IE InformationElement ") + name);
     }

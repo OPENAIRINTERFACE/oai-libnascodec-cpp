@@ -91,7 +91,7 @@ public:
      *  @b true    the information element is present @n
      *  @b false   the information element is empty or not set
      */
-    bool isSet() const;
+    virtual bool isSet() const;
 
     /** @brief add information element to @p data buffer, according to the
      * @p format given

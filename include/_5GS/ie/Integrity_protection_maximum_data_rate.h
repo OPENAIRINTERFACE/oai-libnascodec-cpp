@@ -40,8 +40,6 @@ public:
 
     virtual bool isSet() const;
 
-    virtual void raise_exception_if_not_present(const std::string &name) const;
-
     Value m_fields;
 };
 
