@@ -6,93 +6,65 @@ namespace _5GS
 namespace IE
 {
 
+// class Integrity_protection_maximum_data_rate::Value
+Integrity_protection_maximum_data_rate::Value::Value()
+{
+}
+
+Integrity_protection_maximum_data_rate::Value::Value(
+    const Maximum_data_rate_per_UE_for_user_plane &uplink,
+    const Maximum_data_rate_per_UE_for_user_plane &downlink) : m_uplink(uplink), m_downlink(downlink)
+{
+}
+
+// class  Integrity_protection_maximum_data_rate
+
 Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate()
 {
-
 }
 
-Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate(Value uplink, Value downlink)
+Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate(const Value &fields) : m_fields(fields)
 {
-    setUplink(uplink);
-    setDownlink(downlink);
 }
 
-void Integrity_protection_maximum_data_rate::setUplink(const Integrity_protection_maximum_data_rate::Value value)
+bool Integrity_protection_maximum_data_rate::isSet() const
 {
-    m_presentUplink = true;
-    m_present = m_presentUplink && m_presentDownlink;
-    m_uplink = value;
-}
-
-Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::getUplink() const
-{
-    raise_exception_if_uplink_not_present();
-    return m_uplink;
-}
-
-void Integrity_protection_maximum_data_rate::raise_exception_if_uplink_not_present() const
-{
-    if (!m_presentUplink)
+    if (m_fields.m_uplink.isSet() == false)
     {
-        throw std::invalid_argument("No value for uplink");
+        return false;
     }
-}
-
-void Integrity_protection_maximum_data_rate::setDownlink(const Integrity_protection_maximum_data_rate::Value value)
-{
-    m_presentDownlink = true;
-    m_present = m_presentUplink && m_presentDownlink;
-    m_downlink = value;
-}
-
-Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::getDownlink() const
-{
-    raise_exception_if_downlink_not_present();
-    return m_downlink;
-}
-
-void Integrity_protection_maximum_data_rate::raise_exception_if_downlink_not_present() const
-{
-    if (!m_presentDownlink)
+    if (m_fields.m_downlink.isSet() == false)
     {
-        throw std::invalid_argument("No value for downlink");
+        return false;
     }
+
+    return true;
+}
+
+Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::get() const
+{
+    return m_fields;
 }
 
 int Integrity_protection_maximum_data_rate::code_V(std::vector<uint8_t> &data) const
 {
     raise_exception_if_not_present(className(this));
-    data.push_back(static_cast<uint8_t>(m_uplink));
-    data.push_back(static_cast<uint8_t>(m_downlink));
-    return 2;
-}
-
-Integrity_protection_maximum_data_rate::Value Integrity_protection_maximum_data_rate::fromUint8_t(const uint8_t v)
-{
-    switch (v)
-    {
-    case static_cast<uint8_t>(Value::Full_data_rate):
-        return Value::Full_data_rate;
-    }
-    return Value::_64_kbps;
+    int size = 0;
+    size += m_fields.m_uplink.code_V(data);
+    size += m_fields.m_downlink.code_V(data);
+    return size;
 }
 
 int Integrity_protection_maximum_data_rate::decode_V(const std::vector<uint8_t> &data)
 {
-    if (data.size() < 2)
-    {
-        throw NasCodecException(std::string("No data to decode: ") + std::string(__PRETTY_FUNCTION__));
-    }
-    m_uplink = fromUint8_t(data[0]);
-    m_downlink = fromUint8_t(data[1]);
-
-    m_present = true;
-    m_presentUplink = true;
-    m_presentDownlink = true;
-    return 2;
+    int size = 0;
+    size += m_fields.m_uplink.decode_V(data);
+    size += m_fields.m_downlink.decode_V(std::vector<uint8_t>(data.begin() + 1, data.end()));
+    return size;
 }
 
-std::string Integrity_protection_maximum_data_rate::getName() const {
+std::string Integrity_protection_maximum_data_rate::getName() const
+{
     return "Integrity protection maximum data rate";
 }
 
@@ -103,24 +75,26 @@ std::string Integrity_protection_maximum_data_rate::valueToString() const
         return "-";
     }
     return "uplink(" +
-           Integrity_protection_maximum_data_rate::value_to_string(m_uplink) +
+           m_fields.m_uplink.valueToString() +
            ")&downlink(" +
-           Integrity_protection_maximum_data_rate::value_to_string(m_downlink) +
+           m_fields.m_downlink.valueToString() +
            ")";
 }
 
-
-std::string Integrity_protection_maximum_data_rate::value_to_string(const Integrity_protection_maximum_data_rate::Value value)
+void Integrity_protection_maximum_data_rate::raise_exception_if_not_present(const std::string &name) const
 {
-    switch (value)
+    if (!isSet())
     {
-    case Integrity_protection_maximum_data_rate::Value::Full_data_rate:
-        return "Full data rate";
-    case Integrity_protection_maximum_data_rate::Value::_64_kbps:
-        return "64 kbps";
+        throw std::invalid_argument(std::string("No value for IE InformationElement ") + name);
     }
-    throw std::invalid_argument("Not a value");
 }
 
 } // namespace IE
 } // namespace _5GS
+
+bool operator==(const _5GS::IE::Integrity_protection_maximum_data_rate::Value &a,
+                const _5GS::IE::Integrity_protection_maximum_data_rate::Value &b)
+{
+    return (a.m_uplink == b.m_uplink) &&
+           (a.m_downlink == b.m_downlink);
+}

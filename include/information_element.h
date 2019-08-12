@@ -129,6 +129,7 @@ public:
     virtual std::string valueToString() const;
 
 protected:
+    // FIXME use std::optional (only in c++17) ?
     bool m_present = false; /**< set if ie is optional and found in a PDU */
     /** @brief raise an exception if the information element is not present/set
      *
