@@ -16,7 +16,10 @@ PDU_session_establishment_request::PDU_session_establishment_request(
     // Mandatory
     IE::Integrity_protection_maximum_data_rate ipmdr,
     // Optionals
-    IE::PDU_session_type pst)
+    IE::PDU_session_type pst,
+    //IE::SSC_mode sm,
+    //IE::_5GSM_capability,
+    int placeholder)
     : Pdu5gsSm::Pdu5gsSm(psi, pti)
 
 {
