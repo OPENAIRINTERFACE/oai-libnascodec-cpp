@@ -14,7 +14,9 @@ int main()
                 IE::Maximum_data_rate_per_UE_for_user_plane(IE::Maximum_data_rate_per_UE_for_user_plane::Value::_64_kbps),
                 IE::Maximum_data_rate_per_UE_for_user_plane(IE::Maximum_data_rate_per_UE_for_user_plane::Value::Full_data_rate))),
         // optional - can be omitted
-        IE::PDU_session_type(IE::PDU_session_type::Value::IPv4v6));
+        IE::PDU_session_type(IE::PDU_session_type::Value::IPv4v6),
+        IE::SSC_mode(IE::SSC_mode::Value::SSC_mode_2)
+        );
 
     std::cout << pdu_constructor.to_string() << std::endl;
 

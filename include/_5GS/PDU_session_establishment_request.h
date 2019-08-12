@@ -14,6 +14,7 @@ public:
     // Mandatory
     IE::Integrity_protection_maximum_data_rate m_integrity_protection_maximum_data_rate;
     IE::PDU_session_type m_pdu_session_type;
+    IE::SSC_mode m_ssc_mode;
 
     PDU_session_establishment_request();
     // TODO doc
@@ -24,7 +25,7 @@ public:
         IE::Integrity_protection_maximum_data_rate ipmdr,
         // Optional
         IE::PDU_session_type pst = IE::PDU_session_type(),
-        //IE::SSC_mode sm = IE::SSC_mode(),
+        IE::SSC_mode sm = IE::SSC_mode(),
         //IE::_5GSM_capability = IE::_5GSM_capability(),
         //IE::Maximum_number_of_supported_packet_filers = IE::Maximum_number_of_supported_packet_filers(),
         //IE::Always_on_PDU_session_requested always_on = IE::Always_on_PDU_session_requested(),
