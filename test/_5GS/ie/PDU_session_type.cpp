@@ -31,6 +31,12 @@ int main()
         std::vector<uint8_t>({0x85}),
         PDU_session_type::Value::Ethernet
     );    
+
+    decode_TV_with_invalid_iei<PDU_session_type, PDU_session_type::Value>(
+        0x90,
+        std::vector<uint8_t>({0x85}),
+        PDU_session_type::Value::Ethernet
+    );    
     
     return 0;
 }

@@ -15,7 +15,7 @@ int Pdu5gs::decode(const std::vector<uint8_t> &data)
 
 int Pdu5gs::codeMMHeader(std::vector<uint8_t> &data) const
 {
-    return message_type.code(data, InformationElement::Format::V);
+    return m_message_type.code(data, InformationElement::Format::V);
 }
 
 std::string Pdu5gs::header_to_string() const
@@ -23,7 +23,7 @@ std::string Pdu5gs::header_to_string() const
     std::string str;
     // TODO add security header
     // Message type
-    str += message_type.to_string();
+    str += m_message_type.to_string();
     return str;
 }
 

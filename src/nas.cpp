@@ -1,5 +1,5 @@
 #include <nas.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 int Nas::codeProtocolDiscriminator(std::vector<uint8_t> &data, const Nas::ProtocolDiscriminator protocol)
 {

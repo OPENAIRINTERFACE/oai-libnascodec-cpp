@@ -1,5 +1,5 @@
 #include <_5GS/ie/PDU_session_type.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 namespace _5GS
 {
@@ -43,7 +43,8 @@ int PDU_session_type::code_TV(std::vector<uint8_t> &data, const uint8_t iei) con
     return 1;
 }
 
-uint8_t PDU_session_type::code_half_V() const {
+uint8_t PDU_session_type::code_half_V() const
+{
     return static_cast<uint8_t>(m_value);
 }
 
@@ -71,10 +72,18 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
             std::string(__PRETTY_FUNCTION__));
     }
 
+    if ((data[0] & 0xf0) != iei)
+    {
+        throw NasCodecException(std::string(__PRETTY_FUNCTION__) + std::string("invalide iei"));
+    }
+
     v = data[0] & 0x0f;
-    try {
+    try
+    {
         m_value = uint8_t_to_Value(v);
-    } catch (...) {
+    }
+    catch (...)
+    {
         throw NasCodecException(
             std::string(__PRETTY_FUNCTION__) +
             std::string(" Invalid data:\n") +
@@ -91,7 +100,8 @@ int PDU_session_type::decode_V(const std::vector<uint8_t> &data)
     return 1;
 }
 
-PDU_session_type::Value PDU_session_type::uint8_t_to_Value(const uint8_t &byte) {
+PDU_session_type::Value PDU_session_type::uint8_t_to_Value(const uint8_t &byte)
+{
     switch (byte)
     {
     case static_cast<uint8_t>(PDU_session_type::Value::IPv4):

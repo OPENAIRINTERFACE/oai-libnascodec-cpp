@@ -15,14 +15,21 @@ It is intended to decode all NAS protocols, although the primary goal is on 5G s
 
 #### 5G System NAS (TS 24.501)
 
-PDU                               | IE support                             
---------------------------------- | --------------------------------------
-for all PDUs                      | Extended protocol discriminator        
-^                                 | PDU session identity                   
-^                                 | Procedure transaction identity         
-^                                 | Message type                           
-PDU session establishment request | Integrity protection maximum data rate 
-^                                 | PDU session type                       
+PDU                               | IE support                              | 3GPP spec
+--------------------------------- | --------------------------------------- | --------------------
+for all PDUs                      | Extended protocol discriminator         | TS 24.007 11.2.3.1
+^                                 | PDU session identity                    | TS 24.501 9.4
+^                                 | Procedure transaction identity          | TS 24.501 9.6
+^                                 | Message type                            | TS 24.501 9.7
+^                                 | ^                                       | ^
+PDU session establishment request | Integrity protection maximum data rate  | TS 24.501 9.11.4.7
+^                                 | PDU session type                        | TS 24.501 9.11.4.11
+^                                 | SSC mode                                | TS 24.501 9.11.4.16
+^                                 | SM PDU DN request container             | TS 24.501 9.11.4.15
+^                                 | ^                                       | ^
+PDU session establishment accept  | Selected PDU session type               | TS 24.501 9.11.4.11
+^                                 | Selected SSC mode                       | TS 24.501 9.11.4.16
+^                                 | DNN                                     | TS 24.501 9.11.2.1A
 
 
 #### build

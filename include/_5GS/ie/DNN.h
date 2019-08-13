@@ -4,7 +4,7 @@
 #include <vector>
 #include <information_element.h>
 
-#include <_5GS/ie/SSC_mode.h>
+#include <_5GS/ie/String.h>
 
 namespace _5GS
 {
@@ -12,12 +12,13 @@ namespace _5GS
 namespace IE
 {
 
-class Selected_SSC_mode : public SSC_mode
+class DNN : public IE::String
 {
+    // TS 24.501 9.11.2.1A
 
 public:
-    Selected_SSC_mode();
-    explicit Selected_SSC_mode(const SSC_mode::Value value);
+    DNN();
+    explicit DNN(const std::string &value);
 
     virtual std::string getName() const;
 };

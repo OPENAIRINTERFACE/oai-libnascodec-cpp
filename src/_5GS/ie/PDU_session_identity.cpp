@@ -1,12 +1,10 @@
 #include <_5GS/ie/PDU_session_identity.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 namespace _5GS
 {
 namespace IE
 {
-
-const std::string PDU_session_identity::name = "PDU session Identity";
 
 PDU_session_identity::PDU_session_identity()
 {
@@ -15,6 +13,11 @@ PDU_session_identity::PDU_session_identity()
 PDU_session_identity::PDU_session_identity(PDU_session_identity::Value value)
 {
     set(value);
+}
+
+std::string PDU_session_identity::getName() const
+{
+    return "PDU session identity";
 }
 
 void PDU_session_identity::set(PDU_session_identity::Value id)
@@ -57,7 +60,7 @@ PDU_session_identity::Value PDU_session_identity::uint8_t_to_Value(const uint8_t
     return static_cast<PDU_session_identity::Value>(byte);
 }
 
-std::string PDU_session_identity::to_string() const
+std::string PDU_session_identity::valueToString() const
 {
     if (not isSet())
     {

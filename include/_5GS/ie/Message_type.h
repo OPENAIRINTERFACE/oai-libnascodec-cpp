@@ -72,7 +72,7 @@ public:
 
     Message_type();
 
-    Message_type(Value value);
+    explicit Message_type(const Value value);
 
     virtual void set(const Value id);
     virtual Value get() const;

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <information_element.h>
+#include <_5GS/ie/Maximum_data_rate_per_UE_for_user_plane.h>
 
 namespace _5GS
 {
@@ -15,39 +16,36 @@ class Integrity_protection_maximum_data_rate : public InformationElement
 public:
     // TS 24.501 - 9.11.4.7
 
-    enum class Value : uint8_t
+    class Value
     {
-        _64_kbps,
-        Full_data_rate = 255
+    public:
+        explicit Value();
+        explicit Value(const Maximum_data_rate_per_UE_for_user_plane &uplink, const Maximum_data_rate_per_UE_for_user_plane &downlink);
+
+        Maximum_data_rate_per_UE_for_user_plane m_uplink;
+        Maximum_data_rate_per_UE_for_user_plane m_downlink;
     };
 
-    Integrity_protection_maximum_data_rate();
-    Integrity_protection_maximum_data_rate(const Value uplink,const Value downlink);
+    explicit Integrity_protection_maximum_data_rate();
+    explicit Integrity_protection_maximum_data_rate(const Value &fields);
 
-    void setUplink(const Value value);
-    Value getUplink() const;
-
-    void setDownlink(const Value value);
-    Value getDownlink() const;
+    Value get() const;
 
     int code_V(std::vector<uint8_t> &data) const;
     int decode_V(const std::vector<uint8_t> &data);
-
-    static Value fromUint8_t(const uint8_t v);
 
     static std::string value_to_string(const Value value);
     virtual std::string valueToString() const;
     virtual std::string getName() const;
 
-private:
-    // FIXME D.R.Y. - make class helper for uplink downlink ?
-    Value m_uplink, m_downlink;
-    bool m_presentUplink = false;
-    bool m_presentDownlink = false;
-    void raise_exception_if_uplink_not_present() const;
-    void raise_exception_if_downlink_not_present() const;
+    virtual bool isSet() const;
+
+    Value m_fields;
 };
 
 } // namespace IE
 
 } // namespace _5GS
+
+bool operator==(const _5GS::IE::Integrity_protection_maximum_data_rate::Value &a,
+                const _5GS::IE::Integrity_protection_maximum_data_rate::Value &b);

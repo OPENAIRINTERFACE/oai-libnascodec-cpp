@@ -1,5 +1,5 @@
 #include <_5GS/ie/SSC_mode.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 namespace _5GS
 {
@@ -38,7 +38,8 @@ SSC_mode::Value SSC_mode::get() const
 
 // V coders and decoders
 
-uint8_t SSC_mode::code_half_V() const {
+uint8_t SSC_mode::code_half_V() const
+{
     return static_cast<uint8_t>(m_value);
 }
 
@@ -72,6 +73,7 @@ int SSC_mode::code_TV(std::vector<uint8_t> &data, const uint8_t iei) const
 int SSC_mode::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
 {
     uint8_t v;
+
     if (data.size() == 0)
     {
         throw NasCodecException(
@@ -87,6 +89,12 @@ int SSC_mode::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
     }
 
     v = data[0] & 0x0f;
+
+    if ((data[0] & 0xf0) != iei)
+    {
+        throw NasCodecException(std::string(__PRETTY_FUNCTION__) + std::string("invalide iei"));
+    }
+
     try
     {
         m_value = uint8_t_to_Value(v);

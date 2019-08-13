@@ -26,7 +26,7 @@ public:
      * identify a 5GS nas message from a byte buffer.
      *
      * This method must be used when a nas message don't need to be fully decoded.
-     * 
+     *
      * In case of failure exception is thrown.
      *
      * @param data buffer to identify.
@@ -37,10 +37,18 @@ public:
 
 protected:
     /**
+     * Deleting a derived class object using a pointer to a base class that has
+     * a non-virtual destructor results in undefined behavior.
+     * To correct this situation, the base class should be defined with
+     * a virtual destructor.
+     */
+    virtual ~Decode() = default;
+
+    /**
      * This method is called when an Registration request has been identified by the @f identify method.
      *
      * @param data  byte buffer identified
-     * 
+     *
      * Example:
      * @include _5GS/Registration_request_identify.cpp
      */
@@ -50,7 +58,7 @@ protected:
      * This method is called when an Registration accept has been identified by the @f identify method.
      *
      * @param data  byte buffer identified
-     * 
+     *
      */
     virtual void onRegistrationAccept(const std::vector<uint8_t> &data);
 
@@ -243,7 +251,7 @@ protected:
      *
      *
      * @param data  byte buffer identified
-     * 
+     *
      * Example:
      * @include _5GS/PDU_session_establishment_request_identify.cpp
      */
@@ -325,14 +333,6 @@ protected:
      * @param data  byte buffer identified
      */
     virtual void on5GSMStatus(const std::vector<uint8_t> &data);
-
-    /**
-     * Deleting a derived class object using a pointer to a base class that has 
-     * a non-virtual destructor results in undefined behavior.
-     * To correct this situation, the base class should be defined with
-     * a virtual destructor.
-     */
-    virtual ~Decode() = default;
 
 private:
     static IE::Message_type::Value identify_5GS_message_type(const std::vector<uint8_t> &data);

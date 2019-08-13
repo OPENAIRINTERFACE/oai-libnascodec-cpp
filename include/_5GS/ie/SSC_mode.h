@@ -28,7 +28,7 @@ public:
     };
 
     SSC_mode();
-    SSC_mode(const Value value);
+    explicit SSC_mode(const Value value);
 
     void set(Value id);
     Value get() const;

@@ -1,13 +1,13 @@
 #include <nas.h>
 #include <_5GS/PDU_session_establishment_accept.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 namespace _5GS
 {
 
 PDU_session_establishment_accept::PDU_session_establishment_accept()
 {
-    message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
+    m_message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
 }
 
 PDU_session_establishment_accept::PDU_session_establishment_accept(
@@ -28,16 +28,13 @@ PDU_session_establishment_accept::PDU_session_establishment_accept(
     // IE::EAP_message eap = ,
     // IE::Authorized_QoS_flow_descriptions auth_qos = ,
     // IE::Extended_protocol_configuration_option = ,
-    // IE::DNN dnn =,
-    int placeholder // remove me when the last optional ie is implemented
-    )
-    : Pdu5gsSm::Pdu5gsSm(psi, pti)
-
+    IE::DNN dnn)
+    : Pdu5gsSm::Pdu5gsSm(psi, pti),
+      m_selected_pdu_session_type(spst),
+      m_selected_ssc_mode(sm),
+      m_dnn(dnn)
 {
-    // FIXME
-    message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
-    m_selected_pdu_session_type = spst;
-    m_selected_ssc_mode = sm;
+    m_message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
 }
 
 int PDU_session_establishment_accept::code(std::vector<uint8_t> &data) const
@@ -58,6 +55,10 @@ int PDU_session_establishment_accept::code(std::vector<uint8_t> &data) const
         size += 1;
 
         // FIXME add optional parameters
+        if (m_dnn.isSet())
+        {
+            size += m_dnn.code(data, InformationElement::Format::TLV, static_cast<uint8_t>(Iei::DNN));
+        }
     }
     catch (const std::exception &exception)
     {
@@ -92,7 +93,10 @@ int PDU_session_establishment_accept::decode(const std::vector<uint8_t> &data)
         switch (iei)
         {
         case PDU_session_establishment_accept::Iei::Always_on_PDU_session_requested:
-        //    offset += always_on_PDU_session_requested.decode(iei_data, InformationElement::Format::TV, iei);
+            //    offset += always_on_PDU_session_requested.decode(iei_data, InformationElement::Format::TV, iei);
+            break;
+        case PDU_session_establishment_accept::Iei::DNN:
+            offset += m_dnn.decode(iei_data, InformationElement::Format::TLV, iei);
         default:
             break;
         }
@@ -111,16 +115,12 @@ std::string PDU_session_establishment_accept::to_string() const
     str += ", " + m_selected_pdu_session_type.to_string();
     str += ", " + m_selected_ssc_mode.to_string();
     // Optional parameters
-    /*
-    if (pdu_session_type.isSet())
+    if (m_dnn.isSet())
     {
-        str += ", " +
-               pdu_session_type.name +
-               "=" +
-               pdu_session_type.to_string();
+        str += ", " + m_dnn.to_string();
     }
     str += ")";
-     */
+
     return str;
 }
 

@@ -1,5 +1,5 @@
 #include <_5GS/ie/Message_type.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 namespace _5GS
 {
@@ -10,7 +10,7 @@ Message_type::Message_type()
 {
 }
 
-Message_type::Message_type(Value value)
+Message_type::Message_type(const Value value)
 {
     set(value);
 }

@@ -3,6 +3,8 @@
 #include <_5GS/pdu_5gs_sm.h>
 #include <_5GS/ie/PDU_session_type.h>
 #include <_5GS/ie/Integrity_protection_maximum_data_rate.h>
+#include <_5GS/ie/SSC_mode.h>
+#include <_5GS/ie/SM_PDU_DN_request_container.h>
 
 namespace _5GS
 {
@@ -11,16 +13,27 @@ class PDU_session_establishment_request : public Pdu5gsSm
 
 public:
     // Mandatory
-    IE::Integrity_protection_maximum_data_rate integrity_protection_maximum_data_rate;
-    IE::PDU_session_type pdu_session_type;
+    IE::Integrity_protection_maximum_data_rate m_integrity_protection_maximum_data_rate;
+    IE::PDU_session_type m_pdu_session_type;
+    IE::SSC_mode m_ssc_mode;
+    IE::SM_PDU_DN_request_container m_sm_pdu_dn_request_container;
 
     PDU_session_establishment_request();
     // TODO doc
     PDU_session_establishment_request(
         IE::PDU_session_identity psi,
         IE::Procedure_transaction_identity pti,
+        // Mandatory
         IE::Integrity_protection_maximum_data_rate ipmdr,
-        IE::PDU_session_type pst = IE::PDU_session_type()
+        // Optional
+        IE::PDU_session_type pst = IE::PDU_session_type(),
+        IE::SSC_mode sm = IE::SSC_mode(),
+        //IE::_5GSM_capability = IE::_5GSM_capability(),
+        //IE::Maximum_number_of_supported_packet_filters = IE::Maximum_number_of_supported_packet_filters(),
+        //IE::Always_on_PDU_session_requested always_on = IE::Always_on_PDU_session_requested(),
+        IE::SM_PDU_DN_request_container spdnc = IE::SM_PDU_DN_request_container(),
+        //IE::Extended_protocol_configuration_option = IE::Extended_protocol_configuration_option(),
+        int placeholder = 1 // remove me when the last optional ie is implemented
     );
 
     virtual int code(std::vector<uint8_t> &data) const;
