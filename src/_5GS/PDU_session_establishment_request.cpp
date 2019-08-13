@@ -18,15 +18,17 @@ PDU_session_establishment_request::PDU_session_establishment_request(
     // Optionals
     IE::PDU_session_type pst,
     IE::SSC_mode sm,
+    IE::SM_PDU_DN_request_container spdnc,
     //IE::_5GSM_capability,
     int placeholder)
-    : Pdu5gsSm::Pdu5gsSm(psi, pti)
-
+    // initializers
+    : Pdu5gsSm::Pdu5gsSm(psi, pti),
+      m_integrity_protection_maximum_data_rate(ipmdr),
+      m_pdu_session_type(pst),
+      m_ssc_mode(sm),
+      m_sm_pdu_dn_request_container(spdnc)
 {
     m_message_type.set(IE::Message_type::Value::PDU_session_establishment_request);
-    m_integrity_protection_maximum_data_rate = ipmdr;
-    m_pdu_session_type = pst;
-    m_ssc_mode = sm;
 }
 
 int PDU_session_establishment_request::code(std::vector<uint8_t> &data) const
@@ -48,7 +50,10 @@ int PDU_session_establishment_request::code(std::vector<uint8_t> &data) const
         {
             size += m_ssc_mode.code(data, InformationElement::Format::TV, static_cast<uint8_t>(Iei::SSC_Mode));
         }
-
+        if (m_sm_pdu_dn_request_container.isSet())
+        {
+            size += m_sm_pdu_dn_request_container.code(data, InformationElement::Format::TLV, static_cast<uint8_t>(Iei::SM_PDU_DN_request_container));
+        }
     }
     catch (const std::exception &exception)
     {
@@ -79,8 +84,13 @@ int PDU_session_establishment_request::decode(const std::vector<uint8_t> &data)
         {
         case PDU_session_establishment_request::Iei::PDU_session_type:
             offset += m_pdu_session_type.decode(iei_data, InformationElement::Format::TV, iei);
+            break;
         case PDU_session_establishment_request::Iei::SSC_Mode:
             offset += m_ssc_mode.decode(iei_data, InformationElement::Format::TV, iei);
+            break;
+        case PDU_session_establishment_request::Iei::SM_PDU_DN_request_container:
+            offset += m_sm_pdu_dn_request_container.decode(iei_data, InformationElement::Format::TLV, iei);
+            break;
         default:
             break;
         }
@@ -105,6 +115,10 @@ std::string PDU_session_establishment_request::to_string() const
     if (m_ssc_mode.isSet())
     {
         str += ", " + m_ssc_mode.to_string();
+    }
+    if (m_sm_pdu_dn_request_container.isSet())
+    {
+        str += ", " + m_sm_pdu_dn_request_container.to_string();
     }
     str += ")";
     return str;

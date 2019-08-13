@@ -40,7 +40,7 @@ int String::code_TLV(std::vector<uint8_t> &data, const uint8_t iei) const
 int String::decode_TLV(const std::vector<uint8_t> &data, const uint8_t iei)
 {
     if ( data[0] != iei) {
-            throw NasCodecException(std::string("Invalide iei for ") + std::string(__PRETTY_FUNCTION__));
+            throw NasCodecException(std::string("Invalid iei for ") + std::string(__PRETTY_FUNCTION__));
     }
     int size = data[1];
     m_value.clear();
