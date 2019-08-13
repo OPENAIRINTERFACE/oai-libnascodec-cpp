@@ -1,5 +1,5 @@
 #include <_5GS/ie/Selected_SSC_mode.h>
-#include <helpers.h>
+#include <nas_helpers.h>
 
 namespace _5GS
 {
