@@ -27,7 +27,7 @@ public:
         IE::PDU_session_type pst = IE::PDU_session_type(),
         IE::SSC_mode sm = IE::SSC_mode(),
         //IE::_5GSM_capability = IE::_5GSM_capability(),
-        //IE::Maximum_number_of_supported_packet_filers = IE::Maximum_number_of_supported_packet_filers(),
+        //IE::Maximum_number_of_supported_packet_filters = IE::Maximum_number_of_supported_packet_filters(),
         //IE::Always_on_PDU_session_requested always_on = IE::Always_on_PDU_session_requested(),
         //IE::SM_PDU_DN_request_container = IE::SM_PDU_DN_request_container(),
         //IE::Extended_protocol_configuration_option = IE::Extended_protocol_configuration_option(),
