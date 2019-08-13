@@ -27,5 +27,11 @@ int main()
         std::vector<uint8_t>({0x85}),
         SSC_mode::Value::unused_2);
 
+    decode_TV_with_invalid_iei<SSC_mode, SSC_mode::Value>(
+        0x80,
+        std::vector<uint8_t>({0x95}),
+        SSC_mode::Value::unused_2);
+
+
     return 0;
 }

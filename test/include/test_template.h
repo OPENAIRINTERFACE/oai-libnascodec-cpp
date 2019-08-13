@@ -98,6 +98,25 @@ void decode_TV(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
     assert(result == ie.get());
 }
 
+template <class IEClass, typename IEValue>
+void decode_TV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
+{
+    std::cerr << __PRETTY_FUNCTION__ << std::endl
+              << std::endl;
+
+    IEClass ie;
+
+    std::cerr << "decoding : " << dump_wireshark(buffer);
+    try {
+        ie.decode(buffer, InformationElement::Format::TV, iei);
+    } catch (const NasCodecException &except) {
+       std::cerr << "decoding failed as intended : " << except.what() << std::endl << std::endl;
+       return;    
+    }
+    
+    throw std::runtime_error("Wrong iei should not be decoded");
+}
+
 // TLV type IEs
 
 template <class IEClass, typename IEValue>
@@ -135,4 +154,23 @@ void decode_TLV(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
 
     assert(size == buffer.size());
     assert(result == ie.get());
+}
+
+template <class IEClass, typename IEValue>
+void decode_TLV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
+{
+    std::cerr << __PRETTY_FUNCTION__ << std::endl
+              << std::endl;
+
+    IEClass ie;
+
+    std::cerr << "decoding : " << dump_wireshark(buffer);
+    try {
+        ie.decode(buffer, InformationElement::Format::TLV, iei);
+    } catch (const NasCodecException &except) {
+       std::cerr << "decoding failed as intended : " << except.what() << std::endl << std::endl;
+       return;    
+    }
+    
+    throw std::runtime_error("Wrong iei should not be decoded");
 }
