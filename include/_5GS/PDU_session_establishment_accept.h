@@ -3,6 +3,7 @@
 #include <_5GS/pdu_5gs_sm.h>
 #include <_5GS/ie/Selected_PDU_session_type.h>
 #include <_5GS/ie/Selected_SSC_mode.h>
+#include <_5GS/ie/DNN.h>
 
 namespace _5GS
 {
@@ -13,7 +14,8 @@ public:
     // Mandatory
     IE::Selected_PDU_session_type m_selected_pdu_session_type;
     IE::Selected_SSC_mode m_selected_ssc_mode;
-    //
+    // Optionals
+    IE::DNN m_dnn;
 
     PDU_session_establishment_accept();
     // TODO doc
@@ -35,8 +37,7 @@ public:
         // IE::EAP_message eap = ,
         // IE::Authorized_QoS_flow_descriptions auth_qos = ,
         // IE::Extended_protocol_configuration_option = ,
-        // IE::DNN dnn =,
-        int placeholder = 1 // remove me when the last optional ie is implemented
+        IE::DNN dnn = IE::DNN()
     );
 
     virtual int code(std::vector<uint8_t> &data) const;

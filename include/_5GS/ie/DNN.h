@@ -12,13 +12,13 @@ namespace _5GS
 namespace IE
 {
 
-class SM_PDU_DN_request_container : public IE::String
+class DNN : public IE::String
 {
-    // TS 24.501 9.11.4.15
+    // TS 24.501 9.11.2.1A
 
 public:
-    SM_PDU_DN_request_container();
-    explicit SM_PDU_DN_request_container(const std::string &value);
+    DNN();
+    explicit DNN(const std::string &value);
 
     virtual std::string getName() const;
 };
