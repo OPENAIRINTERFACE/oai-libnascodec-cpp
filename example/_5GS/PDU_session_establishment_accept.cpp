@@ -15,13 +15,17 @@ int main()
         IE::Procedure_transaction_identity(31),
         IE::Selected_PDU_session_type(IE::PDU_session_type::Value::IPv4),
         IE::Selected_SSC_mode(IE::Selected_SSC_mode::Value::SSC_mode_2),
-        IE::Authorized_QoS_rules(std::vector<IE::QoS_rule>( {
-            IE::QoS_rule(
-        IE::QoS_rule::DQR_bit::the_QoS_rule_is_the_default_QoS_rule,
-        IE::QoS_rule::Rule_operation_code::Create_new_QoS_rule) } )),
+        IE::Authorized_QoS_rules(std::vector<IE::QoS_rule>({IE::QoS_rule(
+            IE::QoS_rule::DQR_bit::the_QoS_rule_is_the_default_QoS_rule,
+            IE::QoS_rule::Rule_operation_code::Create_new_QoS_rule)})),
+        IE::Session_AMBR(
+            IE::Session_AMBR_Fields(
+                IE::Unit_for_Session_AMBR(IE::Unit_for_Session_AMBR::Value::value_is_incremented_in_multiple_of_1_Kbps),
+                1024,
+                IE::Unit_for_Session_AMBR(IE::Unit_for_Session_AMBR::Value::value_is_incremented_in_multiple_of_4_Kbps),
+                85)),
         // optional - can be omitted
-        IE::DNN("abc.def@ghij")
-    );
+        IE::DNN("abc.def@ghij"));
 
     int size = pdu.code(data);
 

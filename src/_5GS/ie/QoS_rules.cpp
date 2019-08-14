@@ -37,9 +37,9 @@ int QoS_rules::code_LV_E(std::vector<uint8_t> &data) const
     // TODO add minimal QoS rule
     data.push_back(1);          // QoS rule identifier
     data.push_back(0);          // Length of QoS rules 2
-    data.push_back(0);          // Length of QoS rules 1 - number of packet filters
+    data.push_back(3);          // Length of QoS rules 1
     data.push_back(0b01010000); // Rule operation code + DQR + number of packet filter
-    size += 4;
+    size += 5;
     // XXX fix total size size is number of QoS rules
     size = 1;
     data[offset_begin + 1] = size & 0x00ff;

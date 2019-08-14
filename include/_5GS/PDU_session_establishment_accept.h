@@ -5,6 +5,7 @@
 #include <_5GS/ie/Selected_SSC_mode.h>
 #include <_5GS/ie/Authorized_QoS_rules.h>
 #include <_5GS/ie/DNN.h>
+#include <_5GS/ie/Session_AMBR.h>
 
 namespace _5GS
 {
@@ -16,6 +17,7 @@ public:
     IE::Selected_PDU_session_type m_selected_pdu_session_type;
     IE::Selected_SSC_mode m_selected_ssc_mode;
     IE::Authorized_QoS_rules m_authorized_qos_rules;
+    IE::Session_AMBR m_session_ambr;
     // Optionals
     IE::DNN m_dnn;
 
@@ -28,7 +30,7 @@ public:
         IE::Selected_PDU_session_type spst,
         IE::Selected_SSC_mode sm,
         IE::Authorized_QoS_rules aqr,
-        // IE::Session_AMBR sa,
+        IE::Session_AMBR sa,
         // Optionals,
         // IE::_5GSM_cause cause = ,
         // IE::PDU_address pdu_address = ,
