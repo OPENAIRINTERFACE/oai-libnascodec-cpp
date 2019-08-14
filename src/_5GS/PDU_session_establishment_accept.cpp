@@ -16,7 +16,7 @@ PDU_session_establishment_accept::PDU_session_establishment_accept(
     // Mandatory
     IE::Selected_PDU_session_type spst,
     IE::Selected_SSC_mode sm,
-    // IE::Authorized_QoS_rules aqr,
+    IE::Authorized_QoS_rules aqr,
     // IE::Session_AMBR sa,
     // Optionals,
     // IE::_5GSM_cause cause = ,
@@ -32,6 +32,7 @@ PDU_session_establishment_accept::PDU_session_establishment_accept(
     : Pdu5gsSm::Pdu5gsSm(psi, pti),
       m_selected_pdu_session_type(spst),
       m_selected_ssc_mode(sm),
+      m_authorized_qos_rules(aqr),
       m_dnn(dnn)
 {
     m_message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
@@ -54,6 +55,8 @@ int PDU_session_establishment_accept::code(std::vector<uint8_t> &data) const
         data.push_back((left << 4) | right);
         size += 1;
 
+        size += m_authorized_qos_rules.code(data, InformationElement::Format::LV_E);
+        // FIXME add Session AMBR
         // FIXME add optional parameters
         if (m_dnn.isSet())
         {
@@ -80,6 +83,8 @@ int PDU_session_establishment_accept::decode(const std::vector<uint8_t> &data)
     offset += m_selected_pdu_session_type.decode(data, InformationElement::Format::V);
     offset += m_selected_ssc_mode.decode(
         std::vector<uint8_t>(data.begin() + offset, data.end()), InformationElement::Format::V);
+    offset += m_authorized_qos_rules.decode(
+        std::vector<uint8_t>(data.begin() + offset, data.end()), InformationElement::Format::LV_E);
 
     // Decode optional parameters
     while (offset < data.size())
@@ -114,6 +119,7 @@ std::string PDU_session_establishment_accept::to_string() const
     // Mandatory parameters
     str += ", " + m_selected_pdu_session_type.to_string();
     str += ", " + m_selected_ssc_mode.to_string();
+    str += ", " + m_authorized_qos_rules.to_string();
     // Optional parameters
     if (m_dnn.isSet())
     {

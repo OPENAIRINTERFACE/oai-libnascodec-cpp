@@ -9,13 +9,18 @@ int main()
 {
 
     std::vector<uint8_t> data;
+
     PDU_session_establishment_accept pdu(
         IE::PDU_session_identity(IE::PDU_session_identity::Value::PDU_session_identity_value_3),
         IE::Procedure_transaction_identity(31),
         IE::Selected_PDU_session_type(IE::PDU_session_type::Value::IPv4),
         IE::Selected_SSC_mode(IE::Selected_SSC_mode::Value::SSC_mode_2),
+        IE::Authorized_QoS_rules(std::vector<IE::QoS_rule>( {
+            IE::QoS_rule(
+        IE::QoS_rule::DQR_bit::the_QoS_rule_is_the_default_QoS_rule,
+        IE::QoS_rule::Rule_operation_code::Create_new_QoS_rule) } )),
         // optional - can be omitted
-        IE::DNN("abc.def@ghi")
+        IE::DNN("abc.def@ghij")
     );
 
     int size = pdu.code(data);
