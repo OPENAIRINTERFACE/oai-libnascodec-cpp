@@ -13,10 +13,6 @@ std::string SSC_mode::getName() const
 
 // Constructors
 
-SSC_mode::SSC_mode()
-{
-}
-
 SSC_mode::SSC_mode(Value value)
 {
     set(value);

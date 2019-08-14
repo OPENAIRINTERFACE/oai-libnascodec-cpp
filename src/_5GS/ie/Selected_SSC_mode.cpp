@@ -11,10 +11,6 @@ std::string Selected_SSC_mode::getName() const
     return "Selected SSC mode";
 }
 
-Selected_SSC_mode::Selected_SSC_mode() : SSC_mode()
-{
-}
-
 Selected_SSC_mode::Selected_SSC_mode(Value value) : SSC_mode(value)
 {
 }

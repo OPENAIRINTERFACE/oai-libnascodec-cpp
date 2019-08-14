@@ -11,10 +11,6 @@ std::string SM_PDU_DN_request_container::getName() const
     return "SM PDU DN request container";
 }
 
-SM_PDU_DN_request_container::SM_PDU_DN_request_container() : String()
-{
-}
-
 SM_PDU_DN_request_container::SM_PDU_DN_request_container(const std::string &value) : String(value)
 {
     // TODO check value conformity

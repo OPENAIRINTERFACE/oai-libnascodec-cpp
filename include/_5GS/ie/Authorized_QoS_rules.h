@@ -17,7 +17,7 @@ class Authorized_QoS_rules : public IE::QoS_rules
     // TS 24.501 9.11.4.13
 
 public:
-    Authorized_QoS_rules();
+    Authorized_QoS_rules() = default;
     explicit Authorized_QoS_rules(const std::vector<QoS_rule> &rules);
 
     virtual std::string getName() const;

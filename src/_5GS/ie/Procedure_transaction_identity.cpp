@@ -6,10 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-Procedure_transaction_identity::Procedure_transaction_identity()
-{
-}
-
 Procedure_transaction_identity::Procedure_transaction_identity(Procedure_transaction_identity::Value value)
 {
     set(static_cast<uint8_t>(value));

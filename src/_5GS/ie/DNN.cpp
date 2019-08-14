@@ -11,10 +11,6 @@ std::string DNN::getName() const
     return "DNN";
 }
 
-DNN::DNN() : String()
-{
-}
-
 DNN::DNN(const std::string &value) : String(value)
 {
     // TODO check value conformity

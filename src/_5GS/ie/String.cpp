@@ -6,10 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-String::String()
-{
-}
-
 String::String(const std::string &value)
 {
     set(value);

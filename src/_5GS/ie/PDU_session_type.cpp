@@ -11,10 +11,6 @@ std::string PDU_session_type::getName() const
     return "PDU session type";
 }
 
-PDU_session_type::PDU_session_type()
-{
-}
-
 PDU_session_type::PDU_session_type(Value value)
 {
     set(value);

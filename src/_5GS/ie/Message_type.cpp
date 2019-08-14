@@ -6,10 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-Message_type::Message_type()
-{
-}
-
 Message_type::Message_type(const Value value)
 {
     set(value);

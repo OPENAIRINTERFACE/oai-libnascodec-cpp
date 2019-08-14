@@ -27,7 +27,7 @@ public:
         unused_3        /**< unused, shall be interpreted as SSC mode 3 if received by the network */
     };
 
-    SSC_mode();
+    SSC_mode() = default;
     explicit SSC_mode(const Value value);
 
     void set(Value id);

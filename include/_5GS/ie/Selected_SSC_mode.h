@@ -16,7 +16,7 @@ class Selected_SSC_mode : public SSC_mode
 {
 
 public:
-    Selected_SSC_mode();
+    Selected_SSC_mode() = default;
     explicit Selected_SSC_mode(const SSC_mode::Value value);
 
     virtual std::string getName() const;

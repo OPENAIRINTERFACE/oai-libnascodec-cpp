@@ -6,10 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-PDU_session_identity::PDU_session_identity()
-{
-}
-
 PDU_session_identity::PDU_session_identity(PDU_session_identity::Value value)
 {
     set(value);

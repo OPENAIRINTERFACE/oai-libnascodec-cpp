@@ -11,10 +11,6 @@ std::string Authorized_QoS_rules::getName() const
     return "Authorized QoS rules";
 }
 
-Authorized_QoS_rules::Authorized_QoS_rules() : QoS_rules()
-{
-}
-
 Authorized_QoS_rules::Authorized_QoS_rules(const std::vector<QoS_rule> &rules) : QoS_rules(rules)
 {
 }

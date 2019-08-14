@@ -6,10 +6,6 @@ namespace _5GS
 namespace IE
 {
 
-Maximum_data_rate_per_UE_for_user_plane::Maximum_data_rate_per_UE_for_user_plane()
-{
-}
-
 Maximum_data_rate_per_UE_for_user_plane::Maximum_data_rate_per_UE_for_user_plane(const Value &value)
 {
     set(value);

@@ -37,7 +37,7 @@ public:
         the_QoS_rule_is_the_default_QoS_rule
     };
 
-    QoS_rule();
+    QoS_rule() = default;
     explicit QoS_rule(const DQR_bit dqr, const Rule_operation_code operation);
 
     void set(const int value); // FIXME

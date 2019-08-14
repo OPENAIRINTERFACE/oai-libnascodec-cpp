@@ -37,7 +37,7 @@ public:
         reserved
     };
 
-    PDU_session_identity();
+    PDU_session_identity() = default;
     explicit PDU_session_identity(const Value val);
 
     void set(const Value value);
