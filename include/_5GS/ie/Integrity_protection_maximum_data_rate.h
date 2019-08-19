@@ -19,14 +19,14 @@ public:
     class Value
     {
     public:
-        explicit Value();
+        explicit Value() = default;
         explicit Value(const Maximum_data_rate_per_UE_for_user_plane &uplink, const Maximum_data_rate_per_UE_for_user_plane &downlink);
 
         Maximum_data_rate_per_UE_for_user_plane m_uplink;
         Maximum_data_rate_per_UE_for_user_plane m_downlink;
     };
 
-    explicit Integrity_protection_maximum_data_rate();
+    explicit Integrity_protection_maximum_data_rate() = default;
     explicit Integrity_protection_maximum_data_rate(const Value &fields);
 
     Value get() const;

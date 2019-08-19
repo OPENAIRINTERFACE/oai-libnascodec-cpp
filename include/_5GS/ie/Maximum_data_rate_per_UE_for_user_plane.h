@@ -17,7 +17,7 @@ public:
         Full_data_rate = 255
     };
 
-    explicit Maximum_data_rate_per_UE_for_user_plane();
+    explicit Maximum_data_rate_per_UE_for_user_plane() = default;
     explicit Maximum_data_rate_per_UE_for_user_plane(const Value &value);
 
     void set(const Value);

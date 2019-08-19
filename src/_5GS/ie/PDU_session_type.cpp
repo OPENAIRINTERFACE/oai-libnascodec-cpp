@@ -1,5 +1,5 @@
 #include <_5GS/ie/PDU_session_type.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
@@ -9,10 +9,6 @@ namespace IE
 std::string PDU_session_type::getName() const
 {
     return "PDU session type";
-}
-
-PDU_session_type::PDU_session_type()
-{
 }
 
 PDU_session_type::PDU_session_type(Value value)

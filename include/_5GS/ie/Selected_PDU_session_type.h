@@ -18,7 +18,7 @@ class Selected_PDU_session_type : public PDU_session_type
     // TS 24.501 9.11.4.11
 
 public:
-    Selected_PDU_session_type();
+    Selected_PDU_session_type() = default;
     explicit Selected_PDU_session_type(const PDU_session_type::Value value);
 
     virtual std::string getName() const;

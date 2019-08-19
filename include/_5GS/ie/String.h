@@ -15,7 +15,7 @@ class String : public InformationElement
 public:
     // Generic string ie to inherit
 
-    String();
+    String() = default;
     explicit String(const std::string &value);
 
     void set(const std::string &value);

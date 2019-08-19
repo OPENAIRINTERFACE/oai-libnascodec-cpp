@@ -1,14 +1,10 @@
 #include <_5GS/ie/Message_type.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
 namespace IE
 {
-
-Message_type::Message_type()
-{
-}
 
 Message_type::Message_type(const Value value)
 {

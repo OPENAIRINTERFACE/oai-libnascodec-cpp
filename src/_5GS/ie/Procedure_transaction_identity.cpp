@@ -1,14 +1,10 @@
 #include <_5GS/ie/Procedure_transaction_identity.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
 namespace IE
 {
-
-Procedure_transaction_identity::Procedure_transaction_identity()
-{
-}
 
 Procedure_transaction_identity::Procedure_transaction_identity(Procedure_transaction_identity::Value value)
 {

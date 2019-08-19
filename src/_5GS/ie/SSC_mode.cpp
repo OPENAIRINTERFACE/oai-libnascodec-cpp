@@ -1,5 +1,5 @@
 #include <_5GS/ie/SSC_mode.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
@@ -12,10 +12,6 @@ std::string SSC_mode::getName() const
 }
 
 // Constructors
-
-SSC_mode::SSC_mode()
-{
-}
 
 SSC_mode::SSC_mode(Value value)
 {

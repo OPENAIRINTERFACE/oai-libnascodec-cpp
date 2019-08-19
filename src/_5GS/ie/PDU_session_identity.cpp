@@ -1,14 +1,10 @@
 #include <_5GS/ie/PDU_session_identity.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
 namespace IE
 {
-
-PDU_session_identity::PDU_session_identity()
-{
-}
 
 PDU_session_identity::PDU_session_identity(PDU_session_identity::Value value)
 {

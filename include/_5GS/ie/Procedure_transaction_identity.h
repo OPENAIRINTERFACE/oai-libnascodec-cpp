@@ -22,7 +22,7 @@ public:
         Reserved = 255
     };
 
-    Procedure_transaction_identity();
+    Procedure_transaction_identity() = default;
     explicit Procedure_transaction_identity(const Value value);
     explicit Procedure_transaction_identity(const uint8_t value);
 

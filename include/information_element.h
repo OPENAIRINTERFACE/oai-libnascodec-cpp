@@ -47,31 +47,38 @@ public:
      *
      * @var T
      * @brief Type only @n
-     * IEI present
+     * IEI present @n
+     * also referred as type 1
      *
      * @var V
      * @brief Value only @n
-     * value present
+     * value present : 1/2 octet @n
+     * also referred as type 2
      *
      * @var TV
      * @brief Type and Value @n
-     * IEI present, value present
+     * IEI present, value present @n
+     * also referred as type 3
      *
      * @var LV
      * @brief Length and Value @n
-     * LI present, value present
+     * LI present, value present @n
+     * also referred as type 4
      *
      * @var TLV
      * @brief Type and Value @n
-     * IEI present, LI present, value present
+     * IEI present, LI present, value present @n
+     * also referred as type 4
      *
      * @var LV_E
      * @brief Type and Value @n
-     * LI present (2 bytes), value present
+     * LI present (2 bytes), value present @n
+     * also referred as type 6
      *
      * @var TLV_E
      * @brief Type and Value @n
-     * IEI present, LI present (2 bytes), value present
+     * IEI present, LI present (2 bytes), value present @n
+     * also referred as type 6
      *
      */
     enum class Format
@@ -124,8 +131,28 @@ public:
      */
     virtual int decode(const std::vector<uint8_t> &data, const InformationElement::Format format, const uint8_t iei = 0);
 
+    /** @brief convert ie to readable string
+     *
+     * This function return a string formatted as "ie name = value" @n
+     * When value have several fields, they are separated by & @n
+     * For example : @n
+     * Integrity protection maximum data rate=uplink(64 kbps)&downlink(Full data rate)
+     *
+     * @return string formatted
+     */
+
     virtual std::string to_string() const;
+
+    /** @brief return information element name
+     *
+     * @return the ie name (left part of the to_string() format)
+     */
     virtual std::string getName() const;
+
+    /** @brief return information element value
+     *
+     * @return the ie name (right part of the to_string() format)
+     */
     virtual std::string valueToString() const;
 
 protected:

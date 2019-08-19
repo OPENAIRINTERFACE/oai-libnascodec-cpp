@@ -1,5 +1,5 @@
 #include <_5GS/decode.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 using namespace _5GS;
 

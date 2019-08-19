@@ -1,5 +1,5 @@
 #include <_5GS/ie/Integrity_protection_maximum_data_rate.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
@@ -7,9 +7,6 @@ namespace IE
 {
 
 // class Integrity_protection_maximum_data_rate::Value
-Integrity_protection_maximum_data_rate::Value::Value()
-{
-}
 
 Integrity_protection_maximum_data_rate::Value::Value(
     const Maximum_data_rate_per_UE_for_user_plane &uplink,
@@ -18,10 +15,6 @@ Integrity_protection_maximum_data_rate::Value::Value(
 }
 
 // class  Integrity_protection_maximum_data_rate
-
-Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate()
-{
-}
 
 Integrity_protection_maximum_data_rate::Integrity_protection_maximum_data_rate(const Value &fields) : m_fields(fields)
 {

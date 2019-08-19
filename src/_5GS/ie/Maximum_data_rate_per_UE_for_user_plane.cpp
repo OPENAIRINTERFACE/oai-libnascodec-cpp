@@ -1,14 +1,10 @@
 #include <_5GS/ie/Maximum_data_rate_per_UE_for_user_plane.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
 namespace IE
 {
-
-Maximum_data_rate_per_UE_for_user_plane::Maximum_data_rate_per_UE_for_user_plane()
-{
-}
 
 Maximum_data_rate_per_UE_for_user_plane::Maximum_data_rate_per_UE_for_user_plane(const Value &value)
 {

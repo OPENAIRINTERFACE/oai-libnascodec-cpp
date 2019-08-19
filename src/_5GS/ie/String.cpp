@@ -1,14 +1,10 @@
 #include <_5GS/ie/String.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
 namespace IE
 {
-
-String::String()
-{
-}
 
 String::String(const std::string &value)
 {

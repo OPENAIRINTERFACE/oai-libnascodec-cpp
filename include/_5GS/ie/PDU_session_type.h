@@ -26,7 +26,7 @@ public:
         reserved = 7
     };
 
-    PDU_session_type();
+    PDU_session_type() = default;
     explicit PDU_session_type(const Value value);
 
     void set(Value id);

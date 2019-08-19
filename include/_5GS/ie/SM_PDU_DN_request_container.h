@@ -17,7 +17,7 @@ class SM_PDU_DN_request_container : public IE::String
     // TS 24.501 9.11.4.15
 
 public:
-    SM_PDU_DN_request_container();
+    SM_PDU_DN_request_container() = default;
     explicit SM_PDU_DN_request_container(const std::string &value);
 
     virtual std::string getName() const;
