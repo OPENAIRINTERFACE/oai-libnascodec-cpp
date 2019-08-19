@@ -1,5 +1,5 @@
 #include <_5GS/ie/QoS_rules.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {

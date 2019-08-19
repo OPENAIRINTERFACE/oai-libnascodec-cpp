@@ -1,5 +1,5 @@
 #include <_5GS/ie/SM_PDU_DN_request_container.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {

@@ -1,6 +1,6 @@
 #include <cassert>
 
-#include <nas_helpers.h>
+#include <buffers.h>
 #include <_5GS/PDU_session_establishment_accept.h>
 
 using namespace _5GS;

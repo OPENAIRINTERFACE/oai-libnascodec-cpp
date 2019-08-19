@@ -1,5 +1,5 @@
 #include <_5GS/ie/Integrity_protection_maximum_data_rate.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {

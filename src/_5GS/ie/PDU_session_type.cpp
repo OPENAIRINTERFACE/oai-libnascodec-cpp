@@ -1,5 +1,5 @@
 #include <_5GS/ie/PDU_session_type.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {

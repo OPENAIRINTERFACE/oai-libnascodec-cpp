@@ -1,7 +1,7 @@
 #include <nas.h>
 #include <_5GS/decode.h>
 #include <_5GS/ie/Message_type.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 using namespace _5GS;
 

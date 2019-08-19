@@ -1,5 +1,5 @@
 #include <_5GS/ie/DNN.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {

@@ -1,5 +1,5 @@
 #include <_5GS/ie/Unit_for_Session_AMBR.h>
-#include <nas_helpers.h>
+#include <buffers.h>
 
 namespace _5GS
 {
