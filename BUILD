@@ -26,6 +26,7 @@ for files in extract_binary_names(glob(["example/**/*.cpp"])) ]
 [ sh_test(
     name = files[1] + "_test",
     srcs = [ ":" + files[1]],
+    timeout = "short",
 ) for files in extract_binary_names(glob(["example/**/*.cpp"])) ]
 
 # build tests
@@ -44,4 +45,5 @@ for files in extract_binary_names(glob(["test/**/*.cpp"])) ]
 [ sh_test(
     name = files[1] + "_test",
     srcs = [ ":" + files[1]],
+    timeout = "short",
 ) for files in extract_binary_names(glob(["test/**/*.cpp"])) ]
