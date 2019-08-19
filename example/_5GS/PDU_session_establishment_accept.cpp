@@ -37,7 +37,7 @@ int main()
     // dump to stdout in order to redirect to a file and inspect with wireshark
     std::cout << dump_wireshark_with_ngap_encapsulation(data) << std::endl;
 
-    // FIXME reintegrate when mandatory iei are done
+    // FIXME reintegrate when mandatory iei are done and wireshark fixed
     //const std::vector<uint8_t> result = {0x2e, 0x03, 0x1f, 0xc1, 0x00, 0xff, 0x93};
     //assert(data == result);
     return 0;
