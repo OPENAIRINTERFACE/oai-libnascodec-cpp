@@ -97,7 +97,7 @@ std::string dump_wireshark(const std::vector<uint8_t> &data)
         // ascii
         for (const auto &byte : row)
         {
-            if (byte > 32 && byte < 127)
+            if (byte >= 32 && byte < 127)
             {
                 ss << std::setfill('.') << std::setw(1) << byte;
             }

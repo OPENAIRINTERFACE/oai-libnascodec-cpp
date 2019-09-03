@@ -1,0 +1,10 @@
+prefix=@PREFIX@
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: @NAME@
+Description: A cpp library for coding/decoding nas protocol from 3GPP TS
+Version: @VERSION@
+Cflags: -I${includedir}/@NAME@-@VERSION@
+Libs: -L${libdir}/@NAME@/@VERSION@ -lm -l@NAME@
