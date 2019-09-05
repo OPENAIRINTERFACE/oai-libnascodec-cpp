@@ -30,6 +30,8 @@ PDU session establishment request | Integrity protection maximum data rate  | TS
 ^                                 | ^                                       | ^
 PDU session establishment accept  | Selected PDU session type               | TS 24.501 9.11.4.11
 ^                                 | Selected SSC mode                       | TS 24.501 9.11.4.16
+^                                 | Authorized_QoS_rules (minimal stub)     | TS 24.501 9.11.4.13
+^                                 | Session AMBR                            | TS 24.501 9.11.4.14
 ^                                 | DNN                                     | TS 24.501 9.11.2.1A
 
 
