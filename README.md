@@ -1,9 +1,10 @@
-My Main Page                         {#mainpage}
-============
+libnascodec-cpp                         {#mainpage}
+===============
 
 Introduction
 ------------
 
+OpenAirInterface 5G Core Network project
 libnascodec-cpp is a library for manipulating Network Access Stratum defined by 3gpp specification
 
 It is intended to decode all NAS protocols, although the primary goal is on 5G system NAS messages.
