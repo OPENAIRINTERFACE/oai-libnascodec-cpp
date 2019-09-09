@@ -1,9 +1,10 @@
-My Main Page                         {#mainpage}
-============
+libnascodec-cpp                         {#mainpage}
+===============
 
 Introduction
 ------------
 
+OpenAirInterface 5G Core Network project
 libnascodec-cpp is a library for manipulating Network Access Stratum defined by 3gpp specification
 
 It is intended to decode all NAS protocols, although the primary goal is on 5G system NAS messages.
@@ -29,6 +30,8 @@ PDU session establishment request | Integrity protection maximum data rate  | TS
 ^                                 | ^                                       | ^
 PDU session establishment accept  | Selected PDU session type               | TS 24.501 9.11.4.11
 ^                                 | Selected SSC mode                       | TS 24.501 9.11.4.16
+^                                 | Authorized_QoS_rules (minimal stub)     | TS 24.501 9.11.4.13
+^                                 | Session AMBR                            | TS 24.501 9.11.4.14
 ^                                 | DNN                                     | TS 24.501 9.11.2.1A
 
 
@@ -50,9 +53,46 @@ Build only the library:
 
     bazel build :nascodec-cpp
 
+Launch unit tests:
+
+    bazel test -c dbg :all
+
+Build only the library:
+
+    bazel build :nascodec-cpp
+
 Clean build directories:
 
     bazel clean
+
+#### install
+
+    For convenience, a make wrapper is provided.
+
+    The following targets are available: all, clean, debug, install, test, uninstall
+
+    to install headers, libraries and pkg-config in /usr/local, just issue:
+
+        make install
+
+    The usual PREFIX variable is supported if you wan't to install it in a
+    directory other than /usr/local
+
+#### testing
+
+In order to test library, we use example programs in the example *folder*.
+
+Each program must return an error code if it fails.
+Most of the time error handling do not be need to be coded because the library throws exception when an error occurs.
+
+
+Clean build directories:
+
+    bazel clean
+
+#### install
+
+    for convenience, a make wrapper is provided. All
 
 #### testing
 
