@@ -3,7 +3,7 @@
 #include <_5GS/ie/Message_type.h>
 #include <buffers.h>
 
-using namespace _5GS;
+namespace _5GS {
 
 int Decode::decode(const std::vector<uint8_t> &data)
 {
@@ -465,4 +465,6 @@ void Decode::onPduSessionModificationCommandReject(const std::vector<uint8_t> &d
 void Decode::on5GSMStatus(const std::vector<uint8_t> &data)
 {
     throw NasCodecException(std::string("Not implemented: ") + std::string(__PRETTY_FUNCTION__));
+}
+
 }
