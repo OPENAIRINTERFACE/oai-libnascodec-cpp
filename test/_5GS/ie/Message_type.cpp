@@ -19,6 +19,6 @@ int main()
     decode_invalid_value_V<Message_type, Message_type::Value>(
         std::vector<uint8_t>({0x08})
     );
-  
+
     return 0;
 }
