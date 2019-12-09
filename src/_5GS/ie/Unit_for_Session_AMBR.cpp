@@ -186,7 +186,7 @@ std::string Unit_for_Session_AMBR::value_to_string(const Unit_for_Session_AMBR::
     case Unit_for_Session_AMBR::Value::value_is_incremented_in_multiple_of_256_Pbps:
         return "value is incremented in multiple of 256 Pbps";
     }
-    throw std::invalid_argument("Not a value");
+    throw std::invalid_argument("Not a Unit for Session AMBR value");
 }
 
 } // namespace IE

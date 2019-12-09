@@ -57,7 +57,7 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
     if (data.size() == 0)
     {
         throw NasCodecException(
-            std::string("No data to decode") +
+            std::string("No data to decode ") +
             std::string(__PRETTY_FUNCTION__));
     }
 
@@ -70,7 +70,7 @@ int PDU_session_type::decode_TV(const std::vector<uint8_t> &data, const uint8_t 
 
     if ((data[0] & 0xf0) != iei)
     {
-        throw NasCodecException(std::string(__PRETTY_FUNCTION__) + std::string("invalide iei"));
+        throw NasCodecException(std::string(__PRETTY_FUNCTION__) + std::string("invalid iei"));
     }
 
     v = data[0] & 0x0f;
@@ -142,7 +142,7 @@ std::string PDU_session_type::value_to_string(const PDU_session_type::Value valu
     case PDU_session_type::Value::reserved:
         return "reserved";
     }
-    throw std::invalid_argument("Not a value");
+    throw std::invalid_argument("Not a PDU session type value");
 }
 
 } // namespace IE

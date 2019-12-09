@@ -73,7 +73,7 @@ int SSC_mode::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
     if (data.size() == 0)
     {
         throw NasCodecException(
-            std::string("No data to decode") +
+            std::string("No data to decode ") +
             std::string(__PRETTY_FUNCTION__));
     }
 
@@ -88,7 +88,7 @@ int SSC_mode::decode_TV(const std::vector<uint8_t> &data, const uint8_t iei)
 
     if ((data[0] & 0xf0) != iei)
     {
-        throw NasCodecException(std::string(__PRETTY_FUNCTION__) + std::string("invalide iei"));
+        throw NasCodecException(std::string(__PRETTY_FUNCTION__) + std::string("invalid iei"));
     }
 
     try
@@ -159,7 +159,7 @@ std::string SSC_mode::value_to_string(const SSC_mode::Value value)
     case SSC_mode::Value::unused_3:
         return "unused 3";
     }
-    throw std::invalid_argument("Not a value");
+    throw std::invalid_argument("Not a SSC mode value");
 }
 
 } // namespace IE
