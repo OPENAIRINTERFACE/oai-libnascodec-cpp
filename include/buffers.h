@@ -22,3 +22,11 @@ std::ostream &operator<<(std::ostream &output, std::vector<uint8_t> &data);
 
 std::string dump_wireshark(const std::vector<uint8_t> &data);
 std::string dump_wireshark_with_ngap_encapsulation(const std::vector<uint8_t> &data);
+
+template <typename T>
+std::vector<T>& operator +=(std::vector<T>& vector1, const std::vector<T>& vector2) {
+    vector1.insert(vector1.end(), vector2.begin(), vector2.end());
+    return vector1;
+}
+
+std::string ipv4_uint32_to_string(uint32_t in);

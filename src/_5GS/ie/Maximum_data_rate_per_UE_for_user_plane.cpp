@@ -53,7 +53,7 @@ Maximum_data_rate_per_UE_for_user_plane::Value Maximum_data_rate_per_UE_for_user
         /** The receiving entity shall treat a spare value as "64 kbps". */
         return Maximum_data_rate_per_UE_for_user_plane::Value::_64_kbps;
     }
-    throw NasCodecException("Invalid value for Maximum_data_rate_per_UE_for_user_plane type");
+    throw NasCodecException("Invalid value for Maximum data rate per UE for user plane type");
 }
 
 std::string Maximum_data_rate_per_UE_for_user_plane::valueToString() const
@@ -74,7 +74,7 @@ std::string Maximum_data_rate_per_UE_for_user_plane::value_to_string(const Maxim
     case Maximum_data_rate_per_UE_for_user_plane::Value::Full_data_rate:
         return "Full data rate";
     }
-    throw std::invalid_argument("Not a value");
+    throw std::invalid_argument("Not a Maximum data rate per UE for user plane value");
 }
 
 bool operator==(const Maximum_data_rate_per_UE_for_user_plane &a,

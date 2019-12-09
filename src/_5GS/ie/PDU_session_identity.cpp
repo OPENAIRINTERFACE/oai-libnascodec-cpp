@@ -105,7 +105,7 @@ std::string PDU_session_identity::value_to_string(PDU_session_identity::Value va
     default:
         return "Reserved";
     }
-    throw std::invalid_argument("Not a value");
+    throw std::invalid_argument("Not a PDU session identity value");
 }
 
 } // namespace IE
