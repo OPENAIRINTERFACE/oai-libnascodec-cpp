@@ -137,7 +137,7 @@ void code_TV(uint8_t iei, IEValue value, std::vector<uint8_t> result)
     std::vector<uint8_t> buffer;
 
     ie = IEClass(value);
-    std::cerr << "coding " << ie.to_string() << " with ie " << std::hex << static_cast<int>(iei) << std::endl;
+    std::cerr << "coding " << ie.to_string() << " with ie " << std::hex << static_cast<int>(iei) << std::dec << std::endl;
     unsigned int size = ie.code(buffer, InformationElement::Format::TV, iei);
     std::cerr << "wrote " << size << " byte(s)." << std::endl;
     std::cerr << "0x" << dump_wireshark(buffer) << std::endl;
@@ -157,7 +157,7 @@ void decode_TV(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
     std::cerr << "decoding "
               << " with ie " << std::hex << static_cast<int>(iei) << ": " << dump_wireshark(buffer);
     unsigned int size = ie.decode(buffer, InformationElement::Format::TV, iei);
-    std::cerr << "read " << size << " byte(s)." << std::endl;
+    std::cerr << "read " << std::dec << size << " byte(s)." << std::endl;
     std::cerr << ie.to_string() << std::endl
               << std::endl;
 
@@ -200,7 +200,7 @@ void code_TLV(uint8_t iei, IEValue value, std::vector<uint8_t> result)
     std::vector<uint8_t> buffer;
 
     ie = IEClass(value);
-    std::cerr << "coding " << ie.to_string() << " with ie " << std::hex << static_cast<int>(iei) << std::endl;
+    std::cerr << "coding " << ie.to_string() << " with ie " << std::hex << static_cast<int>(iei) << std::dec << std::endl;
     unsigned int size = ie.code(buffer, InformationElement::Format::TLV, iei);
     std::cerr << "wrote " << size << " byte(s)." << std::endl;
     std::cerr << "0x" << dump_wireshark(buffer) << std::endl;
@@ -220,7 +220,7 @@ void decode_TLV(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
     std::cerr << "decoding "
               << " with ie " << std::hex << static_cast<int>(iei) << ": " << dump_wireshark(buffer);
     unsigned int size = ie.decode(buffer, InformationElement::Format::TLV, iei);
-    std::cerr << "read " << size << " byte(s)." << std::endl;
+    std::cerr << "read " << std::dec << size << " byte(s)." << std::endl;
     std::cerr << ie.to_string() << std::endl
               << std::endl;
 
@@ -229,7 +229,7 @@ void decode_TLV(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
 }
 
 template <class IEClass, typename IEValue>
-void decode_TLV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
+void decode_TLV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEValue result) // FIXME
 {
     std::cerr << __PRETTY_FUNCTION__ << std::endl
               << std::endl;
