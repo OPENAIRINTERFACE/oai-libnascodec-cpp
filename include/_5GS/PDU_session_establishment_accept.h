@@ -6,6 +6,7 @@
 #include <_5GS/ie/Authorized_QoS_rules.h>
 #include <_5GS/ie/DNN.h>
 #include <_5GS/ie/Session_AMBR.h>
+#include <_5GS/ie/PDU_address.h>
 
 namespace _5GS
 {
@@ -19,6 +20,7 @@ public:
     IE::Authorized_QoS_rules m_authorized_qos_rules;
     IE::Session_AMBR m_session_ambr;
     // Optionals
+    IE::PDU_address m_pdu_address;
     IE::DNN m_dnn;
 
     PDU_session_establishment_accept();
@@ -33,7 +35,7 @@ public:
         IE::Session_AMBR sa,
         // Optionals,
         // IE::_5GSM_cause cause = ,
-        // IE::PDU_address pdu_address = ,
+        IE::PDU_address pdu_address = IE::PDU_address(),
         // IE::RQ_timer_value rq_timer_value =,
         // IE::S_NSSAI s_nssai =
         // IE::Always_on_PDU_session_indication always_on = ,

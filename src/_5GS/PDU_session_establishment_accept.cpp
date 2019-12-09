@@ -21,7 +21,7 @@ PDU_session_establishment_accept::PDU_session_establishment_accept(
     IE::Session_AMBR sa,
     // Optionals,
     // IE::_5GSM_cause cause = ,
-    // IE::PDU_address pdu_address = ,
+    IE::PDU_address pdu_address,
     // IE::RQ_timer_value rq_timer_value =,
     // IE::S_NSSAI s_nssai =
     // IE::Always_on_PDU_session_indication always_on = ,
@@ -35,6 +35,7 @@ PDU_session_establishment_accept::PDU_session_establishment_accept(
       m_selected_ssc_mode(sm),
       m_authorized_qos_rules(aqr),
       m_session_ambr(sa),
+      m_pdu_address(pdu_address),
       m_dnn(dnn)
 {
     m_message_type.set(IE::Message_type::Value::PDU_session_establishment_accept);
@@ -60,6 +61,11 @@ int PDU_session_establishment_accept::code(std::vector<uint8_t> &data) const
         size += m_authorized_qos_rules.code(data, InformationElement::Format::LV_E);
         size += m_session_ambr.code(data, InformationElement::Format::LV);
         // FIXME add optional parameters
+        if (m_pdu_address.isSet())
+        {
+            size += m_pdu_address.code(data, InformationElement::Format::TLV, static_cast<uint8_t>(Iei::PDU_address));
+        }
+
         if (m_dnn.isSet())
         {
             size += m_dnn.code(data, InformationElement::Format::TLV, static_cast<uint8_t>(Iei::DNN));
@@ -104,6 +110,8 @@ int PDU_session_establishment_accept::decode(const std::vector<uint8_t> &data)
         case PDU_session_establishment_accept::Iei::Always_on_PDU_session_requested:
             //    offset += always_on_PDU_session_requested.decode(iei_data, InformationElement::Format::TV, iei);
             break;
+        case PDU_session_establishment_accept::Iei::PDU_address:
+            offset += m_pdu_address.decode(iei_data, InformationElement::Format::TLV, iei);
         case PDU_session_establishment_accept::Iei::DNN:
             offset += m_dnn.decode(iei_data, InformationElement::Format::TLV, iei);
         default:
@@ -126,6 +134,10 @@ std::string PDU_session_establishment_accept::to_string() const
     str += ", " + m_authorized_qos_rules.to_string();
     str += ", " + m_session_ambr.to_string();
     // Optional parameters
+    if (m_pdu_address.isSet())
+    {
+        str += ", " + m_pdu_address.to_string();
+    }
     if (m_dnn.isSet())
     {
         str += ", " + m_dnn.to_string();

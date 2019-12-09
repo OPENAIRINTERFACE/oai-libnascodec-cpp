@@ -24,7 +24,8 @@ int main()
                 1024,
                 IE::Unit_for_Session_AMBR(IE::Unit_for_Session_AMBR::Value::value_is_incremented_in_multiple_of_4_Kbps),
                 85)),
-        // optional - can be omitted
+        // optional - can be omitted,
+        IE::PDU_address(IE::PDU_address::Value(0xc0a80001)),
         IE::DNN("abc.def@ghij"));
 
     int size = pdu.code(data);
