@@ -229,7 +229,7 @@ void decode_TLV(uint8_t iei, std::vector<uint8_t> buffer, IEValue result)
 }
 
 template <class IEClass, typename IEValue>
-void decode_TLV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEValue result) // FIXME
+void decode_invalid_TLV(uint8_t iei, std::vector<uint8_t> buffer)
 {
     std::cerr << __PRETTY_FUNCTION__ << std::endl
               << std::endl;
@@ -248,7 +248,7 @@ void decode_TLV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEVal
         return;
     }
 
-    throw std::runtime_error("Wrong iei should not be decoded");
+    throw std::runtime_error("Wrong tlv should not be decoded");
 }
 
 #define ASSERT_EXCEPTION(expression, ExceptionType)                     \

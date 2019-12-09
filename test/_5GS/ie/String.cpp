@@ -16,10 +16,9 @@ int main()
         std::vector<uint8_t>({0x35, 0x03, 0x36, 0x35, 0x34}),
         "654");
 
-    decode_TLV_with_invalid_iei<String, std::string>(
+    decode_invalid_TLV<String, std::string>(
         0x35,
-        std::vector<uint8_t>({0x34, 0x03, 0x36, 0x35, 0x34}),
-        "654");
+        std::vector<uint8_t>({0x34, 0x03, 0x36, 0x35, 0x34}));
 
     return 0;
 }
