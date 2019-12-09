@@ -250,3 +250,19 @@ void decode_TLV_with_invalid_iei(uint8_t iei, std::vector<uint8_t> buffer, IEVal
 
     throw std::runtime_error("Wrong iei should not be decoded");
 }
+
+#define ASSERT_EXCEPTION(expression, ExceptionType)                     \
+    {                                                                   \
+        try                                                             \
+        {                                                               \
+            expression;                                                 \
+            throw std::runtime_error("ASSERT_EXCEPTION: Test must fail");\
+        }                                                               \
+        catch (const ExceptionType &)                                   \
+        {                                                               \
+        }                                                               \
+        catch (...)                                                     \
+        {                                                               \
+            throw std::runtime_error("ASSERT_EXCEPTION: Test must fail");\
+        }                                                               \
+    }
